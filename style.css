@@ -1,0 +1,410 @@
+
+/* ==================================================
+   Consolidated stylesheet — fixed responsive sidebar
+   - Removes duplicates
+   - Uses CSS variables for sidebar width and offsets
+   - Ensures header & content shift when .menu-toggle is checked
+   ================================================== */
+
+:root{
+  --sidebar-width: 220px;
+  --bg:#f8fafc;
+  --card:#ffffff;
+  --accent:#0b3d91;
+  --muted:#4b5563;
+  --maxw:900px;
+  --radius:10px;
+  --pad:18px;
+}
+
+/* ===== Sidebar (desktop default: static) ===== */
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: var(--sidebar-width);
+  height: 100%;
+  background-color: #111827;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 10px;
+  z-index: 1000;
+  transition: transform 0.28s ease;
+}
+
+.sidebar img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border: 3px solid #2563eb;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.sidebar h3 { font-size: 16px; margin-bottom: 5px; text-align: center; }
+.sidebar p  { font-size: 12px; color: #9ca3af; text-align: center; margin-bottom: 20px; }
+.sidebar .socials a { color: white; font-size: 20px; margin: 0 8px; transition: 0.2s; text-decoration: none; }
+.sidebar .socials a:hover { color: #2563eb; }
+
+/* Hidden checkbox used to toggle sidebar on small screens */
+.menu-toggle { display: none; }
+
+/* Menu button (hidden by default, visible on small screens only) */
+.menu-btn {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  font-size: 26px;
+  background-color: #111827;
+  color: white;
+  padding: 8px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  z-index: 1100;
+  display: none;
+}
+
+/* ===== Header / Nav ===== */
+header {
+  position: fixed;
+  top: 0;
+  left: var(--sidebar-width);
+  right: 0;
+  background: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 900;
+  transition: left 0.28s ease;
+}
+
+header .site-title { font-size: 20px; font-weight: bold; color: #111827; margin: 0; }
+header .site-title a { text-decoration: none; color: inherit; }
+nav a { margin-left: 15px; text-decoration: none; color: #1f2937; font-weight: 500; transition: color 0.2s; }
+nav a:hover { color: #2563eb; }
+
+/* ===== Main Content ===== */
+.content {
+  margin-top: 70px;
+  padding: 20px;
+  transition: margin-left 0.28s ease;
+}
+
+/* Keep .container in sync if used elsewhere */
+.container { margin-left: calc(var(--sidebar-width) + 20px); max-width: 900px; margin-top: 28px; padding: 0 18px; }
+
+/* ===== Responsive behavior (mobile) ===== */
+@media (max-width: 768px) {
+  .menu-btn { display: block; }
+  
+  /* Hide sidebar off-canvas by default on mobile */
+  .sidebar { transform: translateX(-110%); }
+  
+  /* Header and content are full width by default on mobile */
+  header { left: 0; }
+  .content, .container { margin-left: 0; }
+
+  /* When the menu toggle is checked, reveal sidebar and shift header + container */
+  .menu-toggle:checked ~ .sidebar { transform: translateX(0); }
+  .menu-toggle:checked ~ header { left: var(--sidebar-width); }
+  .menu-toggle:checked ~ .container { margin-left: calc(var(--sidebar-width) + 20px); }
+}
+
+/* ===== CV Section & common components (kept from original) ===== */
+.cv-viewer iframe { border: 1px solid #ccc; border-radius: 8px; width: 100%; height: 800px; }
+.cv-btn { display: inline-block; padding: 8px 14px; background: linear-gradient(135deg, #2563eb, #3b82f6); color: #fff; font-size: 14px; border-radius: 6px; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; }
+.cv-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37, 99, 235, 0.5); }
+
+footer { text-align: center; margin: 30px 0; font-size: 14px; color: #6b7280; }
+
+/* ===== Content utilities and sections (preserved) ===== */
+/* Justify text in all sections and articles */
+section, article, p, li { text-align: justify; text-justify: inter-word; }
+
+.skills { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+.skill-btn { display: inline-block; padding: 8px 14px; background: linear-gradient(135deg, #2563eb, #3b82f6); color: #fff; font-size: 14px; border-radius: 6px; transition: transform 0.2s, box-shadow 0.2s; cursor: default; }
+.skill-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37, 99, 235, 0.5); }
+
+section ul { padding-left: 20px; margin-top: 8px; }
+section ul li { margin-bottom: 6px; text-align: justify; }
+
+.publications { display: flex; flex-direction: column; gap: 14px; }
+.publication p { background: #f3f4f6; padding: 12px 16px; border-radius: 8px; line-height: 1.5; text-align: justify; }
+.publication a { color: #2563eb; text-decoration: none; font-weight: 500; }
+.publication a:hover { text-decoration: underline; }
+
+.mentoring p { background: #f3f4f6; padding: 12px 16px; border-radius: 8px; line-height: 1.5; text-align: justify; }
+
+.gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-top: 12px; }
+.gallery-item { text-align: center; }
+.gallery-item img { width: 100%; height: 280px; object-fit: cover; border-radius: 8px; transition: transform 0.3s, box-shadow 0.3s; }
+.gallery-item img:hover { transform: scale(1.05); box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2); }
+.gallery-item p { margin-top: 6px; font-size: 14px; color: #2563eb; font-weight: 500; }
+
+.cv-viewer { margin-top: 12px; }
+
+.awards-list { padding-left: 20px; margin-top: 12px; }
+.awards-list li { margin-bottom: 12px; text-align: justify; line-height: 1.5; }
+
+/* Reset & site header/footer utilities from original */
+*{box-sizing:border-box}
+body{font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; margin:0; background:var(--bg); color:#111}
+.site-header{background:var(--card); border-bottom:1px solid #e6eef8; position:sticky; top:0; z-index:10}
+.site-header .container{display:flex; align-items:center; gap:16px; padding:12px 18px}
+.site-title{margin:0; font-size:1.1rem}
+.site-title a{color:var(--accent); text-decoration:none}
+.nav{margin-left:auto; display:flex; gap:12px; align-items:center}
+.nav a{color:var(--muted); text-decoration:none; padding:8px 10px; border-radius:8px}
+.nav a:hover{background:#eef3ff; color:var(--accent)}
+h2{margin-top:0}
+section{background:var(--card); padding:var(--pad); border-radius:var(--radius); box-shadow:0 6px 18px rgba(12,38,77,0.03); margin-bottom:18px}
+article{margin-bottom:12px}
+.site-footer{padding:18px 0; text-align:center; color:var(--muted)}
+a{color:var(--accent)}
+@media (max-width:640px){
+  .nav{display:none}
+  .site-header .container{flex-direction:column; align-items:flex-start; gap:8px}
+  .container{margin-left:0}
+}
+
+/* Mobile shortcut bar (small screen) */
+.mobile-shortcuts {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 12px;
+  display: none;
+  gap: 10px;
+  z-index: 1250;
+  pointer-events: none; /* disabled by default; enabled in media query */
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  padding: 0 12px 12px;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+.mobile-shortcuts::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+.mobile-shortcuts .mobile-shortcut {
+  pointer-events: auto;
+  background: linear-gradient(135deg,#2563eb,#3b82f6);
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 600;
+  box-shadow: 0 6px 18px rgba(12,38,77,0.08);
+  font-size: 13px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+@media (max-width:768px) {
+  .mobile-shortcuts { 
+    display: flex;
+    pointer-events: auto;
+    justify-content: flex-start;
+    width: 100%;
+  }
+  .site-footer { padding-bottom: 64px; }
+}
+
+/* Mobile shortcut icons */
+.mobile-shortcuts .mobile-shortcut i { margin-right: 8px; font-size: 14px; vertical-align: middle; }
+.mobile-shortcuts .mobile-shortcut { display: inline-flex; align-items: center; gap:6px }
+
+/* Slightly smaller on very small screens */
+@media (max-width:420px) {
+  .mobile-shortcuts .mobile-shortcut { padding: 6px 10px; font-size: 13px }
+}
+
+/* Justify text in all sections and articles */
+section, article, p, li {
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.skill-btn {
+  display: inline-block;
+  padding: 8px 14px;
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  color: #fff;
+  font-size: 14px;
+  border-radius: 6px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: default;
+}
+
+.skill-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.5);
+}
+
+section ul {
+  padding-left: 20px;
+  margin-top: 8px;
+}
+
+section ul li {
+  margin-bottom: 6px;
+  text-align: justify; /* keeps consistency with justified content */
+}
+
+.publications {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.publication p {
+  background: #f3f4f6;
+  padding: 12px 16px;
+  border-radius: 8px;
+  line-height: 1.5;
+  text-align: justify;
+}
+
+.publication a {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.publication a:hover {
+  text-decoration: underline;
+}
+
+.mentoring p {
+  background: #f3f4f6;
+  padding: 12px 16px;
+  border-radius: 8px;
+  line-height: 1.5;
+  text-align: justify;
+}
+
+.skill-btn {
+  display: inline-block;
+  padding: 8px 14px;
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  color: #fff;
+  font-size: 14px;
+  border-radius: 6px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.skill-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.5);
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.gallery-item {
+  text-align: center;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.gallery-item img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-item p {
+  margin-top: 6px;
+  font-size: 14px;
+  color: #2563eb;
+  font-weight: 500;
+}
+
+.cv-viewer iframe {
+  width: 100%;
+  height: 800px;
+  border-radius: 8px;
+}
+
+.cv-btn {
+  display: inline-block;
+  padding: 8px 14px;
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  color: #fff;
+  font-size: 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.cv-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.5);
+}
+
+.cv-viewer {
+  margin-top: 12px;
+}
+
+.cv-viewer iframe {
+  width: 100%;
+  height: 800px;
+  border-radius: 8px;
+}
+
+.awards-list {
+  padding-left: 20px;
+  margin-top: 12px;
+}
+
+.awards-list li {
+  margin-bottom: 12px;
+  text-align: justify;
+  line-height: 1.5;
+}
+
+
+
+
+*{box-sizing:border-box}
+body{font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; margin:0; background:var(--bg); color:#111}
+.site-header{background:var(--card); border-bottom:1px solid #e6eef8; position:sticky; top:0; z-index:10}
+.site-header .container{display:flex; align-items:center; gap:16px; padding:12px 18px}
+.site-title{margin:0; font-size:1.1rem}
+.site-title a{color:var(--accent); text-decoration:none}
+.nav{margin-left:auto; display:flex; gap:12px; align-items:center}
+.nav a{color:var(--muted); text-decoration:none; padding:8px 10px; border-radius:8px}
+.nav a:hover{background:#eef3ff; color:var(--accent)}
+h2{margin-top:0}
+section{background:var(--card); padding:var(--pad); border-radius:var(--radius); box-shadow:0 6px 18px rgba(12,38,77,0.03); margin-bottom:18px}
+article{margin-bottom:12px}
+.site-footer{padding:18px 0; text-align:center; color:var(--muted)}
+a{color:var(--accent)}
+@media (max-width:640px){
+  .nav{display:none}
+  .site-header .container{flex-direction:column; align-items:flex-start; gap:8px}
+  .container{margin-left:0}
+}
