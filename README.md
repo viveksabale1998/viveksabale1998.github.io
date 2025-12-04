@@ -101,3 +101,60 @@ Edit files like `content/experience.md` or `content/cv.md`. **Always ensure the 
 1.  Install Zola.
 2.  Run `zola serve`.
 3.  Visit `http://127.0.0.1:1111`.
+
+## SCSS Architecture
+
+The project follows a modular SCSS architecture (based on ITCSS/7-1 pattern) located in `sass/css/`.
+
+### 0-settings
+Configuration and global variables.
+- `_A_variables.scss`: Global variables for fonts, sizes, spacing, and breakpoints.
+- `_B_color-scheme.scss`: Color palette definitions and theme colors.
+- `_C_mixins.scss`: General utility mixins (clearfix, list-reset, screen-reader).
+- `_D_helpers.scss`: Helper classes for spacing, alignment, etc.
+
+### 1-tools
+Mixins and functions.
+- `_A_normalize.scss`: CSS normalization to ensure consistent rendering across browsers.
+- `_B_reset.scss`: CSS reset to remove default browser styling.
+- `_C_shared.scss`: Shared styles and placeholders.
+- `_D_syntax-highlighting.scss`: Styles for code block syntax highlighting.
+- `_E_grid.scss`: Grid system mixins and classes for layout.
+- `_F_tiny-slider.scss`: Styles for the Tiny Slider plugin.
+- `_G_animate.scss`: Animation keyframes and classes.
+
+### 2-base
+Boilerplate code.
+- `_base.scss`: Base HTML element styles (body, headings, links, typography).
+
+### 3-modules
+Reusable UI components.
+- `_header.scss`: Site header, navigation menu, and mobile menu styles.
+- `_footer.scss`: Site footer styles.
+- `_pagination.scss`: Pagination control styles.
+- `_scroll-button-top.scss`: Styles for the "Back to top" button.
+- `_sections.scss`: General section container styles.
+- `_social-links.scss`: Styles for social media icon links.
+
+### 4-layouts
+Page-level layouts.
+- `_page-layout.scss`: Main page layout structure and container styles.
+
+### Components
+Specific functional components.
+- `_blog-card.scss`: Styles for blog post preview cards.
+- `_button.scss`: Button styles (primary, secondary, etc.).
+- `_contact-form.scss`: Contact form input and button styles.
+- `_content.scss`: Styles for the main content area.
+- `_hero.scss`: Styles for the homepage hero section.
+- `_newsletter.scss`: Styles for the newsletter subscription form.
+- `_page-heading.scss`: Styles for page titles and descriptions.
+- `_page-image.scss`: Styles for featured images on pages.
+- `_posts-list.scss`: Styles for the list of blog posts.
+- `_project-card.scss`: Styles for project portfolio cards (including dynamic colors).
+- `_testimonial-card.scss`: Styles for testimonial cards.
+- `_testimonials-section.scss`: Layout styles for the testimonials section.
+
+### Global Files
+- `global.scss`: Main entry point that imports all other SCSS files.
+- `tag.scss`: Specific styles for tag archive pages.
