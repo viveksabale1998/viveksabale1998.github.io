@@ -4,7 +4,7 @@ sort_by = "date"
 page_template = "project.html"
 [[extra.content_blocks]]
 block = "page-heading"
-title = "Codes"
+title = "Repository & Codes"
 description = "Research codes and projects."
 [[extra.content_blocks]]
 block = "projects-list"
