@@ -35,7 +35,7 @@ twitter_handle = ""
 author_image = 'assets/profile.jpeg'
 
 navigation = [
-    { url = "$BASE_URL", title = "Home" },
+    # { url = "$BASE_URL", title = "Home" },
     { url = "$BASE_URL/projects", title = "Codes" },
     { url = "$BASE_URL/publications", title = "Publications" },
     { url = "$BASE_URL/experience", title = "Experience" },
