@@ -1,5 +1,6 @@
 # The URL the site will be built for
 base_url = "https://viveksabale1998.github.io/sites/"
+theme = "vonge"
 
 title = "Vivek Sabale"
 author = "Vivek Sabale"
@@ -94,7 +95,7 @@ description_html = """
     <li>Quantum machine learning</li>
   </ul>"""
 link_url = "/projects"
-show_projects = false
+show_projects = true
 
 [[extra.content_blocks]]
 block = "testimonials-section"
@@ -118,7 +119,7 @@ title = "Quick Links"
 description_html = """
     <p><a href="/projects">Projects</a> • <a href="/publications">Publications</a> • <a href="/cv">CV</a></p>"""
 link_url = "/posts"
-show_posts = false
+show_posts = true
 
 [[extra.content_blocks]]
 block = "newsletter"
