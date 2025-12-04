@@ -80,7 +80,7 @@ title = "Hi, I am Vivek Sabale"
 description_html = "<strong>Quantum Information Researcher</strong> at IIT Jodhpur. I specialize in quantum information and computation, open quantum systems, and quantum machine learning."
 image = "assets/profile.jpeg"
 image_alt = "Vivek Sabale's picture"
-cta_button_link = {url = "$BASE_URL/contact"}
+cta_button_link = "$BASE_URL/contact"
 cta_button = "Get in touch"
 # works_button_link = "$BASE_URL/projects"
 # works_button = "See my codes"
