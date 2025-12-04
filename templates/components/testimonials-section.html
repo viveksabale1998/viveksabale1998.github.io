@@ -18,15 +18,16 @@
               </li>
             </ul>
           </div>
-          <div class="section__description">{{ data.description_html | safe }}</div>
+          <div class="section__description">{{ data.description_html | replace(from='$BASE_URL', to=config.base_url) |
+            safe }}</div>
         </div>
 
         {% if data.show_testimonials %}
         <div class="testimonials__slider my-slider">
-        {% set section = get_section(path="testimonials/_index.md") %}
-        {% for page in section.pages %}
+          {% set section = get_section(path="testimonials/_index.md") %}
+          {% for page in section.pages %}
           {{ testimonial_card::testimonial_card(data=page) }}
-        {% endfor %}
+          {% endfor %}
         </div>
         {% endif %}
 
