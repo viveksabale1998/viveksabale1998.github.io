@@ -26,7 +26,7 @@ taxonomies = [
 highlight_code = false
 
 [extra]
-# logo_image = "assets/profile.jpeg"
+logo_image = "logo.png"
 social_media_share_image = "assets/profile.jpeg"
 disqus_identifier = ""
 google_analytics = ""
@@ -47,7 +47,7 @@ navigation = [
 social_icons = [
     { url = "https://github.com/viveksabale1998", icon = "GitHub" },
     { url = "https://www.linkedin.com/in/vivek-sabale/", icon = "Linkedin" },
-    { url = "https://scholar.google.com/citations?user=placeholder", icon = "Google Scholar" },
+    # { url = "https://scholar.google.com/citations?user=placeholder", icon = "Google Scholar" },
     { url = "https://orcid.org/0009-0008-1278-5120", icon = "Orcid" },
 ]
 date_format = "%d %b %Y"
@@ -63,10 +63,10 @@ newsletter_description = "Get inspiration, updates and, cool stuff!"
 [extra.footer]
 menu = [
     { url = "$BASE_URL", title = "Home" },
-    { url = "$BASE_URL/projects/", title = "Projects" },
-    { url = "$BASE_URL/elements/", title = "Elements" },
-    { url = "$BASE_URL/about/", title = "About" },
-    { url = "$BASE_URL/posts/", title = "Blog" },
+    # { url = "$BASE_URL/projects/", title = "Projects" },
+    # { url = "$BASE_URL/elements/", title = "Elements" },
+    # { url = "$BASE_URL/about/", title = "About" },
+    # { url = "$BASE_URL/posts/", title = "Blog" },
 ]
 #copyright = ""
 
