@@ -65,8 +65,8 @@ menu = [
     { url = "$BASE_URL", title = "Home" },
     { url = "$BASE_URL/projects", title = "Codes" },
     { url = "$BASE_URL/publications", title = "Publications" },
-    { url = "$BASE_URL/experience", title = "Experience" },
-    { url = "$BASE_URL/awards", title = "Awards" },
+    #{ url = "$BASE_URL/experience", title = "Experience" },
+    { url = "$BASE_URL/awards", title = "Education & Awards" },
     { url = "$BASE_URL/cv", title = "CV" },
     { url = "$BASE_URL/contact", title = "Contact" },
     { url = "$BASE_URL/gallery", title = "Gallery" }
