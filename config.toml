@@ -26,7 +26,7 @@ taxonomies = [
 highlight_code = false
 
 [extra]
-# logo_image = "logo.png"
+logo_image = "V.svg"
 social_media_share_image = "assets/profile.jpeg"
 disqus_identifier = ""
 google_analytics = ""
@@ -47,8 +47,8 @@ navigation = [
 social_icons = [
     { url = "https://github.com/viveksabale1998", icon = "GitHub" },
     { url = "https://www.linkedin.com/in/vivek-sabale/", icon = "Linkedin" },
-    # { url = "https://scholar.google.com/citations?user=placeholder", icon = "Google Scholar" },
-    { url = "https://orcid.org/0009-0008-1278-5120", icon = "Orcid" },
+    { url = "https://scholar.google.com/citations?user=placeholder", icon = "Google Scholar" },
+    # { url = "https://orcid.org/0009-0008-1278-5120", icon = "Orcid" },
 ]
 date_format = "%d %b %Y"
 language_direction = "auto"
@@ -118,9 +118,9 @@ block = "blog-section"
 title = "Quick Links"
 description_html = """
     <p>
-      <a href="/projects" class="c-button c-button--primary c-button--small" style="margin: 5px;">Projects</a>
-      <a href="/publications" class="c-button c-button--primary c-button--small" style="margin: 5px;">Publications</a>
-      <a href="/cv" class="c-button c-button--primary c-button--small" style="margin: 5px;">CV</a>
+      <a href="/projects" class="c-button c-button--dark c-button--small" style="margin: 5px;">Projects</a>
+      <a href="/publications" class="c-button c-button--dark c-button--small" style="margin: 5px;">Publications</a>
+      <a href="/cv" class="c-button c-button--dark c-button--small" style="margin: 5px;">CV</a>
     </p>"""
 link_url = "/posts"
 show_posts = true
