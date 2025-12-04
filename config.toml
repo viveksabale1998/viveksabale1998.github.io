@@ -35,7 +35,7 @@ twitter_handle = ""
 author_image = 'assets/profile.jpeg'
 
 navigation = [
-    # { url = "$BASE_URL", title = "Home" },
+    { url = "$BASE_URL", title = "Home" },
     { url = "$BASE_URL/projects", title = "Codes" },
     { url = "$BASE_URL/publications", title = "Publications" },
     { url = "$BASE_URL/experience", title = "Experience" },
@@ -63,10 +63,13 @@ keywords = ["keyword1", "keyword2", "keyword3"]
 [extra.footer]
 menu = [
     { url = "$BASE_URL", title = "Home" },
-    # { url = "$BASE_URL/projects/", title = "Projects" },
-    # { url = "$BASE_URL/elements/", title = "Elements" },
-    # { url = "$BASE_URL/about/", title = "About" },
-    # { url = "$BASE_URL/posts/", title = "Blog" },
+    { url = "$BASE_URL/projects", title = "Codes" },
+    { url = "$BASE_URL/publications", title = "Publications" },
+    { url = "$BASE_URL/experience", title = "Experience" },
+    { url = "$BASE_URL/awards", title = "Awards" },
+    { url = "$BASE_URL/cv", title = "CV" },
+    { url = "$BASE_URL/contact", title = "Contact" },
+    { url = "$BASE_URL/gallery", title = "Gallery" }
 ]
 #copyright = ""
 
@@ -77,7 +80,7 @@ title = "Hi, I am Vivek Sabale"
 description_html = "<strong>Quantum Information Researcher</strong> at IIT Jodhpur. I specialize in quantum information and computation, open quantum systems, and quantum machine learning."
 image = "assets/profile.jpeg"
 image_alt = "Vivek Sabale's picture"
-cta_button_link = "$BASE_URL/contact"
+cta_button_link = {url = "$BASE_URL/contact"}
 cta_button = "Get in touch"
 # works_button_link = "$BASE_URL/projects"
 # works_button = "See my codes"
