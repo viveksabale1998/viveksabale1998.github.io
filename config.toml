@@ -45,7 +45,7 @@ navigation = [
     { url = "$BASE_URL/gallery", title = "Gallery" }
 ]
 social_icons = [
-    { url = "https://github.com/viveksabale1998", icon = "GitHub" },
+    { url = "https://github.com/viveksabale1998/sites", icon = "GitHub" },
     { url = "https://www.linkedin.com/in/vivek-sabale/", icon = "Linkedin" },
     { url = "https://scholar.google.com/citations?user=placeholder", icon = "Google Scholar" },
     # { url = "https://orcid.org/0009-0008-1278-5120", icon = "Orcid" },
@@ -77,9 +77,9 @@ title = "Hi, I am Vivek Sabale"
 description_html = "<strong>Quantum Information Researcher</strong> at IIT Jodhpur. I specialize in quantum information and computation, open quantum systems, and quantum machine learning."
 image = "assets/profile.jpeg"
 image_alt = "Vivek Sabale's picture"
-cta_button_link = "/contact"
+cta_button_link = "$BASE_URL/contact"
 cta_button = "Get in touch"
-# works_button_link = "/projects"
+# works_button_link = "$BASE_URL/projects"
 # works_button = "See my codes"
 
 [[extra.content_blocks]]
@@ -94,7 +94,7 @@ description_html = """
     <li>Quantum computing</li>
     <li>Quantum machine learning</li>
   </ul>"""
-link_url = "/projects"
+link_url = "$BASE_URL/projects"
 show_projects = false
 
 [[extra.content_blocks]]
@@ -118,11 +118,11 @@ block = "blog-section"
 title = "Quick Links"
 description_html = """
     <p>
-      <a href="/projects" class="c-button c-button--dark c-button--small" style="margin: 5px;">Projects</a>
-      <a href="/publications" class="c-button c-button--dark c-button--small" style="margin: 5px;">Publications</a>
-      <a href="/cv" class="c-button c-button--dark c-button--small" style="margin: 5px;">CV</a>
+      <a href="$BASE_URL/projects" class="c-button c-button--dark c-button--small" style="margin: 5px;">Projects</a>
+      <a href="$BASE_URL/publications" class="c-button c-button--dark c-button--small" style="margin: 5px;">Publications</a>
+      <a href="$BASE_URL/cv" class="c-button c-button--dark c-button--small" style="margin: 5px;">CV</a>
     </p>"""
-link_url = "/posts"
+link_url = "$BASE_URL/posts"
 show_posts = false
 
 # [[extra.content_blocks]]
