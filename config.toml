@@ -26,7 +26,7 @@ taxonomies = [
 highlight_code = false
 
 [extra]
-logo_image = "assets/profile.jpeg"
+# logo_image = "assets/profile.jpeg"
 social_media_share_image = "assets/profile.jpeg"
 disqus_identifier = ""
 google_analytics = ""
@@ -102,14 +102,14 @@ block = "testimonials-section"
 title = "Technical Skills"
 description_html = """
   <div class="skills">
-    <span class="skill-btn">Julia</span>
-    <span class="skill-btn">Python</span>
-    <span class="skill-btn">Mathematica</span>
-    <span class="skill-btn">QuTiP</span>
-    <span class="skill-btn">Qiskit</span>
-    <span class="skill-btn">PennyLane</span>
-    <span class="skill-btn">ITensor</span>
-    <span class="skill-btn">Yao.jl</span>
+    <a href="#" class="c-button c-button--secondary c-button--small" style="margin: 5px;">Julia</a>
+    <a href="#" class="c-button c-button--secondary c-button--small" style="margin: 5px;">Python</a>
+    <a href="#" class="c-button c-button--secondary c-button--small" style="margin: 5px;">Mathematica</a>
+    <a href="#" class="c-button c-button--secondary c-button--small" style="margin: 5px;">QuTiP</a>
+    <a href="#" class="c-button c-button--secondary c-button--small" style="margin: 5px;">Qiskit</a>
+    <a href="#" class="c-button c-button--secondary c-button--small" style="margin: 5px;">PennyLane</a>
+    <a href="#" class="c-button c-button--secondary c-button--small" style="margin: 5px;">ITensor</a>
+    <a href="#" class="c-button c-button--secondary c-button--small" style="margin: 5px;">Yao.jl</a>
   </div>"""
 show_testimonials = false
 
@@ -117,7 +117,11 @@ show_testimonials = false
 block = "blog-section"
 title = "Quick Links"
 description_html = """
-    <p><a href="/projects">Projects</a> • <a href="/publications">Publications</a> • <a href="/cv">CV</a></p>"""
+    <p>
+      <a href="/projects" class="c-button c-button--primary c-button--small" style="margin: 5px;">Projects</a>
+      <a href="/publications" class="c-button c-button--primary c-button--small" style="margin: 5px;">Publications</a>
+      <a href="/cv" class="c-button c-button--primary c-button--small" style="margin: 5px;">CV</a>
+    </p>"""
 link_url = "/posts"
 show_posts = true
 
