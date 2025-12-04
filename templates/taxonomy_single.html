@@ -24,7 +24,7 @@
           {% if section == "projects" %}
           {{ project_card::project_card(data=page, index=loop.index0) }}
           {% else %}
-          {{ blog_card::blog_card(data=page) }}
+          {# {{ blog_card::blog_card(data=page) }} #}
           {% endif %}
           {% endif %}
           {% endfor %}

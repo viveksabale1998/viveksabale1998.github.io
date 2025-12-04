@@ -12,8 +12,8 @@ You can download my full CV below:
 
 ### Education
 - **PhD in Physics**: IIT Jodhpur (Ongoing)
-- **M.Sc. in Physics**: SVNIT Surat (2022)
-- **B.Sc. in Physics**: Fergusson College Pune (2019)
+- **M.Sc. in Physics**: IIT Madras (2019-2021)
+- **B.Sc. in Physics**: Fergusson College Pune (2016-2019)
 
 ### Research Interests
 - Open Quantum Systems

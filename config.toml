@@ -1,6 +1,6 @@
 # The URL the site will be built for
 base_url = "https://viveksabale1998.github.io/sites/"
-theme = "vonge"
+# theme = "vonge"
 
 title = "Home"
 author = "Vivek Sabale"
