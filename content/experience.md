@@ -7,16 +7,16 @@ template = "page.html"
 ## Experience
 
 **PhD Scholar**  
-*Indian Institute of Technology Jodhpur (2023 - Present)*  
+*Indian Institute of Technology Jodhpur (2021 - Present)*  
 Research Area: Quantum Information and Computation, Open Quantum Systems.
 
-**Project Associate**  
+<!-- **Project Associate**  
 *Indian Institute of Science Education and Research Pune (2022 - 2023)*  
-Project: Quantum thermodynamics and open quantum systems.
+Project: Quantum thermodynamics and open quantum systems. -->
 
 **Master of Science (Physics)**  
-*Sardar Vallabhbhai National Institute of Technology, Surat (2020 - 2022)*  
-Thesis: Study of Quantum Correlations in Open Quantum Systems.
+*Indian Institute of Technology Madras (2019 - 2021)*  
+<!-- Thesis: Study of Quantum Correlations in Open Quantum Systems. -->
 
 **Bachelor of Science (Physics)**  
 *Fergusson College, Pune (2016 - 2019)*  
