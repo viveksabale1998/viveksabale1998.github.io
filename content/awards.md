@@ -1,27 +1,35 @@
 +++
-title = "Awards"
+title = " "
 date = 2024-01-01
 template = "page.html"
 +++
 
 ## Awards & Achievements
 
-**Prime Minister's Research Fellowship (PMRF)**  
-*Government of India (2023)*  
-Awarded for pursuing doctoral research in Science and Technology.
+**International Travel Grant**  
+*Anusandhan National Research Foundation (ANRF) (2024)*  
+Received financial assistance for participating in "Quantum Techniques in Machine Learning," University of Melbourne (25 November 2024 to 29 November 2024).
+
+**Workshop with QIndia**  
+*IIT Dharwad (2024)*  
+Teaching quantum computing at a workshop organised at IIT Dharwad.
+
+
+
+**IBM Quantum Challenge**  
+*IBM (2021)*  
+Certificate for completing IBM Quantum Challenge.
 
 **GATE Qualified**  
-*Physics (2022, 2023)*  
+*Physics (2021)*  
 Qualified Graduate Aptitude Test in Engineering.
 
-**JEST Qualified**  
-*Physics (2022)*  
-Qualified Joint Entrance Screening Test.
+**Diploma Certificate, POCE**  
+*Jawahar Nehru Centre for Advanced Scientific Research, Bangalore (2019)*  
+Project Orientated Chemistry Education program.
 
-**MH-SET Qualified**  
-*Physical Science (2023)*  
-Qualified Maharashtra State Eligibility Test for Assistant Professor.
+**Mahatma Jyotirav Phule Gunvant Vidyarthi Scholarship**  
+*Pune University (2018)*  
+Scholarship and Certification.
 
-**INSPIRE Scholarship**  
-*Department of Science and Technology, Govt. of India (2016 - 2021)*  
-Awarded for excellence in Bachelor's and Master's studies.
+
