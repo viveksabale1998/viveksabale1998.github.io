@@ -2,9 +2,10 @@
 {% set c = 'c-project-card' %}
 <article class="{{c}} col col-4 col-d-6 col-t-12">
   <div class="{{c}}__content">
-    {% set hue = (index | int) * 60 + 200 %}
+    {% set i = index | int %}
+    {% set hue = i * 60 + 200 %}
     <a href="{{ data.permalink | default(value='#') }}" class="{{c}}__image"
-      style="background-color: hsl({{ hue }}, 60%, 80%);">
+      style="background-color:  hsl(240, 60%, 50%);">
     </a>
     <div class="{{c}}__info">
       <div class="{{c}}__info-wrap">
