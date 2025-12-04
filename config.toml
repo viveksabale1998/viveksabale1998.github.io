@@ -54,11 +54,11 @@ date_format = "%d %b %Y"
 language_direction = "auto"
 keywords = ["keyword1", "keyword2", "keyword3"]
 
-[extra.newsletter]
-newsletter_title = "Join my mailing list"
-newsletter_identifier = ""
-newsletter_button = "Subscribe"
-newsletter_description = "Get inspiration, updates and, cool stuff!"
+# [extra.newsletter]
+# newsletter_title = "Join my mailing list"
+# newsletter_identifier = ""
+# newsletter_button = "Subscribe"
+# newsletter_description = "Get inspiration, updates and, cool stuff!"
 
 [extra.footer]
 menu = [
@@ -73,14 +73,14 @@ menu = [
 
 [[extra.content_blocks]]
 block = "hero"
-title = "Hi there, I am Vivek Sabale"
+title = "Hi, I am Vivek Sabale"
 description_html = "<strong>Quantum Information Researcher</strong> at IIT Jodhpur. I specialize in quantum information and computation, open quantum systems, and quantum machine learning."
 image = "assets/profile.jpeg"
 image_alt = "Vivek Sabale's picture"
-cta_button_link = "/contact"
+cta_button_link = "sites/contact"
 cta_button = "Get in touch"
-works_button_link = "/projects"
-works_button = "See my codes"
+# works_button_link = "/projects"
+# works_button = "See my codes"
 
 [[extra.content_blocks]]
 block = "projects-section"
@@ -94,8 +94,8 @@ description_html = """
     <li>Quantum computing</li>
     <li>Quantum machine learning</li>
   </ul>"""
-link_url = "/projects"
-show_projects = true
+link_url = "sites/projects"
+show_projects = false
 
 [[extra.content_blocks]]
 block = "testimonials-section"
@@ -118,12 +118,12 @@ block = "blog-section"
 title = "Quick Links"
 description_html = """
     <p>
-      <a href="/projects" class="c-button c-button--dark c-button--small" style="margin: 5px;">Projects</a>
-      <a href="/publications" class="c-button c-button--dark c-button--small" style="margin: 5px;">Publications</a>
-      <a href="/cv" class="c-button c-button--dark c-button--small" style="margin: 5px;">CV</a>
+      <a href="sites/projects" class="c-button c-button--dark c-button--small" style="margin: 5px;">Projects</a>
+      <a href="sites/publications" class="c-button c-button--dark c-button--small" style="margin: 5px;">Publications</a>
+      <a href="sites/cv" class="c-button c-button--dark c-button--small" style="margin: 5px;">CV</a>
     </p>"""
-link_url = "/posts"
-show_posts = true
+link_url = "sites/posts"
+show_posts = false
 
 # [[extra.content_blocks]]
 # block = "newsletter"
