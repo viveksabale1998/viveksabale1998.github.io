@@ -11,10 +11,12 @@
             <h1 class="{{c}}__title">{{ data.title }}</h1>
             <div class="{{c}}__description">{{ data.description_html | safe }}</div>
             <div class="{{c}}__btn">
-              <a href="{{ data.cta_button_link }}" class="cta-button c-button c-button--primary c-button--small">{{
+              <a href="{{ data.cta_button_link | replace(from='$BASE_URL', to=config.base_url) }}"
+                class="cta-button c-button c-button--primary c-button--small">{{
                 data.cta_button }}</a>
               {% if data.works_button_link %}
-              <a class="works-button c-button c-button--secondary c-button--small" href="{{ data.works_button_link }}">
+              <a class="works-button c-button c-button--secondary c-button--small"
+                href="{{ data.works_button_link | replace(from='$BASE_URL', to=config.base_url) }}">
                 <span class="circle-bg"><i class="ion ion-md-arrow-down button-arrow"></i></span> {{ data.works_button
                 }}
               </a>

@@ -11,9 +11,11 @@
           <div class="section__info">
             <div class="section__head">
               <h2 class="section__title">{{ data.title }}</h2>
-              <a class="section__link" href="{{ data.link_url }}">View all <i class="ion ion-md-arrow-forward"></i></a>
+              <a class="section__link" href="{{ data.link_url | replace(from='$BASE_URL', to=config.base_url) }}">View
+                all <i class="ion ion-md-arrow-forward"></i></a>
             </div>
-            <div class="section__description">{{ data.description_html | safe }}</div>
+            <div class="section__description">{{ data.description_html | replace(from='$BASE_URL', to=config.base_url) |
+              safe }}</div>
           </div>
 
           {% if data.show_posts %}

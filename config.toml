@@ -80,9 +80,9 @@ title = "Hi, I am Vivek Sabale"
 description_html = "<strong>Quantum Information Researcher</strong> at IIT Jodhpur. I specialize in quantum information and computation, open quantum systems, and quantum machine learning."
 image = "assets/profile.jpeg"
 image_alt = "Vivek Sabale's picture"
-cta_button_link = "./contact"
+cta_button_link = "$BASE_URL/contact"
 cta_button = "Get in touch"
-# works_button_link = "/projects"
+# works_button_link = "$BASE_URL/projects"
 # works_button = "See my codes"
 
 [[extra.content_blocks]]
@@ -97,7 +97,7 @@ description_html = """
     <li>Quantum computing</li>
     <li>Quantum machine learning</li>
   </ul>"""
-link_url = " /projects"
+link_url = "$BASE_URL/projects"
 show_projects = false
 
 [[extra.content_blocks]]
@@ -121,12 +121,12 @@ block = "blog-section"
 title = "Quick Links"
 description_html = """
     <p>
-      <a href="/projects" class="c-button c-button--dark c-button--small" style="margin: 5px;">Projects</a>
-      <a href="/publications" class="c-button c-button--dark c-button--small" style="margin: 5px;">Publications</a>
-      <a href="/cv" class="c-button c-button--dark c-button--small" style="margin: 5px;">CV</a>
+      <a href="$BASE_URL/projects" class="c-button c-button--dark c-button--small" style="margin: 5px;">Projects</a>
+      <a href="$BASE_URL/publications" class="c-button c-button--dark c-button--small" style="margin: 5px;">Publications</a>
+      <a href="$BASE_URL/cv" class="c-button c-button--dark c-button--small" style="margin: 5px;">CV</a>
     </p>"""
 link_url = "$BASE_URL/posts"
-show_posts = false
+show_posts = true
 
 # [[extra.content_blocks]]
 # block = "newsletter"
