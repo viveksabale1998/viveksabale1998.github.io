@@ -4,7 +4,7 @@ title = " "
 template = "page.html"
 +++
 
-## Contact
+# Contact
 
 If you'd like to collaborate, invite me to review, or ask about research, please get in touch:
 

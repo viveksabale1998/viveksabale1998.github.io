@@ -4,7 +4,7 @@ title = " "
 template = "page.html"
 +++
 
-## Curriculum Vitae
+# Curriculum Vitae
 
 You can download my full CV below:
 
