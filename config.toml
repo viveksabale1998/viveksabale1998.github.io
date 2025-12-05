@@ -128,9 +128,4 @@ description_html = """
 link_url = "$BASE_URL/posts"
 show_posts = true
 
-# [[extra.content_blocks]]
-# block = "newsletter"
-# newsletter_title = "Useful Links"
-# newsletter_description = "Cheatsheets and resources"
-# newsletter_identifier = ""
-# newsletter_button = "Subscribe"
+
