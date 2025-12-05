@@ -98,8 +98,14 @@ link = "https://github.com/your-repo" # Optional link
 4.  Write your content below the `+++` using standard Markdown.
 
 
-### Updating Pages
-Edit files like `content/experience.md` or `content/cv.md`. **Always ensure the `date` field is present** in the front matter.
+### Updating the CV
+1.  **Edit Content**: Modify `content/cv.md` to update the text sections (Education, Research Interests, etc.).
+2.  **Update PDF**:
+    *   Replace the file `static/assets/Vivek_Sabale_CV.pdf` with your new PDF.
+    *   **Important**: Keep the filename exactly `Vivek_Sabale_CV.pdf`, or if you change it, you must also update the links in `content/cv.md`.
+
+### Updating Other Pages
+Edit files like `content/awards.md` or `content/gallery.md`. **Always ensure the `date` field is present** in the front matter if required by the template.
 
 ## Local Development
 1.  Install Zola.
