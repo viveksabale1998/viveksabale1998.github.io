@@ -38,7 +38,7 @@ Teaching quantum computing at a workshop organised at IIT Dharwad.
 Certificate for completing IBM Quantum Challenge.
 
 **GATE Qualified**  
-* Chemistry (2021)*  
+*Chemistry (2021)*  
 Qualified Graduate Aptitude Test in Engineering.
 
 **Diploma Certificate, POCE**  
