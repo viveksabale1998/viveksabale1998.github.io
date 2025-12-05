@@ -4,7 +4,7 @@ title = " Gallery"
 template = "page.html"
 +++
 
-# Image Gallery
+<!-- # Image Gallery -->
 
 <div class="gallery">
     <div class="gallery-item">

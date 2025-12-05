@@ -14,13 +14,13 @@ Research Area: Quantum Information and Computation, Open Quantum Systems.
 *Indian Institute of Science Education and Research Pune (2022 - 2023)*  
 Project: Quantum thermodynamics and open quantum systems. -->
 
-**Master of Science (Physics)**  
+**Master of Science (Chemistry)**  
 *Indian Institute of Technology Madras (2019 - 2021)*  
 <!-- Thesis: Study of Quantum Correlations in Open Quantum Systems. -->
 
-**Bachelor of Science (Physics)**  
+**Bachelor of Science (Chemistry)**  
 *Fergusson College, Pune (2016 - 2019)*  
-Specialization: Physics.
+Specialization: Chemistry.
 
 # Awards & Achievements
 
@@ -39,7 +39,7 @@ Teaching quantum computing at a workshop organised at IIT Dharwad.
 Certificate for completing IBM Quantum Challenge.
 
 **GATE Qualified**  
-*Physics (2021)*  
+* Chemistry (2021)*  
 Qualified Graduate Aptitude Test in Engineering.
 
 **Diploma Certificate, POCE**  

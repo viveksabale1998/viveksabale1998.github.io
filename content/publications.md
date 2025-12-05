@@ -4,7 +4,7 @@ title = " Publications"
 template = "page.html"
 +++
 
-# Selected Publications
+<!-- # Selected Publications -->
 
 **Exploring the non-Markovian dynamics in depolarizing maps**  
 A Abu-Nada, S Banerjee, Vivek Balasaheb Sabale  

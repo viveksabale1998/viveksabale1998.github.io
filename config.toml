@@ -41,6 +41,7 @@ navigation = [
     #{ url = "$BASE_URL/experience", title = "Experience" },
 { url = "$BASE_URL/awards", title = "Education & Awards" },
     { url = "$BASE_URL/cv", title = "CV" },
+    { url = "$BASE_URL/posts", title = "Blog" },
     { url = "$BASE_URL/contact", title = "Contact" },
     { url = "$BASE_URL/gallery", title = "Gallery" }
 ]
@@ -80,7 +81,7 @@ title = "Hi, I am Vivek Sabale"
 description_html = "<strong>Quantum Information Researcher</strong> at IIT Jodhpur. I specialize in quantum information and computation, open quantum systems, and quantum machine learning."
 image = "assets/profile.jpeg"
 image_alt = "Vivek Sabale's picture"
-cta_button_link = "$BASE_URL/contact"
+cta_button_link = "$BASE_URL/cv"
 cta_button = "Get in touch"
 # works_button_link = "$BASE_URL/projects"
 # works_button = "See my codes"
@@ -118,13 +119,12 @@ show_testimonials = false
 
 [[extra.content_blocks]]
 block = "blog-section"
-title = "Quick Links"
+title = "Useful Links"
 description_html = """
     <p>
-      <a href="$BASE_URL/projects" class="c-button c-button--dark c-button--small" style="margin: 5px;">Projects</a>
-      <a href="$BASE_URL/publications" class="c-button c-button--dark c-button--small" style="margin: 5px;">Publications</a>
-      <a href="$BASE_URL/cv" class="c-button c-button--dark c-button--small" style="margin: 5px;">CV</a>
-    </p>"""
+      <a href="https://sciml.github.io/Scientific_Modeling_Cheatsheet/scientific_modeling_cheatsheet" class="c-button c-button--dark c-button--small" style="margin: 5px;">Scientific Modeling Cheatsheet</a>
+      <a href="https://cheatsheets.quantecon.org/julia-cheatsheet.html" class="c-button c-button--dark c-button--small" style="margin: 5px;">Julia Cheatsheet</a>
+    </p>
 link_url = "$BASE_URL/posts"
 show_posts = true
 
