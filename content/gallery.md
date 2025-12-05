@@ -8,12 +8,12 @@ template = "page.html"
 
 <div class="gallery">
     <div class="gallery-item">
-      <img src="/assets/QTML2023.jpeg" alt="QTML 2023">
+      <img src="/assets/QTML2024.jpeg" alt="QTML 2024">
       <p>QTML 2024</p>
     </div>
     <div class="gallery-item">
-      <img src="/assets/TCS2024.jpeg" alt="TCS 2023">
-      <p>TCS 2023</p>
+      <img src="/assets/TCS2023.jpeg" alt="TCS 2023">
+      <p>TCS 2024</p>
     </div> """
 </div>
 
