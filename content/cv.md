@@ -6,9 +6,14 @@ template = "page.html"
 
 <!-- # Curriculum Vitae -->
 
-You can download my full CV below:
-
-<a href="/assets/Vivek_Sabale_CV.pdf" target="_blank" class="skill-btn">Download CV (PDF)</a>
+You can view or download my full CV below:
+<br>
+<a href="https://viveksabale1998.github.io/sites/assets/Vivek_Sabale_CV.pdf" target="_blank" class="skill-btn">Download CV (PDF)</a>
+<br><br>
+<center>
+<iframe src="https://viveksabale1998.github.io/sites/assets/Vivek_Sabale_CV.pdf" width="100%" height="800px">
+</iframe>
+</center>
 
 ### Education
 - **PhD in Physics**: IIT Jodhpur (Ongoing)
