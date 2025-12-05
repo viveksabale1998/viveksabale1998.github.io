@@ -4,7 +4,6 @@ title = " Education & Awards"
 template = "page.html"
 +++
 
-# Education
 
 **PhD Scholar**  
 *Indian Institute of Technology Jodhpur (2021 - Present)*  
@@ -22,7 +21,7 @@ Project: Quantum thermodynamics and open quantum systems. -->
 *Fergusson College, Pune (2016 - 2019)*  
 Specialization: Chemistry.
 
-# Awards & Achievements
+# Awards
 
 **International Travel Grant**  
 *Anusandhan National Research Foundation (ANRF) (2024)*  
