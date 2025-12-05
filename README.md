@@ -83,16 +83,20 @@ link = "https://github.com/your-repo" # Optional link
 *(Note: `image` is no longer used for the card background, but you can keep it for the project page itself if needed.)*
 
 ### Adding a New Blog Post
-Create a file in `content/posts/`:
-```toml
-+++
-title = "My Post"
-date = 2024-01-01
-description = "Summary."
-[taxonomies]
-tags = ["tag1", "tag2"]
-+++
-```
+1.  Navigate to `content/posts/`.
+2.  Create a new Markdown file (e.g., `my-new-post.md`).
+3.  Add the following front matter at the top of the file:
+    ```toml
+    +++
+    title = "My New Post"
+    date = 2024-01-01
+    description = "A short summary of the post."
+    [taxonomies]
+    tags = ["research", "update"]
+    +++
+    ```
+4.  Write your content below the `+++` using standard Markdown.
+
 
 ### Updating Pages
 Edit files like `content/experience.md` or `content/cv.md`. **Always ensure the `date` field is present** in the front matter.

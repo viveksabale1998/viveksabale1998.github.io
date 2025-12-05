@@ -10,6 +10,8 @@
     {% endfor %}
   </div>
 </div>
+{% if paginator %}
 {{ pagination::pagination() }}
+{% endif %}
 {% endif %}
 {% endmacro posts_list %}
