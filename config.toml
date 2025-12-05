@@ -124,7 +124,7 @@ description_html = """
     <p>
       <a href="https://sciml.github.io/Scientific_Modeling_Cheatsheet/scientific_modeling_cheatsheet" class="c-button c-button--dark c-button--small" style="margin: 5px;">Scientific Modeling Cheatsheet</a>
       <a href="https://cheatsheets.quantecon.org/julia-cheatsheet.html" class="c-button c-button--dark c-button--small" style="margin: 5px;">Julia Cheatsheet</a>
-    </p>
+    </p>"""
 link_url = "$BASE_URL/posts"
 show_posts = true
 
