@@ -5,17 +5,19 @@
 
 <div class="container">
   <h1>{{ taxonomy.name | title }}</h1>
-    <div class="row">
-      <div class="col col-12">
-        <div class="contaniner__inner animate">
-          <div class="row">
-            {{ tags_list::tags_list(terms = terms) }}
-          </div>
+  <div class="row">
+    <div class="col col-12">
+      <div class="contaniner__inner animate">
+        <div class="row">
+          {{ tags_list::tags_list(terms = terms) }}
         </div>
       </div>
+    </div>
   </div>
 </div>
 
 
+{% if config.extra.newsletter %}
 {{ newsletter::newsletter(config = config.extra.newsletter) }}
+{% endif %}
 {% endblock %}

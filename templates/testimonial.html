@@ -11,5 +11,7 @@
 
 </div>
 
+{% if config.extra.newsletter %}
 {{ newsletter::newsletter(config = config.extra.newsletter) }}
+{% endif %}
 {% endblock %}
