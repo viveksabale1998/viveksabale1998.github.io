@@ -13,7 +13,7 @@ template = "page.html"
     </div>
     <div class="gallery-item">
       <img src="/sites/assets/TCS2023.jpeg" alt="TCS 2023">
-      <p>TCS 2024</p>
+      <p>TCS 2023</p>
     </div>
 </div>
 
