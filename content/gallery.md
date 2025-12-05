@@ -4,14 +4,15 @@ title = " Gallery"
 template = "page.html"
 +++
 
-<!-- # Image Gallery -->
+ # Image Gallery 
 
 <div class="gallery">
     <div class="gallery-item">
       <img src="/sites/assets/QTML2024.jpeg" alt="QTML 2024">
       <p>QTML 2024</p>
     </div>
-    <div class="gallery-item">
+
+<div class="gallery-item">
       <img src="/sites/assets/TCS2023.jpeg" alt="TCS 2023">
       <p>TCS 2023</p>
     </div>
