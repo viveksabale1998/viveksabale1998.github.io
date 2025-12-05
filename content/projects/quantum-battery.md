@@ -4,7 +4,7 @@ date = 2024-01-03
 description = "Open source simulations of quantum batteries (Hamiltonians, DMI, Heisenberg XXZ, etc.) and performance analytics."
 [extra]
 link = "https://github.com/Suprabha-b/QB-HS-DMI.git"
-image = "assets/profile.jpeg"
+image = " "
 +++
 
 **Quantum Battery Hamiltonian Simulations**
