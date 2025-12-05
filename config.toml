@@ -42,7 +42,7 @@ navigation = [
 { url = "$BASE_URL/awards", title = "Education & Awards" },
     { url = "$BASE_URL/cv", title = "CV" },
     { url = "$BASE_URL/posts", title = "Blog" },
-    { url = "$BASE_URL/contact", title = "Contact" },
+
     { url = "$BASE_URL/gallery", title = "Gallery" }
 ]
 social_icons = [
@@ -69,7 +69,7 @@ menu = [
     #{ url = "$BASE_URL/experience", title = "Experience" },
     { url = "$BASE_URL/awards", title = "Education & Awards" },
     { url = "$BASE_URL/cv", title = "CV" },
-    { url = "$BASE_URL/contact", title = "Contact" },
+
     { url = "$BASE_URL/gallery", title = "Gallery" }
 ]
 #copyright = ""
