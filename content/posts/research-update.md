@@ -4,6 +4,8 @@ date = 2025-12-06
 description = "Latest updates on my quantum computing research."
 [taxonomies]
 tags = ["research", "quantum"]
+[extra]
+image = "images/posts/research-update.png"
 +++
 
 I've been making significant progress in my research on open quantum systems. 

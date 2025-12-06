@@ -4,7 +4,7 @@ date = 2024-01-04
 description = "Project implementing quantum neural networks for entanglement/separability classification of multi-qubit quantum states."
 [extra]
 link = "https://github.com/Thirumalai-97/QuantumStateClassification_UsingQNN.git"
-image = " "
+image = "images/projects/qnn-classification.png"
 +++
 
 **Quantum State Classification Using QNN**

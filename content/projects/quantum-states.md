@@ -4,7 +4,7 @@ date = 2024-01-01
 description = "A dataset of quantum states for machine learning applications."
 [extra]
 link = "https://github.com/viveksabale1998/Quantum-States-Data-Set.git"
-image = " "
+image = "images/projects/quantum-states.png"
 +++
 
 **Quantum States Data Set**

@@ -4,7 +4,7 @@ date = 2024-01-02
 description = "Collaborative open quantum computing classes and Jupyter notebooks (QML, quantum circuits, learning resources)."
 [extra]
 link = "https://github.com/Mait-Sark/Quantum-Computing-Lab.git"
-image = " "
+image = "images/projects/quantum-computing-lab.png"
 +++
 
 **Quantum Computing Lab Notebooks**

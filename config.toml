@@ -99,7 +99,7 @@ description_html = """
     <li>Quantum machine learning</li>
   </ul>"""
 link_url = "$BASE_URL/projects"
-show_projects = false
+show_projects = true
 
 [[extra.content_blocks]]
 block = "testimonials-section"
