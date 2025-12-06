@@ -33,15 +33,16 @@
   &__image {
     position: relative;
     display: block;
-    height: 0;
-    padding-bottom: 71.25%;
+    height: auto;
+    padding-bottom: 0;
     background: $blue-gray;
     overflow: hidden;
 
     img {
-      position: absolute;
+      position: relative;
       width: 100%;
-      height: 100%;
+      height: auto;
+      max-height: 200px;
       object-fit: cover;
       background-color: $blue-gray;
     }
