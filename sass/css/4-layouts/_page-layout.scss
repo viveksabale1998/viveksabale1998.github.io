@@ -21,33 +21,22 @@
 }
 
 .post-image {
-	position: relative;
-	transform: translate(0);
-	padding-top: 100%;
-	min-height: 280px;
+	margin-bottom: 30px;
 	border-radius: 16px;
 	overflow: hidden;
-	background: $blue-gray;
+	background-color: $blue-gray;
+	display: inline-block;
+	width: fit-content;
 
 	img {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
+		display: block;
+		width: auto;
+		max-width: 100%;
+		height: auto;
 		object-fit: cover;
-		user-select: none;
-	}
-
-	@media only screen and (max-width: $desktop) {
-		padding-top: 65%;
-		margin-bottom: 40px;
-	}
-
-	@media only screen and (max-width: $mobile) {
-		margin-bottom: 32px;
 	}
 }
+
 
 .post__info {
 	margin-left: 40px;
@@ -190,7 +179,8 @@
 		}
 	}
 
-	img, .js-reframe {
+	img,
+	.js-reframe {
 		border-radius: 8px;
 		overflow: hidden;
 
@@ -251,26 +241,34 @@
 				color: $white;
 			}
 		}
+
 		&.share__facebook {
 			color: #3b5998;
+
 			&:hover {
 				background: #3b5998;
 			}
 		}
+
 		&.share__twitter {
 			color: #55acee;
+
 			&:hover {
 				background: #55acee;
 			}
 		}
+
 		&.share__linkedin {
 			color: #0077b5;
+
 			&:hover {
 				background: #0077b5;
 			}
 		}
+
 		&.share__pinterest {
 			color: #bd081c;
+
 			&:hover {
 				background: #bd081c;
 			}
@@ -287,7 +285,8 @@
 	display: flex;
 	justify-content: space-between;
 
-	.post__prev, .post__next {
+	.post__prev,
+	.post__next {
 		display: flex;
 		align-items: center;
 		width: 49%;
@@ -326,6 +325,7 @@
 		.prev__image {
 			margin-right: 20px;
 		}
+
 		.next__image {
 			margin-left: 20px;
 		}
@@ -365,7 +365,8 @@
 		flex-wrap: wrap;
 
 
-		.post__prev, .post__next {
+		.post__prev,
+		.post__next {
 			width: 100%;
 
 			&:last-child {
@@ -385,7 +386,8 @@
 	@media only screen and (max-width: $mobile) {
 		margin-bottom: 0;
 
-		.post__prev, .post__next {
+		.post__prev,
+		.post__next {
 			padding: 20px;
 
 			.post__nav__title {
@@ -404,7 +406,7 @@
 	}
 
 	@media only screen and (max-width: $mobile) {
-		 margin-top: 60px;
+		margin-top: 60px;
 
 		.row .col:last-child {
 			margin-bottom: 0;

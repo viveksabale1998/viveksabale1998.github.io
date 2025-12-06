@@ -7,10 +7,12 @@
   border-radius: 16px;
   overflow: hidden;
   background: $blue-gray;
-  display: flex;
-  /* alignment */
-  justify-content: center;
-  /* Center the small image if needed, though user didn't ask explicitly, it's safer */
+  background: $blue-gray;
+  display: inline-block;
+  /* shrink to image width */
+  width: fit-content;
+  margin: 0 auto 48px auto;
+  /* center horizontally */
 
   img {
     position: relative;
