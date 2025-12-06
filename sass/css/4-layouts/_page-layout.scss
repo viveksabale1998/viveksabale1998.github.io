@@ -146,10 +146,6 @@
 		}
 	}
 
-	.post__meta-bottom {
-		display: flex;
-		flex-direction: column;
-	}
 
 	.post__author {
 		margin-bottom: 6px;
@@ -384,7 +380,7 @@
 	}
 
 	@media only screen and (max-width: $mobile) {
-		margin-bottom: 0;
+		margin-bottom: 32px;
 
 		.post__prev,
 		.post__next {

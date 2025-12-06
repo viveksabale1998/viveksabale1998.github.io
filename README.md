@@ -107,6 +107,23 @@ link = "https://github.com/your-repo" # Optional link
 ### Updating Other Pages
 Edit files like `content/awards.md` or `content/gallery.md`. **Always ensure the `date` field is present** in the front matter if required by the template.
 
+## Image Alignment
+
+You can control the alignment of the detail page image by adding `image_align` to the `[extra]` section of your front matter.
+
+**Options:** `"left"`, `"center"`, `"right"`
+
+**Defaults:**
+*   **Projects**: `center`
+*   **posts**: `left`
+
+**Example:**
+```toml
+[extra]
+image = "images/posts/my-image.png"
+image_align = "right" # Forces image to the right
+```
+
 ## Local Development
 1.  Install Zola.
 2.  Run `zola serve`.

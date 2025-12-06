@@ -5,6 +5,7 @@ description = "Project implementing quantum neural networks for entanglement/sep
 [extra]
 link = "https://github.com/Thirumalai-97/QuantumStateClassification_UsingQNN.git"
 image = "images/projects/qnn-classification.png"
+image_align = "center"
 +++
 
 **Quantum State Classification Using QNN**
