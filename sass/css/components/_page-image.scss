@@ -8,8 +8,9 @@
   overflow: hidden;
   background: $blue-gray;
   background: $blue-gray;
-  display: inline-block;
-  /* shrink to image width */
+  background: $blue-gray;
+  display: block;
+  /* changed from inline-block to allow margin auto */
   width: fit-content;
   margin: 0 auto 48px auto;
   /* center horizontally */
