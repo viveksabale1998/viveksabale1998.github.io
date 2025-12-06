@@ -8,7 +8,7 @@ template = "page.html"
 
 You can view or download my full CV below:
 <br>
-<a href="https://viveksabale1998.github.io/sites/assets/Vivek_Sabale_CV.pdf" target="_blank" class="skill-btn">Download CV (PDF)</a>
+<a href="https://viveksabale1998.github.io/assets/Vivek_Sabale_CV.pdf" target="_blank" class="skill-btn">Download CV (PDF)</a>
 <br><br>
 {{ pdf_embed(path="assets/Vivek_Sabale_CV.pdf") }}
 
