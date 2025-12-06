@@ -21,13 +21,17 @@
           <div class="row">
             {% set section = get_section(path="projects/_index.md") %}
             {% for i in range(end=6) %}
-            {% if i < section.pages | length %} {% set post=section.pages | nth(n=i) %} {{
-              project_card::project_card(data=post, index=i) }} {% endif %} {% endfor %} </div>
-              {% endif %}
-
+            {% if i < section.pages | length %} {% set post=section.pages | nth(n=i) %} <div
+              class="col col-4 col-d-6 col-t-12">
+              {{ project_card::project_card(data=post, index=i) }}
           </div>
+          {% endif %} {% endfor %}
         </div>
+        {% endif %}
+
       </div>
     </div>
+  </div>
+  </div>
 </section>
 {% endmacro projects_section %}

@@ -5,7 +5,9 @@
   <div class="row">
     {% set section = get_section(path="projects/_index.md") %}
     {% for page in section.pages %}
-    {{ project_card::project_card(data = page, index = loop.index0) }}
+    <div class="col col-4 col-d-6 col-t-12">
+      {{ project_card::project_card(data = page, index = loop.index0) }}
+    </div>
     {% endfor %}
   </div>
 </div>
