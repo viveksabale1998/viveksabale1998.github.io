@@ -23,7 +23,8 @@ taxonomies = [
 [markdown]
 # Whether to do syntax highlighting
 # Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
-highlight_code = false
+highlight_code = true
+highlight_theme = "atom-one-dark"
 
 [extra]
 logo_image = "V.svg"
@@ -99,7 +100,7 @@ description_html = """
     <li>Quantum machine learning</li>
   </ul>"""
 link_url = "$BASE_URL/projects"
-show_projects = true
+show_projects = false
 
 [[extra.content_blocks]]
 block = "testimonials-section"
