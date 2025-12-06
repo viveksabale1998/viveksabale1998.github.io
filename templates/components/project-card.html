@@ -1,6 +1,6 @@
 {% macro project_card(data, index=0) %}
 {% set c = 'c-project-card' %}
-<article class="{{c}} col col-4 col-d-6 col-t-12">
+<article class="{{c}} {% if data.extra.image %}has-image{% else %}no-image{% endif %} col col-4 col-d-6 col-t-12">
   <div class="{{c}}__content">
     {% set i = index | int %}
     {% set hue = i * 60 + 200 %}
@@ -9,9 +9,7 @@
       <img src="{{ get_url(path=data.extra.image) }}" alt="{{ data.title }}"
         style="max-width: 100%; height: auto; max-height: 150px; object-fit: cover;">
       {% else %}
-      <div
-        style="background: linear-gradient(to bottom, transparent 50%, hsl(234, 61%, 85%) 50%); height: 150px; width: 100%;">
-      </div>
+      <div class="{{c}}__fallback-gradient"></div>
       {% endif %}
     </a>
     <div class="{{c}}__info">
