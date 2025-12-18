@@ -26,4 +26,4 @@ D Sharma, Vivek Balasaheb Sabale, P Singh, A Kumar
 *Quantum Machine Intelligence 7 (1), 49 (2025)*  
 [View Publication →](https://link.springer.com/article/10.1007/s42484-025-00274-4)
 
-[View all publications on Google Scholar →](https://scholar.google.com/citations?user=placeholder)
+[View all publications on Google Scholar →](https://scholar.google.com/citations?user=LdMLDdwAAAAJ&hl=en)
