@@ -48,7 +48,7 @@ navigation = [
 social_icons = [
     { url = "https://github.com/viveksabale1998/sites", icon = "GitHub" },
     { url = "https://www.linkedin.com/in/vivek-sabale/", icon = "Linkedin" },
-    { url = "https://scholar.google.com/citations?user=placeholder", icon = "Google Scholar" },
+    { url = "https://scholar.google.com/citations?user=LdMLDdwAAAAJ&hl=en", icon = "Google Scholar" },
     # { url = "https://orcid.org/0009-0008-1278-5120", icon = "Orcid" },
 ]
 date_format = "%d %b %Y"
