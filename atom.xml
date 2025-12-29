@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>Home</title>
+    <subtitle>Academic website of Vivek Sabale — research in quantum information and open quantum systems.</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://viveksabale1998.github.io/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://viveksabale1998.github.io/"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2025-12-06T00:00:00+00:00</updated>
+    <id>https://viveksabale1998.github.io/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Research Update: Quantum Computing</title>
+        <published>2025-12-06T00:00:00+00:00</published>
+        <updated>2025-12-06T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Vivek Sabale
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://viveksabale1998.github.io/posts/research-update/"/>
+        <id>https://viveksabale1998.github.io/posts/research-update/</id>
+        
+        <content type="html" xml:base="https://viveksabale1998.github.io/posts/research-update/">&lt;p&gt;I&#x27;ve been making significant progress in my research on open quantum systems.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;key-highlights&quot;&gt;Key Highlights&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Developed a new simulation method.&lt;&#x2F;li&gt;
+&lt;li&gt;Optimized the code for better performance.&lt;&#x2F;li&gt;
+&lt;li&gt;Collaborating with international teams.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;More details coming soon in a full publication.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Welcome to my Blog</title>
+        <published>2025-12-05T00:00:00+00:00</published>
+        <updated>2025-12-05T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Vivek Sabale
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://viveksabale1998.github.io/posts/welcome/"/>
+        <id>https://viveksabale1998.github.io/posts/welcome/</id>
+        
+        <content type="html" xml:base="https://viveksabale1998.github.io/posts/welcome/">&lt;p&gt;Welcome to my new blog! I will be sharing updates about my research, projects, and other thoughts here.&lt;&#x2F;p&gt;
+&lt;p&gt;Stay tuned for more!&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Quantum State Classification Using QNN</title>
+        <published>2024-01-04T00:00:00+00:00</published>
+        <updated>2024-01-04T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Vivek Sabale
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://viveksabale1998.github.io/projects/qnn-classification/"/>
+        <id>https://viveksabale1998.github.io/projects/qnn-classification/</id>
+        
+        <content type="html" xml:base="https://viveksabale1998.github.io/projects/qnn-classification/">&lt;p&gt;&lt;strong&gt;Quantum State Classification Using QNN&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Project implementing quantum neural networks for entanglement&#x2F;separability classification of multi-qubit quantum states. Collaboration with Thirumalai and Diksha Sharma.
+&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Thirumalai-97&#x2F;QuantumStateClassification_UsingQNN.git&quot;&gt;View on GitHub&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Quantum Battery Hamiltonian Simulations</title>
+        <published>2024-01-03T00:00:00+00:00</published>
+        <updated>2024-01-03T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Vivek Sabale
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://viveksabale1998.github.io/projects/quantum-battery/"/>
+        <id>https://viveksabale1998.github.io/projects/quantum-battery/</id>
+        
+        <content type="html" xml:base="https://viveksabale1998.github.io/projects/quantum-battery/">&lt;p&gt;&lt;strong&gt;Quantum Battery Hamiltonian Simulations&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Open source simulations of quantum batteries (Hamiltonians, DMI, Heisenberg XXZ, etc.) and performance analytics, with collaborative code contributions.
+&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Suprabha-b&#x2F;QB-HS-DMI.git&quot;&gt;View on GitHub&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Quantum Computing Lab Notebooks</title>
+        <published>2024-01-02T00:00:00+00:00</published>
+        <updated>2024-01-02T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Vivek Sabale
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://viveksabale1998.github.io/projects/quantum-computing-lab/"/>
+        <id>https://viveksabale1998.github.io/projects/quantum-computing-lab/</id>
+        
+        <content type="html" xml:base="https://viveksabale1998.github.io/projects/quantum-computing-lab/">&lt;p&gt;&lt;strong&gt;Quantum Computing Lab Notebooks&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Collaborative open quantum computing classes and Jupyter notebooks (QML, quantum circuits, learning resources) developed with Mait-Sarkar and contributors.
+&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Mait-Sark&#x2F;Quantum-Computing-Lab.git&quot;&gt;View on GitHub&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Quantum States Data Set</title>
+        <published>2024-01-01T00:00:00+00:00</published>
+        <updated>2024-01-01T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Vivek Sabale
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://viveksabale1998.github.io/projects/quantum-states/"/>
+        <id>https://viveksabale1998.github.io/projects/quantum-states/</id>
+        
+        <content type="html" xml:base="https://viveksabale1998.github.io/projects/quantum-states/">&lt;p&gt;&lt;strong&gt;Quantum States Data Set&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;A dataset of quantum states for machine learning applications.
+&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;viveksabale1998&#x2F;Quantum-States-Data-Set.git&quot;&gt;View on GitHub&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+</feed>

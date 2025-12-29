@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>Home - general</title>
+    <subtitle>Academic website of Vivek Sabale — research in quantum information and open quantum systems.</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://viveksabale1998.github.io/tags/general/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://viveksabale1998.github.io/"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2025-12-05T00:00:00+00:00</updated>
+    <id>https://viveksabale1998.github.io/tags/general/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Welcome to my Blog</title>
+        <published>2025-12-05T00:00:00+00:00</published>
+        <updated>2025-12-05T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Vivek Sabale
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://viveksabale1998.github.io/posts/welcome/"/>
+        <id>https://viveksabale1998.github.io/posts/welcome/</id>
+        
+        <content type="html" xml:base="https://viveksabale1998.github.io/posts/welcome/">&lt;p&gt;Welcome to my new blog! I will be sharing updates about my research, projects, and other thoughts here.&lt;&#x2F;p&gt;
+&lt;p&gt;Stay tuned for more!&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+</feed>
