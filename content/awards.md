@@ -28,8 +28,8 @@ Specialization: Chemistry.
 Received financial assistance for participating in "Quantum Techniques in Machine Learning," University of Melbourne (25 November 2024 to 29 November 2024).
 
 **Workshop with QIndia**  
-*IIT Dharwad (2024)*  
-Teaching quantum computing at a workshop organised at IIT Dharwad.
+*IIIT Dharwad (2024)*  
+Teaching quantum computing at a workshop organised at IIIT Dharwad.
 
 
 
