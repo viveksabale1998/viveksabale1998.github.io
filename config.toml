@@ -36,7 +36,7 @@ author_image = 'assets/profile.jpeg'
 
 navigation = [
     { url = "$BASE_URL", title = "Home" },
-    { url = "$BASE_URL/projects", title = "Codes" },
+    { url = "$BASE_URL/codes", title = "Codes" },
     { url = "$BASE_URL/publications", title = "Publications" },
     #{ url = "$BASE_URL/experience", title = "Experience" },
 { url = "$BASE_URL/awards", title = "Education & Awards" },
@@ -64,7 +64,7 @@ keywords = ["keyword1", "keyword2", "keyword3"]
 [extra.footer]
 menu = [
     { url = "$BASE_URL", title = "Home" },
-    { url = "$BASE_URL/projects", title = "Codes" },
+    { url = "$BASE_URL/codes", title = "Codes" },
     { url = "$BASE_URL/publications", title = "Publications" },
     #{ url = "$BASE_URL/experience", title = "Experience" },
     { url = "$BASE_URL/awards", title = "Education & Awards" },
@@ -98,7 +98,7 @@ description_html = """
     <li>Quantum computing</li>
     <li>Quantum machine learning</li>
   </ul>"""
-link_url = "$BASE_URL/projects"
+link_url = "$BASE_URL/codes"
 show_projects = false
 
 [[extra.content_blocks]]

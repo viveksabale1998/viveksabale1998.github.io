@@ -1,0 +1,32 @@
+{% import "components/project-card.html" as project_card %}
+{% extends "base.html" %}
+
+{% block main %}
+<div class="container">
+  <div class="c-page-heading" style="margin-bottom: 2rem;">
+    <h1 class="c-page-heading__title">{{ page.title }}</h1>
+    {% if page.description %}
+    <p class="c-page-heading__description">{{ page.description }}</p>
+    {% endif %}
+  </div>
+</div>
+
+{% if page.content %}
+<div class="container" style="margin-bottom: 2rem;">
+  <div class="page__content">
+    {{ page.content | safe }}
+  </div>
+</div>
+{% endif %}
+
+<div class="container animate">
+  <div class="row">
+    {% set section = get_section(path="projects/_index.md") %}
+    {% for p in section.pages %}
+    <div class="col col-4 col-d-6 col-t-12">
+      {{ project_card::project_card(data = p, index = loop.index0) }}
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

@@ -37,7 +37,7 @@ You don't need any local compilers or tools to update the website.
 | **Publications** | [`content/publications.md`](content/publications.md) | Papers list; citation stats auto-update weekly via GitHub Actions |
 | **Education & Awards** | [`content/awards.md`](content/awards.md) | Degrees, scholarships, and conference grants |
 | **CV (PDF & Embed)** | Replace [`static/assets/Vivek_Sabale_CV.pdf`](static/assets/Vivek_Sabale_CV.pdf) | Keep the exact filename so existing links work |
-| **Codes / Projects** | [`content/projects/`](content/projects/) | Add a new `.md` file for each project |
+| **Codes / Projects** | [`content/codes.md`](content/codes.md) & [`content/projects/`](content/projects/) | Edit intro in `codes.md`; add `.md` files in `content/projects/` |
 | **Blog Posts** | [`content/posts/`](content/posts/) | Add a new `.md` file for each post |
 | **Gallery** | [`content/gallery.md`](content/gallery.md) | Add image card; place images in [`static/assets/`](static/assets/) |
 | **Nav Menu & Socials** | [`config.toml`](config.toml) | Under `navigation` and `social_icons` |
