@@ -6,8 +6,8 @@ hero_bio = "<strong>Quantum Information Researcher</strong> at IIT Jodhpur. I sp
 hero_image = "assets/profile.jpeg"
 cta_text = "Get in touch"
 cta_link = "$BASE_URL/cv"
-<!-- secondary_cta_text = "See my codes"
-secondary_cta_link = "$BASE_URL/codes" -->
+# secondary_cta_text = "See my codes"
+# secondary_cta_link = "$BASE_URL/codes"
 +++
 
 <div class="home-sections">
