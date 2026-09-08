@@ -1,25 +1,39 @@
 {% macro project_card(data, index=0) %}
 {% set c = 'c-project-card' %}
-<article class="{{c}} {% if data.extra.image %}has-image{% else %}no-image{% endif %}">
+<article class="{{c}} has-image">
   <div class="{{c}}__content">
-    {% set i = index | int %}
-    {% set hue = i * 60 + 200 %}
-    <a href="{{ data.permalink | default(value='#') }}" class="{{c}}__image">
-      {% if data.extra.image %}
-      <img src="{{ get_url(path=data.extra.image) }}" alt="{{ data.title }}"
-        style="max-width: 100%; height: auto; max-height: 150px; object-fit: cover;">
-      {% else %}
-      <div class="{{c}}__fallback-gradient"></div>
-      {% endif %}
+    {% if data.extra.image %}
+    <a href="{{ data.permalink | default(value='#') }}" class="{{c}}__image-link">
+      <img src="{{ get_url(path=data.extra.image) }}" alt="{{ data.title }}" class="{{c}}__thumb">
     </a>
+    {% endif %}
+    
     <div class="{{c}}__info">
-      <div class="{{c}}__info-wrap">
-        <h3 class="{{c}}__title">{{ data.title }}</h3>
+      {% if data.taxonomies.tags %}
+      <div class="{{c}}__tags">
+        {% for tag in data.taxonomies.tags %}
+        <span class="{{c}}__tag">{{ tag }}</span>
+        {% endfor %}
       </div>
-      <div class="{{c}}__info-wrap">
-        {% if data.subtitle %}
-        <div class="{{c}}__subtitle">{{ data.subtitle }}</div>
+      {% endif %}
+
+      <h3 class="{{c}}__title">
+        <a href="{{ data.permalink | default(value='#') }}">{{ data.title }}</a>
+      </h3>
+
+      {% if data.description %}
+      <p class="{{c}}__desc">{{ data.description }}</p>
+      {% endif %}
+
+      <div class="{{c}}__footer">
+        {% if data.extra.link %}
+        <a href="{{ data.extra.link }}" target="_blank" rel="noopener noreferrer" class="{{c}}__repo-link" title="Open GitHub Repository">
+          <i class="ion ion-logo-github"></i> Repository ↗
+        </a>
         {% endif %}
+        <a href="{{ data.permalink | default(value='#') }}" class="{{c}}__details-link">
+          Read Details →
+        </a>
       </div>
     </div>
   </div>
