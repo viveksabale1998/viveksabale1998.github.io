@@ -1,7 +1,54 @@
 {% import "components/index.html" as components %}
 {% extends "base.html" %}
+
 {% block main %}
-{% if config.extra.content_blocks %}
-{{ components::content_blocks(data = config.extra.content_blocks) }}
+{# 1. Hero Section from content/_index.md frontmatter #}
+{% if section.extra.hero_title %}
+  {% set hero_data = section.extra %}
+  <section class="c-hero animate">
+    <div class="container">
+      <div class="row">
+        <div class="col col-12">
+          <div class="c-hero__inner">
+            <div class="c-hero__left">
+              <h1 class="c-hero__title">{{ hero_data.hero_title }}</h1>
+              <div class="c-hero__description">
+                <p>{{ hero_data.hero_bio | default(value="") | safe }}</p>
+              </div>
+              <div class="c-hero__btn">
+                <a href="{{ hero_data.cta_link | default(value="$BASE_URL/cv") | replace(from='$BASE_URL', to=config.base_url) }}"
+                  class="cta-button c-button c-button--primary c-button--small">
+                  {{ hero_data.cta_text | default(value="Get in touch") }}
+                </a>
+                {% if hero_data.secondary_cta_link %}
+                <a class="works-button c-button c-button--secondary c-button--small"
+                  href="{{ hero_data.secondary_cta_link | replace(from='$BASE_URL', to=config.base_url) }}">
+                  {{ hero_data.secondary_cta_text | default(value="See my codes") }}
+                </a>
+                {% endif %}
+              </div>
+            </div>
+            <div class="c-hero__right">
+              <div class="c-hero__image">
+                <img loading="lazy" src="{{ get_url(path=hero_data.hero_image | default(value='assets/profile.jpeg')) }}" alt="{{ hero_data.hero_title }}">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% elif config.extra.content_blocks %}
+  {# Fallback to config.toml content_blocks if not defined in content/_index.md #}
+  {{ components::content_blocks(data = config.extra.content_blocks) }}
+{% endif %}
+
+{# 2. Homepage Body Content from content/_index.md markdown #}
+{% if section.content %}
+<div class="container animate" style="margin-top: 1rem; margin-bottom: 4rem;">
+  <div class="post__content home__content">
+    {{ section.content | safe }}
+  </div>
+</div>
 {% endif %}
 {% endblock %}

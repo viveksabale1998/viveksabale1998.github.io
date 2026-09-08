@@ -31,9 +31,9 @@ You don't need any local compilers or tools to update the website.
 
 | Section on Website | File to Edit | Notes |
 | :--- | :--- | :--- |
-| **Hero Bio & Tagline** | [`config.toml`](config.toml) | Under `[[extra.content_blocks]]` (`block = "hero"`) |
-| **Research Interests** | [`config.toml`](config.toml) | Under `[[extra.content_blocks]]` (`block = "projects-section"`) |
-| **Technical Skills** | [`config.toml`](config.toml) | Under `[[extra.content_blocks]]` (`block = "testimonials-section"`) |
+| **Hero Bio & Tagline** | [`content/_index.md`](content/_index.md) | In frontmatter (`hero_title`, `hero_bio`, etc.) |
+| **Research Interests** | [`content/_index.md`](content/_index.md) | Bullet list in the markdown body |
+| **Technical Skills** | [`content/_index.md`](content/_index.md) | Skill buttons in the markdown body |
 | **Publications** | [`content/publications.md`](content/publications.md) | Papers list; citation stats auto-update weekly via GitHub Actions |
 | **Education & Awards** | [`content/awards.md`](content/awards.md) | Degrees, scholarships, and conference grants |
 | **CV (PDF & Embed)** | Replace [`static/assets/Vivek_Sabale_CV.pdf`](static/assets/Vivek_Sabale_CV.pdf) | Keep the exact filename so existing links work |
@@ -68,14 +68,12 @@ Co-author 1, Vivek Balasaheb Sabale, Co-author 3
 
 ---
 
-### 3. Updating Bio, Skills, or Research Interests
-Open [`config.toml`](config.toml):
-- **Bio**: Look around line 80 under `[[extra.content_blocks]]` (`block = "hero"`).
-- **Research Interests**: Edit the bulleted list under `title = "Research Interests"`.
-- **Technical Skills**: Edit or add skill buttons under `title = "Technical Skills"`:
-  ```html
-  <a href="#" class="c-button c-button--secondary c-button--small" style="margin: 5px;">New Skill</a>
-  ```
+### 3. Updating Bio, Skills, or Research Interests (Homepage)
+Open [`content/_index.md`](content/_index.md):
+- **Bio & Photo**: Edit `hero_title`, `hero_bio`, or `hero_image` in the `[extra]` frontmatter.
+- **Research Interests**: Edit the bulleted list under `## Research Interests`.
+- **Technical Skills**: Edit or add skills under `## Technical Skills`.
+- **Useful Links**: Edit or add links under `## Useful Links`.
 
 ---
 
