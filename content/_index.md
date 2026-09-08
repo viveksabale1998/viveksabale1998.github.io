@@ -6,8 +6,8 @@ hero_bio = "<strong>Quantum Information Researcher</strong> at IIT Jodhpur. I sp
 hero_image = "assets/profile.jpeg"
 cta_text = "Get in touch"
 cta_link = "$BASE_URL/cv"
-secondary_cta_text = "See my codes"
-secondary_cta_link = "$BASE_URL/codes"
+<!-- secondary_cta_text = "See my codes"
+secondary_cta_link = "$BASE_URL/codes" -->
 +++
 
 <div class="home-sections">
@@ -18,7 +18,7 @@ secondary_cta_link = "$BASE_URL/codes"
     <li>Quantum entanglement & correlations</li>
     <li>Open quantum systems & non-Markovian dynamics</li>
     <li>Quantum batteries & energy transfer</li>
-    <li>Tensor network methods & many-body systems</li>
+    <li>Tensor network methods for many-body systems</li>
     <li>Quantum computing & circuit synthesis</li>
     <li>Quantum machine learning (QNN & QSVM)</li>
   </ul>
