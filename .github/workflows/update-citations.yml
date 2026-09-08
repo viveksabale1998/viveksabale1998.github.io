@@ -1,0 +1,50 @@
+name: Auto Update Citations
+
+on:
+  # Runs weekly every Sunday at 00:00 UTC
+  schedule:
+    - cron: '0 0 * * 0'
+  # Allows manual 1-click trigger from GitHub Actions tab
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-citations:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Fetch Scholar Stats and Update Content
+        run: |
+          python scripts/update_citations.py
+
+      - name: Commit and Push to Main
+        id: commit_step
+        run: |
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/publications.md
+          if git diff --staged --quiet; then
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+            echo "No citation changes detected."
+          else
+            git commit -m "chore: auto-update citation statistics from Google Scholar"
+            git push origin main
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "Committed and pushed updated citation statistics."
+          fi
+
+      - name: Deploy Updated Site to GitHub Pages
+        if: steps.commit_step.outputs.has_changes == 'true'
+        uses: shalzz/zola-deploy-action@v0.21.0
+        env:
+          PAGES_BRANCH: gh-pages
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

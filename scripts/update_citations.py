@@ -1,10 +1,89 @@
-+++
-title = " Publications"
-# date = 2024-01-01
-template = "page.html"
-+++
+#!/usr/bin/env python3
+"""
+Automatically fetches citation statistics from Google Scholar for Vivek Sabale
+and updates the pictorial stats section in content/publications.md.
+"""
 
-<!-- CITATION_METRICS_START -->
+import os
+import re
+import sys
+import urllib.request
+
+SCHOLAR_USER_ID = "LdMLDdwAAAAJ"
+SCHOLAR_URL = f"https://scholar.google.com/citations?user={SCHOLAR_USER_ID}&hl=en"
+PUBLICATIONS_FILE = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "content", "publications.md")
+
+
+def fetch_scholar_stats():
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-US,en;q=0.9",
+    }
+    
+    req = urllib.request.Request(SCHOLAR_URL, headers=headers)
+    try:
+        html = urllib.request.urlopen(req, timeout=15).read().decode("utf-8")
+    except Exception as e:
+        print(f"⚠️ Warning: Could not fetch Google Scholar page ({e}). Skipping update without failing.")
+        return None
+
+    # Parse citation summary table
+    cit_match = re.search(r'Citations.*?class=\"gsc_rsb_std\">(\d+)', html)
+    h_match = re.search(r'h-index.*?class=\"gsc_rsb_std\">(\d+)', html)
+    i10_match = re.search(r'i10-index.*?class=\"gsc_rsb_std\">(\d+)', html)
+
+    if not (cit_match and h_match and i10_match):
+        print("⚠️ Warning: Could not parse table metrics from Google Scholar response. Skipping update.")
+        return None
+
+    citations = int(cit_match.group(1))
+    h_index = int(h_match.group(1))
+    i10_index = int(i10_match.group(1))
+
+    # Parse years and counts from histogram
+    years = re.findall(r'<span class=\"gsc_g_t\"[^>]*>(\d+)</span>', html)
+    counts = [int(c) for c in re.findall(r'<span class=\"gsc_g_al\">(\d+)</span>', html)]
+
+    # Pair them together
+    yearly_data = []
+    if len(years) == len(counts) and years:
+        yearly_data = list(zip(years, counts))
+    else:
+        # Fallback to defaults if years couldn't be parsed
+        yearly_data = [("2024", 5), ("2025", 23), ("2026", 21)]
+
+    return {
+        "citations": citations,
+        "h_index": h_index,
+        "i10_index": i10_index,
+        "yearly": yearly_data,
+    }
+
+
+def generate_html_block(stats):
+    citations = stats["citations"]
+    h_index = stats["h_index"]
+    i10_index = stats["i10_index"]
+    yearly = stats["yearly"]
+
+    # Calculate histogram heights relative to max
+    max_count = max([c for _, c in yearly]) if yearly else 1
+    
+    bars_html = []
+    for year, count in yearly:
+        pct = max(int(round((count / max_count) * 100)), 12) if max_count > 0 else 12
+        bars_html.append(f"""      <div class=\"hist-col\">
+        <div class=\"hist-value\">{count}</div>
+        <div class=\"hist-bar-track\">
+          <div class=\"hist-bar-fill\" style=\"height: {pct}%;\"></div>
+        </div>
+        <div class=\"hist-label\">{year}</div>
+      </div>""")
+
+    bars_str = "\n".join(bars_html)
+
+    return f"""<!-- CITATION_METRICS_START -->
 <div class="metrics-overview">
   <div class="metrics-grid">
     <!-- Citations Card -->
@@ -16,7 +95,7 @@ template = "page.html"
         </svg>
       </div>
       <div class="metric-body">
-        <div class="metric-num">49</div>
+        <div class="metric-num">{citations}</div>
         <div class="metric-title">Citations</div>
         <div class="metric-sub">Across all articles</div>
       </div>
@@ -31,9 +110,9 @@ template = "page.html"
         </svg>
       </div>
       <div class="metric-body">
-        <div class="metric-num">5</div>
+        <div class="metric-num">{h_index}</div>
         <div class="metric-title">h-index</div>
-        <div class="metric-sub">5 papers with ≥ 5 citations</div>
+        <div class="metric-sub">{h_index} papers with ≥ {h_index} citations</div>
       </div>
     </div>
 
@@ -45,9 +124,9 @@ template = "page.html"
         </svg>
       </div>
       <div class="metric-body">
-        <div class="metric-num">3</div>
+        <div class="metric-num">{i10_index}</div>
         <div class="metric-title">i10-index</div>
-        <div class="metric-sub">3 papers with ≥ 10 citations</div>
+        <div class="metric-sub">{i10_index} papers with ≥ 10 citations</div>
       </div>
     </div>
   </div>
@@ -73,46 +152,26 @@ template = "page.html"
 
     <!-- Pictorial Histogram -->
     <div class="histogram">
-      <div class="hist-col">
-        <div class="hist-value">5</div>
-        <div class="hist-bar-track">
-          <div class="hist-bar-fill" style="height: 22%;"></div>
-        </div>
-        <div class="hist-label">2024</div>
-      </div>
-      <div class="hist-col">
-        <div class="hist-value">23</div>
-        <div class="hist-bar-track">
-          <div class="hist-bar-fill" style="height: 100%;"></div>
-        </div>
-        <div class="hist-label">2025</div>
-      </div>
-      <div class="hist-col">
-        <div class="hist-value">21</div>
-        <div class="hist-bar-track">
-          <div class="hist-bar-fill" style="height: 91%;"></div>
-        </div>
-        <div class="hist-label">2026</div>
-      </div>
+{bars_str}
     </div>
   </div>
 </div>
 
 <style>
-.metrics-overview {
+.metrics-overview {{
   margin: 1.5rem 0 2.5rem 0;
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
-}
+}}
 
-.metrics-grid {
+.metrics-grid {{
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1rem;
-}
+}}
 
-.metric-card {
+.metric-card {{
   background: #ffffff;
   border: 1px solid #e1e8f0;
   border-radius: 12px;
@@ -122,14 +181,14 @@ template = "page.html"
   gap: 1rem;
   box-shadow: 0 4px 12px rgba(0, 54, 135, 0.04);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
+}}
 
-.metric-card:hover {
+.metric-card:hover {{
   transform: translateY(-2px);
   box-shadow: 0 6px 18px rgba(20, 149, 167, 0.12);
-}
+}}
 
-.metric-icon-wrap {
+.metric-icon-wrap {{
   width: 50px;
   height: 50px;
   border-radius: 12px;
@@ -137,67 +196,67 @@ template = "page.html"
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-}
+}}
 
-.citation-theme {
+.citation-theme {{
   background: rgba(20, 149, 167, 0.12);
   color: #1495a7;
-}
+}}
 
-.hindex-theme {
+.hindex-theme {{
   background: rgba(0, 54, 135, 0.1);
   color: #003687;
-}
+}}
 
-.i10-theme {
+.i10-theme {{
   background: rgba(108, 92, 231, 0.12);
   color: #6c5ce7;
-}
+}}
 
-.metric-num {
+.metric-num {{
   font-size: 1.9rem;
   font-weight: 700;
   line-height: 1.1;
   color: #110E38;
-}
+}}
 
-.metric-title {
+.metric-title {{
   font-size: 0.95rem;
   font-weight: 600;
   color: #334155;
   margin-top: 2px;
-}
+}}
 
-.metric-sub {
+.metric-sub {{
   font-size: 0.75rem;
   color: #64748b;
   margin-top: 2px;
-}
+}}
 
-.chart-box {
+.chart-box {{
   background: #ffffff;
   border: 1px solid #e1e8f0;
   border-radius: 12px;
   padding: 1.25rem 1.5rem;
   box-shadow: 0 4px 12px rgba(0, 54, 135, 0.04);
-}
+}}
 
-.chart-header {
+.chart-header {{
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1.25rem;
   flex-wrap: wrap;
   gap: 0.5rem;
-}
+}}
 
-.chart-title {
+.chart-title {{
   font-size: 0.95rem;
   font-weight: 600;
   color: #110E38;
-}
+}}
 
-.scholar-badge {
+.scholar-badge {{
   display: inline-flex;
   align-items: center;
   font-size: 0.8rem;
@@ -208,38 +267,38 @@ template = "page.html"
   border-radius: 20px;
   text-decoration: none;
   transition: background 0.2s ease, color 0.2s ease;
-}
+}}
 
-.scholar-badge:hover {
+.scholar-badge:hover {{
   background: #003687;
   color: #ffffff;
-}
+}}
 
-.histogram {
+.histogram {{
   display: flex;
   align-items: flex-end;
   justify-content: space-around;
   height: 140px;
   padding-top: 15px;
   border-bottom: 1px solid #e2e8f0;
-}
+}}
 
-.hist-col {
+.hist-col {{
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 50px;
   height: 100%;
-}
+}}
 
-.hist-value {
+.hist-value {{
   font-size: 0.85rem;
   font-weight: 700;
   color: #1495a7;
   margin-bottom: 4px;
-}
+}}
 
-.hist-bar-track {
+.hist-bar-track {{
   width: 32px;
   flex-grow: 1;
   display: flex;
@@ -247,63 +306,78 @@ template = "page.html"
   background: rgba(226, 232, 240, 0.4);
   border-radius: 6px 6px 0 0;
   overflow: hidden;
-}
+}}
 
-.hist-bar-fill {
+.hist-bar-fill {{
   width: 100%;
   background: linear-gradient(180deg, #1495a7 0%, #003687 100%);
   border-radius: 6px 6px 0 0;
   transition: opacity 0.2s ease;
-}
+}}
 
-.hist-col:hover .hist-bar-fill {
+.hist-col:hover .hist-bar-fill {{
   opacity: 0.85;
-}
+}}
 
-.hist-label {
+.hist-label {{
   font-size: 0.8rem;
   font-weight: 500;
   color: #64748b;
   margin-top: 8px;
-}
+}}
 
-@media (max-width: 480px) {
-  .metric-card {
+@media (max-width: 480px) {{
+  .metric-card {{
     padding: 1rem;
-  }
-  .metric-num {
+  }}
+  .metric-num {{
     font-size: 1.6rem;
-  }
-  .hist-bar-track {
+  }}
+  .hist-bar-track {{
     width: 26px;
-  }
-  .chart-box {
+  }}
+  .chart-box {{
     padding: 1rem;
-  }
-}
+  }}
+}}
 </style>
-<!-- CITATION_METRICS_END -->
+<!-- CITATION_METRICS_END -->"""
 
-## Selected Publications
 
-**Exploring the non-Markovian dynamics in depolarizing maps**  
-A Abu-Nada, S Banerjee, Vivek Balasaheb Sabale  
-*Physical Review A 110 (5), 052209 (2024)*  
-[View Publication →](https://journals.aps.org/pra/abstract/10.1103/PhysRevA.110.052209)
+def main():
+    print("🔍 Fetching latest Google Scholar metrics...")
+    stats = fetch_scholar_stats()
+    if not stats:
+        print("Done (no changes made).")
+        return 0
 
-**Facets of Correlated Non‐Markovian Channels**  
-Vivek Balasaheb Sabale, NR Dash, A Kumar, S Banerjee  
-*Annalen der Physik 536 (10), 2400151 (2024)*  
-[View Publication →](https://onlinelibrary.wiley.com/doi/10.1002/andp.202400151)
+    print(f"📊 Found: {stats['citations']} citations, h-index {stats['h_index']}, i10-index {stats['i10_index']}")
 
-**Toward realization of universal quantum teleportation using weak measurements**  
-Vivek Balasaheb Sabale, A Kumar, S Banerjee  
-*Annalen der Physik 536 (4), 2300392 (2024)*  
-[View Publication →](https://onlinelibrary.wiley.com/doi/10.1002/andp.202300392)
+    if not os.path.exists(PUBLICATIONS_FILE):
+        print(f"❌ Error: {PUBLICATIONS_FILE} does not exist.")
+        return 1
 
-**Harnessing quantum support vector machines for cross-domain classification of quantum states**  
-D Sharma, Vivek Balasaheb Sabale, P Singh, A Kumar  
-*Quantum Machine Intelligence 7 (1), 49 (2025)*  
-[View Publication →](https://link.springer.com/article/10.1007/s42484-025-00274-4)
+    with open(PUBLICATIONS_FILE, "r", encoding="utf-8") as f:
+        content = f.read()
 
-[View all publications on Google Scholar →](https://scholar.google.com/citations?user=LdMLDdwAAAAJ&hl=en)
+    marker_pattern = r"<!-- CITATION_METRICS_START -->.*?<!-- CITATION_METRICS_END -->"
+    if not re.search(marker_pattern, content, flags=re.DOTALL):
+        print("❌ Error: Could not find <!-- CITATION_METRICS_START --> marker in publications.md")
+        return 1
+
+    new_block = generate_html_block(stats)
+    new_content = re.sub(marker_pattern, new_block, content, flags=re.DOTALL)
+
+    if new_content == content:
+        print("✨ Publication metrics are already up to date. No changes needed.")
+        return 0
+
+    with open(PUBLICATIONS_FILE, "w", encoding="utf-8") as f:
+        f.write(new_content)
+
+    print("✅ Successfully updated content/publications.md with latest metrics.")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
