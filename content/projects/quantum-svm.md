@@ -42,4 +42,3 @@ This project investigates quantum machine learning techniques—specifically **Q
 
 - **Languages**: Python, Julia
 - **Quantum Frameworks**: PennyLane, Qiskit, QuTiP
-- **Machine Learning**: Scikit-Learn, PyTorch
