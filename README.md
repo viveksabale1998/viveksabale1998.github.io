@@ -1,187 +1,148 @@
 # Vivek Sabale - Academic Website
 
-This website is built with [Zola](https://www.getzola.org/) using a customized version of the [Vonge](https://github.com/paberr/vonge-zola-theme) theme.
+> **Live Website:** [https://viveksabale1998.github.io/](https://viveksabale1998.github.io/)
 
-## Workflow & Deployment
+This website is built using [Zola](https://www.getzola.org/) and hosted with **GitHub Pages**. All updates are built and deployed automatically via **GitHub Actions**.
 
-This site uses **GitHub Actions** for automatic deployment.
+---
 
-1.  **Make Changes**: Edit files locally or directly on GitHub.
-2.  **Commit & Push**: Commit your changes and push them to the `main` branch.
-    ```bash
-    git add .
-    git commit -m "Description of changes"
-    git push origin main
-    ```
-3.  **Automatic Build**: The GitHub Action will automatically build the site and deploy it to the `gh-pages` branch.
-4.  **Manual Trigger**: You can also manually trigger the deployment from the "Actions" tab in your GitHub repository if needed.
+## ⚡ The 3-Step Update Flow
 
-## Customization Guide
+You don't need any local compilers or tools to update the website.
 
-Most site-wide settings are controlled in `config.toml`.
-
-### 1. Navigation Menu (Top)
-To add, remove, or rename menu items:
-1.  Open `config.toml`.
-2.  Find the `[extra]` section and look for `navigation = [...]`.
-3.  Edit the list of links.
-    ```toml
-    navigation = [
-        # { url = "$BASE_URL", title = "Home" }, # Commented out to hide
-        { url = "$BASE_URL/projects", title = "Codes" },
-        ...
-    ]
-    ```
-
-### 2. Homepage Body Sections
-The homepage is built from blocks defined in `config.toml` under `[[extra.content_blocks]]`.
-
--   **Hero Section**: The top section with your photo and bio.
-    -   Edit `title`, `description_html`, `image`, and buttons.
--   **Research Interests**:
-    -   Find the block with `title = "Research Interests"`.
-    -   Edit the `description_html` to change the list of interests.
--   **Technical Skills**:
-    -   Find the block with `title = "Technical Skills"`.
-    -   The skills are HTML buttons. To add a new skill, add a line like:
-        ```html
-        <a href="#" class="c-button c-button--secondary c-button--small" style="margin: 5px;">New Skill</a>
-        ```
--   **Quick Links**:
-    -   Find the block with `title = "Quick Links"`.
-    -   Edit the HTML to add/remove button links.
-
-### 3. Footer
--   **Footer Menu**:
-    -   In `config.toml`, find `[extra.footer]`.
-    -   Edit the `menu` list to change the links at the bottom.
--   **Social Icons**:
-    -   In `config.toml`, find `social_icons` under `[extra]`.
-    -   Add or remove entries. Supported icons depend on the Ionicons set used by the theme.
-
-### 4. Project Cards & Colors
-The project cards on the homepage use **dynamic pastel colors** instead of images.
--   **Logic**: The color is generated automatically based on the project's position (index) in the list using HSL: `hsl(index * 60 + 200, 60%, 80%)`.
--   **Adding a Project**:
-    1.  Create a file in `content/projects/` (e.g., `new-project.md`).
-    2.  Ensure it has the correct front matter (see below).
-    3.  The site will automatically assign it the next color in the sequence.
-
-## How to Update Content
-
-### Adding a New Project
-Create a new markdown file in `content/projects/` with this front matter:
-```toml
-+++
-title = "My New Project"
-date = 2024-01-01
-description = "Short description."
-[extra]
-link = "https://github.com/your-repo" # Optional link
-+++
 ```
-*(Note: `image` is no longer used for the card background, but you can keep it for the project page itself if needed.)*
-
-### Adding a New Blog Post
-1.  Navigate to `content/posts/`.
-2.  Create a new Markdown file (e.g., `my-new-post.md`).
-3.  Add the following front matter at the top of the file:
-    ```toml
-    +++
-    title = "My New Post"
-    date = 2024-01-01
-    description = "A short summary of the post."
-    [taxonomies]
-    tags = ["research", "update"]
-    +++
-    ```
-4.  Write your content below the `+++` using standard Markdown.
-
-
-### Updating the CV
-1.  **Edit Content**: Modify `content/cv.md` to update the text sections (Education, Research Interests, etc.).
-2.  **Update PDF**:
-    *   Replace the file `static/assets/Vivek_Sabale_CV.pdf` with your new PDF.
-    *   **Important**: Keep the filename exactly `Vivek_Sabale_CV.pdf`, or if you change it, you must also update the links in `content/cv.md`.
-
-### Updating Other Pages
-Edit files like `content/awards.md` or `content/gallery.md`. **Always ensure the `date` field is present** in the front matter if required by the template.
-
-## Image Alignment
-
-You can control the alignment of the detail page image by adding `image_align` to the `[extra]` section of your front matter.
-
-**Options:** `"left"`, `"center"`, `"right"`
-
-**Defaults:**
-*   **Projects**: `center`
-*   **posts**: `left`
-
-**Example:**
-```toml
-[extra]
-image = "images/posts/my-image.png"
-image_align = "right" # Forces image to the right
+┌─────────────────┐       ┌───────────────────────┐       ┌───────────────────────┐
+│ 1. Edit File    │ ───>  │ 2. Push to GitHub     │ ───>  │ 3. Live in ~1 minute  │
+│ (Markdown/TOML) │       │ (./deploy.sh or git)  │       │ (GitHub Actions)      │
+└─────────────────┘       └───────────────────────┘       └───────────────────────┘
 ```
 
-## Local Development
-1.  Install Zola.
-2.  Run `zola serve`.
-3.  Visit `http://127.0.0.1:1111`.
+1. **Edit the file** you want to update (see the table below).
+2. **Push your changes** using the quick helper script:
+   ```bash
+   ./deploy.sh "Updated publications"
+   ```
+   *(Or standard git: `git add . && git commit -m "Update" && git push`)*
+3. **Wait ~1-2 minutes**: GitHub Actions automatically builds the site and publishes it to your live link.
 
-## SCSS Architecture
+---
 
-The project follows a modular SCSS architecture (based on ITCSS/7-1 pattern) located in `sass/css/`.
+## 🗺️ Quick Edit Map: What to Edit & Where
 
-### 0-settings
-Configuration and global variables.
-- `_A_variables.scss`: Global variables for fonts, sizes, spacing, and breakpoints.
-- `_B_color-scheme.scss`: Color palette definitions and theme colors.
-- `_C_mixins.scss`: General utility mixins (clearfix, list-reset, screen-reader).
-- `_D_helpers.scss`: Helper classes for spacing, alignment, etc.
+| Section on Website | File to Edit | Notes |
+| :--- | :--- | :--- |
+| **Hero Bio & Tagline** | [`config.toml`](config.toml) | Under `[[extra.content_blocks]]` (`block = "hero"`) |
+| **Research Interests** | [`config.toml`](config.toml) | Under `[[extra.content_blocks]]` (`block = "projects-section"`) |
+| **Technical Skills** | [`config.toml`](config.toml) | Under `[[extra.content_blocks]]` (`block = "testimonials-section"`) |
+| **Publications** | [`content/publications.md`](content/publications.md) | Formatted in Markdown with links to papers |
+| **Education & Awards** | [`content/awards.md`](content/awards.md) | Degrees, scholarships, and conference grants |
+| **CV (PDF & Embed)** | Replace [`static/assets/Vivek_Sabale_CV.pdf`](static/assets/Vivek_Sabale_CV.pdf) | Keep the exact filename so existing links work |
+| **Codes / Projects** | [`content/projects/`](content/projects/) | Add a new `.md` file for each project |
+| **Blog Posts** | [`content/posts/`](content/posts/) | Add a new `.md` file for each post |
+| **Gallery** | [`content/gallery.md`](content/gallery.md) | Add image card; place images in [`static/assets/`](static/assets/) |
+| **Nav Menu & Socials** | [`config.toml`](config.toml) | Under `navigation` and `social_icons` |
 
-### 1-tools
-Mixins and functions.
-- `_A_normalize.scss`: CSS normalization to ensure consistent rendering across browsers.
-- `_B_reset.scss`: CSS reset to remove default browser styling.
-- `_C_shared.scss`: Shared styles and placeholders.
-- `_D_syntax-highlighting.scss`: Styles for code block syntax highlighting.
-- `_E_grid.scss`: Grid system mixins and classes for layout.
-- `_F_tiny-slider.scss`: Styles for the Tiny Slider plugin.
-- `_G_animate.scss`: Animation keyframes and classes.
+---
 
-### 2-base
-Boilerplate code.
-- `_base.scss`: Base HTML element styles (body, headings, links, typography).
+## 📝 Common Tasks (Copy-Paste Templates)
 
-### 3-modules
-Reusable UI components.
-- `_header.scss`: Site header, navigation menu, and mobile menu styles.
-- `_footer.scss`: Site footer styles.
-- `_pagination.scss`: Pagination control styles.
-- `_scroll-button-top.scss`: Styles for the "Back to top" button.
-- `_sections.scss`: General section container styles.
-- `_social-links.scss`: Styles for social media icon links.
+### 1. Adding a New Publication
+Open [`content/publications.md`](content/publications.md) and paste at the top of the list:
 
-### 4-layouts
-Page-level layouts.
-- `_page-layout.scss`: Main page layout structure and container styles.
+```markdown
+**Paper Title Here**  
+Co-author 1, Vivek Balasaheb Sabale, Co-author 3  
+*Journal Name Volume (Issue), Page/Article ID (Year)*  
+[View Publication →](https://doi.org/your-doi-link)
+```
 
-### Components
-Specific functional components.
-- `_blog-card.scss`: Styles for blog post preview cards.
-- `_button.scss`: Button styles (primary, secondary, etc.).
-- `_contact-form.scss`: Contact form input and button styles.
-- `_content.scss`: Styles for the main content area.
-- `_hero.scss`: Styles for the homepage hero section.
-- `_newsletter.scss`: Styles for the newsletter subscription form.
-- `_page-heading.scss`: Styles for page titles and descriptions.
-- `_page-image.scss`: Styles for featured images on pages.
-- `_posts-list.scss`: Styles for the list of blog posts.
-- `_project-card.scss`: Styles for project portfolio cards (including dynamic colors).
-- `_testimonial-card.scss`: Styles for testimonial cards.
-- `_testimonials-section.scss`: Layout styles for the testimonials section.
+---
 
-### Global Files
-- `global.scss`: Main entry point that imports all other SCSS files.
-- `tag.scss`: Specific styles for tag archive pages.
+### 2. Updating Your CV
+1. Export your latest CV as a PDF named **`Vivek_Sabale_CV.pdf`**.
+2. Replace the file at:
+   ```
+   static/assets/Vivek_Sabale_CV.pdf
+   ```
+3. Run `./deploy.sh "Updated CV"`. Both the downloadable link and the PDF viewer on the `/cv` page will update automatically.
+
+---
+
+### 3. Updating Bio, Skills, or Research Interests
+Open [`config.toml`](config.toml):
+- **Bio**: Look around line 80 under `[[extra.content_blocks]]` (`block = "hero"`).
+- **Research Interests**: Edit the bulleted list under `title = "Research Interests"`.
+- **Technical Skills**: Edit or add skill buttons under `title = "Technical Skills"`:
+  ```html
+  <a href="#" class="c-button c-button--secondary c-button--small" style="margin: 5px;">New Skill</a>
+  ```
+
+---
+
+### 4. Adding a Code / Project Card
+Create a new file in `content/projects/my-new-project.md`:
+
+```toml
++++
+title = "Project Name"
+date = 2025-01-01
+description = "One-line summary of what this code does."
+[extra]
+link = "https://github.com/viveksabale1998/your-repo"
++++
+
+Detailed description or documentation for the project goes here.
+```
+*(Project cards automatically receive pastel color styling).*
+
+---
+
+### 5. Adding a Blog Post
+Create a new file in `content/posts/my-post-title.md`:
+
+```toml
++++
+title = "My Post Title"
+date = 2025-01-01
+description = "A brief summary for previews."
+[taxonomies]
+tags = ["quantum", "research"]
++++
+
+Write your content here in standard Markdown.
+```
+
+---
+
+### 6. Adding a Photo to the Gallery
+1. Save your picture into `static/assets/` (e.g. `static/assets/conference2025.jpeg`).
+2. Open [`content/gallery.md`](content/gallery.md) and add:
+   ```html
+   <div class="gallery-item">
+     <img src="/assets/conference2025.jpeg" alt="Conference 2025">
+     <p>Conference 2025</p>
+   </div>
+   ```
+
+---
+
+<details>
+<summary>🛠️ <strong>Advanced / Developer Notes (Click to expand)</strong></summary>
+
+### Local Testing (Optional)
+If you wish to preview locally before pushing:
+1. Install Zola (`brew install zola` on macOS).
+2. Run `zola serve` from the project root.
+3. Open `http://127.0.0.1:1111`.
+
+### SCSS Architecture
+Custom styling resides in `sass/css/`:
+- `0-settings/`: Global variables & colors (`_A_variables.scss`, `_B_color-scheme.scss`)
+- `1-tools/`: Mixins, reset, grid
+- `2-base/`: Base typography & HTML styling
+- `3-modules/`: Header, footer, navigation
+- `Components/`: Cards, buttons, hero, gallery
+
+### GitHub Action Details
+Workflow configuration is stored in [`.github/workflows/main.yml`](.github/workflows/main.yml). It listens on pushes to `main` and uses `shalzz/zola-deploy-action@v0.21.0` to compile and publish to the `gh-pages` branch.
+</details>
