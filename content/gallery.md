@@ -9,7 +9,7 @@ template = "page.html"
 <div class="gallery">
 <div class="gallery-item">
 <img src="/assets/OSIITJ.jpeg" alt="OSIITJ">
-<p>Open Seminar Presentation - IIT Jodhpur</p>
+<p>Open Seminar Presentation - IIT Jodhpur 2026</p>
 </div>
 <div class="gallery-item">
 <img src="/assets/QTML2024.jpeg" alt="QTML 2024">
