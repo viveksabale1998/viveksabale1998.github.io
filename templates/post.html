@@ -1,0 +1,525 @@
+{% extends "base.html" %}
+
+{% block main %}
+<div class="blog-post-wrapper">
+  <div class="container">
+    
+    <!-- Top Breadcrumb & Category Bar -->
+    <div class="post-header-top">
+      <a href="{{ get_url(path='posts') }}" class="back-to-blog">
+        <i class="ion ion-md-arrow-back"></i> Back to Blog
+      </a>
+      {% if page.extra.category %}
+      <span class="post-category-badge">
+        {% if page.extra.category == "Thesis Work" %}📖
+        {% elif page.extra.category == "Research Articles" %}🔬
+        {% elif page.extra.category == "Collaboration Work" %}🤝
+        {% elif page.extra.category == "Quantum Information Educational" %}🎓
+        {% endif %}
+        {{ page.extra.category }}
+      </span>
+      {% endif %}
+    </div>
+
+    <!-- Post Title & Lead -->
+    <header class="post-main-header">
+      <h1 class="post-main-title">{{ page.title }}</h1>
+      {% if page.description %}
+      <p class="post-main-lead">{{ page.description }}</p>
+      {% endif %}
+
+      <!-- Author & Metadata Bar -->
+      <div class="post-meta-bar">
+        {% set author_image = page.extra.author_image | default(value=config.extra.author_image) %}
+        {% set author_name = config.author | default(value="Vivek Sabale") %}
+        <div class="post-author-box">
+          <img src="{{ get_url(path=author_image) }}" alt="{{ author_name }}" class="post-author-avatar">
+          <div class="post-author-info">
+            <span class="post-author-name">{{ author_name }}</span>
+            <span class="post-author-title">PhD Researcher in Quantum Information, IIT Jodhpur</span>
+          </div>
+        </div>
+
+        <div class="post-meta-details">
+          {% if page.date %}
+          <div class="meta-item">
+            <i class="ion ion-md-calendar"></i>
+            <time datetime="{{ page.date }}">{{ page.date | date(format=config.extra.date_format) }}</time>
+          </div>
+          {% endif %}
+          {% if page.reading_time %}
+          <div class="meta-item">
+            <i class="ion ion-md-time"></i>
+            <span>{{ page.reading_time }} min read</span>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- Tag Pills -->
+      {% if page.taxonomies.tags %}
+      <div class="post-header-tags">
+        {% for tag in page.taxonomies.tags %}
+        {% set tag_url = get_taxonomy_url(kind="tags", name=tag, lang=page.lang) %}
+        <a href="{{ tag_url }}" class="post-tag-pill">#{{ tag }}</a>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </header>
+
+    <!-- Featured Image -->
+    {% if page.extra.image %}
+    <div class="post-hero-image-wrap">
+      <img src="{{ get_url(path=page.extra.image) }}" alt="{{ page.title }}" class="post-hero-image">
+    </div>
+    {% endif %}
+
+    <!-- Table of Contents (if available) -->
+    {% if page.toc and page.toc | length > 1 %}
+    <div class="post-toc-container">
+      <details class="post-toc-details" open>
+        <summary class="post-toc-summary">
+          <i class="ion ion-md-list"></i> Table of Contents
+        </summary>
+        <nav class="post-toc-nav">
+          <ol>
+            {% for h1 in page.toc %}
+            <li>
+              <a href="{{ h1.permalink | safe }}">{{ h1.title }}</a>
+              {% if h1.children %}
+              <ol>
+                {% for h2 in h1.children %}
+                <li><a href="{{ h2.permalink | safe }}">{{ h2.title }}</a></li>
+                {% endfor %}
+              </ol>
+              {% endif %}
+            </li>
+            {% endfor %}
+          </ol>
+        </nav>
+      </details>
+    </div>
+    {% endif %}
+
+    <!-- Main Article Body -->
+    <article class="post-body-content">
+      {{ page.content | safe }}
+    </article>
+
+    <!-- Post Footer: Author Bio Card -->
+    <div class="post-author-bio-card">
+      <img src="{{ get_url(path=config.extra.author_image) }}" alt="{{ config.author }}" class="bio-avatar">
+      <div class="bio-content">
+        <h3 class="bio-name">{{ config.author }}</h3>
+        <p class="bio-text">
+          PhD Researcher at the Indian Institute of Technology Jodhpur. My research focuses on quantum information theory, open quantum systems, non-Markovian dynamics, quantum machine learning, and quantum thermodynamics.
+        </p>
+        <div class="bio-links">
+          <a href="https://scholar.google.com/citations?user=LdMLDdwAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" class="bio-link-btn">
+            <i class="ion ion-md-school"></i> Google Scholar
+          </a>
+          <a href="https://github.com/viveksabale1998" target="_blank" rel="noopener noreferrer" class="bio-link-btn">
+            <i class="ion ion-logo-github"></i> GitHub
+          </a>
+          <a href="https://www.linkedin.com/in/vivek-sabale/" target="_blank" rel="noopener noreferrer" class="bio-link-btn">
+            <i class="ion ion-logo-linkedin"></i> LinkedIn
+          </a>
+          <a href="mailto:sabale.1@iitj.ac.in" class="bio-link-btn">
+            <i class="ion ion-md-mail"></i> Contact
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Post Navigation (Previous / Next) -->
+    {% if page.lower or page.higher %}
+    <div class="post-adjacent-navigation">
+      {% if page.lower %}
+      <a class="nav-adjacent-card nav-prev" href="{{ page.lower.permalink }}">
+        <span class="adjacent-label">← Previous Post</span>
+        <h4 class="adjacent-title">{{ page.lower.title }}</h4>
+      </a>
+      {% endif %}
+
+      {% if page.higher %}
+      <a class="nav-adjacent-card nav-next" href="{{ page.higher.permalink }}">
+        <span class="adjacent-label">Next Post →</span>
+        <h4 class="adjacent-title">{{ page.higher.title }}</h4>
+      </a>
+      {% endif %}
+    </div>
+    {% endif %}
+
+    <!-- Back to top & all posts -->
+    <div class="post-bottom-back">
+      <a href="{{ get_url(path='posts') }}" class="c-button c-button--primary">
+        ← Back to all articles
+      </a>
+    </div>
+
+  </div>
+</div>
+
+<style>
+.blog-post-wrapper {
+  padding: 2.5rem 0 4.5rem 0;
+}
+.post-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.75rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.back-to-blog {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: #003687;
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+.back-to-blog:hover {
+  color: #1495a7;
+  transform: translateX(-3px);
+}
+.post-category-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(20, 149, 167, 0.12);
+  color: #003687;
+  font-weight: 700;
+  font-size: 0.82rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+.post-main-header {
+  max-width: 820px;
+  margin: 0 auto 2.5rem auto;
+}
+.post-main-title {
+  font-size: 2.5rem;
+  line-height: 1.25;
+  font-weight: 800;
+  color: #110e38;
+  margin: 0.5rem 0 1rem 0;
+  letter-spacing: -0.5px;
+}
+.post-main-lead {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #475569;
+  margin: 0 0 1.75rem 0;
+}
+.post-meta-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  padding: 1.25rem 0;
+  border-top: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
+  margin-bottom: 1.25rem;
+}
+.post-author-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.post-author-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #003687;
+}
+.post-author-info {
+  display: flex;
+  flex-direction: column;
+}
+.post-author-name {
+  font-weight: 700;
+  font-size: 1rem;
+  color: #110e38;
+}
+.post-author-title {
+  font-size: 0.82rem;
+  color: #64748b;
+}
+.post-meta-details {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  font-size: 0.88rem;
+  color: #64748b;
+}
+.meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.post-header-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+.post-tag-pill {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #003687;
+  background: #f0f4fc;
+  padding: 0.25rem 0.65rem;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.post-tag-pill:hover {
+  background: #003687;
+  color: #ffffff;
+}
+.post-hero-image-wrap {
+  max-width: 860px;
+  margin: 0 auto 3rem auto;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 54, 135, 0.08);
+}
+.post-hero-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.post-toc-container {
+  max-width: 820px;
+  margin: 0 auto 2.5rem auto;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+}
+.post-toc-summary {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: #110e38;
+  cursor: pointer;
+  outline: none;
+}
+.post-toc-nav {
+  margin-top: 1rem;
+}
+.post-toc-nav ol {
+  margin: 0;
+  padding-left: 1.5rem;
+}
+.post-toc-nav li {
+  margin-bottom: 0.4rem;
+  font-size: 0.95rem;
+}
+.post-toc-nav a {
+  color: #003687;
+  text-decoration: none;
+}
+.post-toc-nav a:hover {
+  color: #1495a7;
+  text-decoration: underline;
+}
+.post-body-content {
+  max-width: 820px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  line-height: 1.85;
+  color: #1e293b;
+}
+.post-body-content h2 {
+  font-size: 1.85rem;
+  font-weight: 750;
+  color: #110e38;
+  margin: 2.75rem 0 1.25rem 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #f1f5f9;
+}
+.post-body-content h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #110e38;
+  margin: 2.25rem 0 1rem 0;
+}
+.post-body-content p {
+  margin-bottom: 1.5rem;
+}
+.post-body-content ul, .post-body-content ol {
+  margin-bottom: 1.5rem;
+  padding-left: 1.75rem;
+}
+.post-body-content li {
+  margin-bottom: 0.5rem;
+}
+.post-body-content blockquote {
+  margin: 2rem 0;
+  padding: 1.25rem 1.75rem;
+  background: #f0f4fc;
+  border-left: 4px solid #003687;
+  border-radius: 0 10px 10px 0;
+  font-size: 1.05rem;
+  color: #1e293b;
+}
+.post-body-content blockquote p:last-child {
+  margin-bottom: 0;
+}
+.post-body-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+  font-size: 0.95rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.post-body-content th {
+  background: #f1f5f9;
+  color: #110e38;
+  font-weight: 700;
+  padding: 0.85rem 1rem;
+  border: 1px solid #e2e8f0;
+  text-align: left;
+}
+.post-body-content td {
+  padding: 0.85rem 1rem;
+  border: 1px solid #e2e8f0;
+  vertical-align: top;
+}
+.post-body-content tr:nth-child(even) {
+  background: #fafcff;
+}
+.post-author-bio-card {
+  max-width: 820px;
+  margin: 4rem auto 2.5rem auto;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  box-shadow: 0 4px 16px rgba(0, 54, 135, 0.05);
+}
+.bio-avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #003687;
+  flex-shrink: 0;
+}
+.bio-name {
+  font-size: 1.3rem;
+  font-weight: 750;
+  color: #110e38;
+  margin: 0 0 0.5rem 0;
+}
+.bio-text {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #475569;
+  margin: 0 0 1rem 0;
+}
+.bio-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+.bio-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #003687;
+  background: #f0f4fc;
+  padding: 0.35rem 0.8rem;
+  border-radius: 20px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.bio-link-btn:hover {
+  background: #003687;
+  color: #ffffff;
+}
+.post-adjacent-navigation {
+  max-width: 820px;
+  margin: 0 auto 3rem auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+.nav-adjacent-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.2s ease;
+}
+.nav-adjacent-card:hover {
+  border-color: #003687;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 54, 135, 0.08);
+}
+.nav-next {
+  text-align: right;
+}
+.adjacent-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #1495a7;
+  margin-bottom: 0.4rem;
+}
+.adjacent-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #110e38;
+  margin: 0;
+  line-height: 1.4;
+}
+.post-bottom-back {
+  max-width: 820px;
+  margin: 0 auto;
+  text-align: center;
+}
+@media (max-width: 768px) {
+  .post-main-title {
+    font-size: 2rem;
+  }
+  .post-main-lead {
+    font-size: 1.05rem;
+  }
+  .post-author-bio-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 1.5rem;
+  }
+  .bio-links {
+    justify-content: center;
+  }
+  .post-meta-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .nav-next {
+    text-align: left;
+  }
+}
+</style>
+{% endblock %}

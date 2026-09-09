@@ -2,7 +2,7 @@
 title = "Blog"
 sort_by = "date"
 template = "section.html"
-page_template = "page.html"
+page_template = "post.html"
 paginate_by = 10
 
 [[extra.content_blocks]]

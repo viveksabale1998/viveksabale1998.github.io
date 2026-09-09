@@ -54,7 +54,7 @@ title = "Personal Academic Website & Portfolio"
 description = "Source code for this website built with Zola, custom responsive styling, and GitHub Actions CI/CD automated deployment."
 link = "https://github.com/viveksabale1998/sites"
 image = "images/projects/quantum-states.png"
-tags = ["Zola", "Open Source", "CI/CD"]
+tags = ["Zola", "Open Source"]
 +++
 
 Welcome to my open-source code and software hub. In modern quantum research, open science and reproducibility are essential. Below you will find research codebases, Jupyter notebooks, datasets, and simulation packages supporting my publications in quantum information, open quantum systems, quantum machine learning, and quantum thermodynamics.
