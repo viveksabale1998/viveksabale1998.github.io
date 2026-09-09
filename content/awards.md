@@ -9,7 +9,7 @@ aliases = ["cv"]
 **PhD Scholar (Quantum Information & Computation)**  
 *Indian Institute of Technology Jodhpur (2021 – Present)*  
 - Research Area: Quantum Information, Open Quantum Systems, Non-Markovian Dynamics, and Quantum Machine Learning.  
-- Advisors: Prof. Atul Kumar.
+- Advisors: Prof. Atul Kumar ([Group Website ↗](https://atulk4.wixsite.com/atulk)) 
 
 **Master of Science in Chemistry**  
 *Indian Institute of Technology Madras (2019 – 2021)*  
@@ -27,16 +27,12 @@ aliases = ["cv"]
 - Received competitive travel grant for presenting research at *"Quantum Techniques in Machine Learning (QTML),"* University of Melbourne, Australia.
 
 **Workshop Instructor & Teaching**  
-*IIIT Dharwad & QIndia (2024)*  
-- Invited to teach hands-on quantum computing and algorithm sessions.
+*IIIT Dharwad (2024)*  
+- Invited to teach hands-on quantum computing and algorithm sessions with QIndia.
 
 **IBM Quantum Challenge Certificate**  
 *IBM Quantum (2021)*  
 - Completed competitive challenge covering advanced quantum circuits, error mitigation, and algorithms.
-
-**GATE Qualified**  
-*Ministry of Education, Government of India (2021)*  
-- Qualified Graduate Aptitude Test in Engineering (Chemistry).
 
 **Diploma Certificate in Chemistry (POCE)**  
 *Jawaharlal Nehru Centre for Advanced Scientific Research (JNCASR), Bangalore (2019)*  
@@ -44,7 +40,7 @@ aliases = ["cv"]
 
 **Mahatma Jyotirav Phule Gunvant Vidyarthi Scholarship**  
 *Savitribai Phule Pune University (2018)*  
-- Awarded for academic excellence and top ranking.
+- Awarded for academic excellence.
 
 ---
 
