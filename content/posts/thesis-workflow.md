@@ -12,17 +12,15 @@ Quantum technologies rely on phenomena that have no direct classical counterpart
 
 My doctoral research investigates this problem from several complementary perspectives. Rather than treating quantum correlations, noise, memory, and open-system dynamics as separate topics, the thesis develops a progression:
 
-$$
-\boxed{
-\text{Characterization}
-\rightarrow
-\text{Protection}
-\rightarrow
-\text{Channel Memory}
-\rightarrow
-\text{Microscopic Dynamics}
-}
-$$
+<div class="thesis-horizontal-flow">
+  <span class="step-pill">Characterization</span>
+  <span class="step-arrow">→</span>
+  <span class="step-pill">Protection</span>
+  <span class="step-arrow">→</span>
+  <span class="step-pill">Channel Memory</span>
+  <span class="step-arrow">→</span>
+  <span class="step-pill">Microscopic Dynamics</span>
+</div>
 
 The central question evolves along the way:
 
@@ -263,22 +261,27 @@ The most important feature of the thesis is therefore not any individual noise m
 
 The research can be summarized as:
 
-$$
-\boxed{
-\begin{array}{c}
-\textbf{Structure}\\
-\text{How are correlations characterized?}\\[2mm]
-\downarrow\\
-\textbf{Control}\\
-\text{How can correlations be protected?}\\[2mm]
-\downarrow\\
-\textbf{Channel memory}\\
-\text{How does correlated noise modify their dynamics?}\\[2mm]
-\downarrow\\
-\textbf{Microscopic origin}\\
-\text{What physical interactions generate those correlations?}
-\end{array}}
-$$
+<div class="thesis-flowchart-card">
+  <div class="flow-step">
+    <span class="flow-badge">Structure</span>
+    <span class="flow-question">How are correlations characterized?</span>
+  </div>
+  <div class="flow-down-arrow">↓</div>
+  <div class="flow-step">
+    <span class="flow-badge">Control</span>
+    <span class="flow-question">How can correlations be protected?</span>
+  </div>
+  <div class="flow-down-arrow">↓</div>
+  <div class="flow-step">
+    <span class="flow-badge">Channel Memory</span>
+    <span class="flow-question">How does correlated noise modify their dynamics?</span>
+  </div>
+  <div class="flow-down-arrow">↓</div>
+  <div class="flow-step">
+    <span class="flow-badge">Microscopic Origin</span>
+    <span class="flow-question">What physical interactions generate those correlations?</span>
+  </div>
+</div>
 
 This progression is useful because each stage addresses a limitation of the previous one.
 
@@ -349,17 +352,15 @@ And finally:
 
 This is ultimately the central theme connecting the thesis:
 
-$$
-\boxed{
-\text{Correlation}
-\rightarrow
-\text{Protection}
-\rightarrow
-\text{Memory}
-\rightarrow
-\text{Microscopic origin}
-}
-$$
+<div class="thesis-horizontal-flow">
+  <span class="step-pill">Correlation</span>
+  <span class="step-arrow">→</span>
+  <span class="step-pill">Protection</span>
+  <span class="step-arrow">→</span>
+  <span class="step-pill">Memory</span>
+  <span class="step-arrow">→</span>
+  <span class="step-pill">Microscopic Origin</span>
+</div>
 
 Rather than studying quantum correlations in isolation, the thesis follows them across different levels of description—from multipartite state structure, through operational quantum-information protocols, to correlated channels and finally to microscopic open-system dynamics.
 
@@ -380,3 +381,94 @@ For readers who want to follow the technical development, several papers provide
 * **Correlated non-Markovian channels:** Sabale *et al.*, [“Facets of Correlated Non-Markovian Channels,”](https://onlinelibrary.wiley.com/doi/10.1002/andp.202400151) *Annalen der Physik* **536**, 2400151 (2024). The article develops the correlated-channel/non-Markovianity analysis involving unital and non-unital channels, accessible-state volume, entanglement dynamics, and error correction.
 
 * **Microscopic correlated dynamics:** Ficek and Tanaś, work on two-atom entanglement and common-reservoir dynamics, provides the physical background for understanding collective dissipation, entanglement generation, sudden death, and sudden birth.
+
+<style>
+.thesis-flowchart-card {
+  max-width: 540px;
+  margin: 2.25rem auto;
+  padding: 1.5rem;
+  background: #ffffff;
+  border: 2px solid #003687;
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(0, 54, 135, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.65rem;
+}
+.flow-step {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0.85rem 1.25rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+.flow-step:hover {
+  transform: translateY(-2px);
+  border-color: #1495a7;
+}
+.flow-badge {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: #003687;
+  margin-bottom: 0.35rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.flow-question {
+  font-size: 0.95rem;
+  color: #334155;
+  font-style: italic;
+}
+.flow-down-arrow {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #1495a7;
+  line-height: 1;
+}
+
+.thesis-horizontal-flow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 1.75rem 0;
+  padding: 1rem 1.25rem;
+  background: #f0f4fc;
+  border: 1px solid #d0deee;
+  border-radius: 12px;
+}
+.step-pill {
+  background: #003687;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.92rem;
+  padding: 0.45rem 1rem;
+  border-radius: 20px;
+  display: inline-block;
+  box-shadow: 0 2px 6px rgba(0, 54, 135, 0.15);
+}
+.step-arrow {
+  color: #1495a7;
+  font-weight: 800;
+  font-size: 1.3rem;
+}
+@media (max-width: 600px) {
+  .thesis-flowchart-card {
+    padding: 1rem;
+  }
+  .thesis-horizontal-flow {
+    gap: 0.4rem;
+  }
+  .step-pill {
+    font-size: 0.8rem;
+    padding: 0.35rem 0.75rem;
+  }
+}
+</style>

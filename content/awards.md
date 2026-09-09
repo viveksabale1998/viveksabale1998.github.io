@@ -9,15 +9,14 @@ aliases = ["cv"]
 **PhD Scholar (Quantum Information & Computation)**  
 *Indian Institute of Technology Jodhpur (2021 – Present)*  
 - Research Area: Quantum Information, Open Quantum Systems, Non-Markovian Dynamics, and Quantum Machine Learning.  
-- Advisors: Prof. Subhashish Banerjee & Prof. Atul Kumar.
+- Advisors: Prof. Atul Kumar.
 
 **Master of Science in Chemistry**  
 *Indian Institute of Technology Madras (2019 – 2021)*  
-- Graduated with First Class. Focus on theoretical and quantum chemistry.
+
 
 **Bachelor of Science in Chemistry**  
 *Fergusson College, Pune (2016 – 2019)*  
-- Specialization: Chemistry.
 
 ---
 
