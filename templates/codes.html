@@ -23,11 +23,25 @@
   <div class="row">
     {% if page.extra.repositories %}
       {% for repo in page.extra.repositories %}
+      {% set detail_link = "" %}
+      {% if repo.details_url %}
+        {% if repo.details_url is starting_with("http") %}
+          {% set detail_link = repo.details_url %}
+        {% elif repo.details_url is starting_with("$BASE_URL/") %}
+          {% set clean_path = repo.details_url | trim_start_matches(pat="$BASE_URL/") %}
+          {% set detail_link = get_url(path=clean_path) %}
+        {% elif repo.details_url is starting_with("/") %}
+          {% set clean_path = repo.details_url | trim_start_matches(pat="/") %}
+          {% set detail_link = get_url(path=clean_path) %}
+        {% else %}
+          {% set detail_link = get_url(path=repo.details_url) %}
+        {% endif %}
+      {% endif %}
       <div class="col col-4 col-d-6 col-t-12">
         <article class="c-project-card has-image">
           <div class="c-project-card__content">
             {% if repo.image %}
-            <a href="{{ repo.link | default(value='#') }}" target="_blank" rel="noopener noreferrer" class="c-project-card__image-link">
+            <a href="{% if detail_link %}{{ detail_link }}{% elif repo.link %}{{ repo.link }}{% else %}#{% endif %}" {% if not detail_link and repo.link %}target="_blank" rel="noopener noreferrer"{% endif %} class="c-project-card__image-link">
               <img src="{{ get_url(path=repo.image) }}" alt="{{ repo.title }}" class="c-project-card__thumb">
             </a>
             {% endif %}
@@ -42,7 +56,7 @@
               {% endif %}
 
               <h3 class="c-project-card__title">
-                <a href="{{ repo.link | default(value='#') }}" target="_blank" rel="noopener noreferrer">{{ repo.title }}</a>
+                <a href="{% if detail_link %}{{ detail_link }}{% elif repo.link %}{{ repo.link }}{% else %}#{% endif %}" {% if not detail_link and repo.link %}target="_blank" rel="noopener noreferrer"{% endif %}>{{ repo.title }}</a>
               </h3>
 
               {% if repo.description %}
@@ -55,8 +69,8 @@
                   <i class="ion ion-logo-github"></i> Repository ↗
                 </a>
                 {% endif %}
-                {% if repo.details_url %}
-                <a href="{{ repo.details_url }}" class="c-project-card__details-link">
+                {% if detail_link %}
+                <a href="{{ detail_link }}" class="c-project-card__details-link">
                   Read Details →
                 </a>
                 {% endif %}

@@ -14,7 +14,7 @@ template = "codes.html"
 # link = "https://github.com/your-username/your-repo-name"
 # image = "images/projects/your-image.png"  # (optional: place image in static/images/projects/)
 # tags = ["Python", "Qiskit", "QML"]       # (optional: categories/tech stack)
-# details_url = "$BASE_URL/projects/..."    # (optional: link to a detailed page or post)
+# details_url = "projects/my-project"       # (optional: link to a detailed page or post)
 # ==============================================================================
 
 [[extra.repositories]]
@@ -23,7 +23,7 @@ description = "A comprehensive dataset containing entangled, separable, and boun
 link = "https://github.com/viveksabale1998/Quantum-States-Data-Set"
 image = "images/projects/quantum-states.png"
 tags = ["Dataset", "Python", "Quantum Information"]
-details_url = "$BASE_URL/projects/quantum-states"
+details_url = "projects/quantum-states"
 
 [[extra.repositories]]
 title = "Quantum Battery Hamiltonian Simulations"
@@ -31,7 +31,7 @@ description = "Many-body quantum battery simulations analyzing charging power, c
 link = "https://github.com/Suprabha-b/QB-HS-DMI"
 image = "images/projects/quantum-battery.png"
 tags = ["Quantum Batteries", "Python", "QuTiP"]
-details_url = "$BASE_URL/projects/quantum-battery"
+details_url = "projects/quantum-battery"
 
 [[extra.repositories]]
 title = "Quantum State Classification Using QNN"
@@ -39,7 +39,7 @@ description = "Parameterised quantum circuits (PQCs) and quantum neural networks
 link = "https://github.com/Thirumalai-97/QuantumStateClassification_UsingQNN"
 image = "images/projects/qnn-classification.png"
 tags = ["Quantum ML", "Python", "Qiskit"]
-details_url = "$BASE_URL/projects/qnn-classification"
+details_url = "projects/qnn-classification"
 
 [[extra.repositories]]
 title = "Quantum Computing Lab Notebooks"
@@ -47,7 +47,7 @@ description = "Open-access educational Jupyter notebooks covering quantum circui
 link = "https://github.com/Mait-Sark/Quantum-Computing-Lab"
 image = "images/projects/quantum-computing-lab.png"
 tags = ["Education", "Jupyter", "Qiskit"]
-details_url = "$BASE_URL/projects/quantum-computing-lab"
+details_url = "projects/quantum-computing-lab"
 
 [[extra.repositories]]
 title = "Personal Academic Website & Portfolio"
