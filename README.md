@@ -132,6 +132,53 @@ Write your content here in standard Markdown.
 
 ---
 
+## 🔧 Troubleshooting & Common Build / GitHub Actions Errors
+
+All website builds and deployments happen via GitHub Actions under the **Actions** tab of your GitHub repository. Here is how to diagnose and resolve the most common issues:
+
+### 1. "Node.js XX is deprecated" Warnings in GitHub Actions
+- **Why it happens:** GitHub periodically updates the default Node.js runtime on its hosted runners (e.g., migrating from Node 20 to Node 24). When a third-party or official GitHub action targets an older Node version, GitHub outputs a warning:
+  ```text
+  Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4...
+  ```
+- **How to fix it:**
+  1. Check the action name in the warning (e.g., `actions/checkout` or `actions/setup-python`).
+  2. Open your workflow files in [`.github/workflows/`](.github/workflows/):
+     - [`.github/workflows/main.yml`](.github/workflows/main.yml)
+     - [`.github/workflows/update-citations.yml`](.github/workflows/update-citations.yml)
+  3. Bump the version tag to the newest major version supported on Node 24:
+     - `actions/checkout@v4` $\rightarrow$ `actions/checkout@v5` (or latest)
+     - `actions/setup-python@v5` $\rightarrow$ `actions/setup-python@v7` (or latest)
+  4. Commit and push your changes to `main`.
+
+---
+
+### 2. Zola Build Failure: TOML / Front Matter Syntax Errors
+- **Symptom:** The workflow fails at the *Build and Deploy* step with `Failed to parse front matter`.
+- **Common causes & fixes:**
+  * **HTML comments in front matter:** Markdown files must NOT have `<!-- ... -->` between the `+++` fences. Inside `+++`, comments must use `#`.
+  * **Multiline strings:** Multiline descriptions in front matter must be wrapped in triple double quotes:
+    ```toml
+    description = """First line.
+    Second line."""
+    ```
+  * **Missing closing fence:** Ensure each post opens and closes with `+++`.
+
+---
+
+### 3. Zola Alias Collision
+- **Symptom:** Build fails with `Failed to render ... collision with alias`.
+- **Cause:** Adding an alias (like `aliases = ["cv"]`) to a file when a physical file already exists at that path (like `content/cv.md`).
+- **Fix:** In Zola, an alias cannot overwrite a physical `.md` file. Either delete the redundant `.md` file or rename the alias.
+
+---
+
+### 4. 404 Error on Links or Images
+- **Images:** Ensure all images are placed in `static/` (e.g. `static/images/posts/my-image.jpg` or `static/assets/my-photo.jpeg`). In markdown or frontmatter, refer to them without the `static/` prefix (e.g. `images/posts/my-image.jpg`).
+- **Repository Links:** In [`content/codes.md`](content/codes.md), external links should start with `https://github.com/...`.
+
+---
+
 <details>
 <summary>🛠️ <strong>Advanced / Developer Notes (Click to expand)</strong></summary>
 
