@@ -151,6 +151,10 @@ All website builds and deployments happen via GitHub Actions under the **Actions
      - `actions/setup-python@v5` $\rightarrow$ `actions/setup-python@v7` (or latest)
   4. Commit and push your changes to `main`.
 
+> [!NOTE]
+> **Warning on `actions/upload-artifact@v4` in `pages-build-deployment`:**  
+> If you see this warning on a 7-step job named `pages-build-deployment`, this is GitHub's **internal** runner executing its automated CDN deployment step from the `gh-pages` branch. It is managed by GitHub's backend (not your repository files), does not fail the build, and GitHub will update its internal runner template automatically. Your own workflows in `.github/workflows/` are already on Node 24.
+
 ---
 
 ### 2. Zola Build Failure: TOML / Front Matter Syntax Errors
