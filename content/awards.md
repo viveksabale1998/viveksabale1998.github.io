@@ -1,7 +1,7 @@
 +++
 title = "Education, Awards & CV"
 template = "page.html"
-aliases = ["/cv", "/cv/"]
+aliases = ["cv"]
 +++
 
 ## Education
