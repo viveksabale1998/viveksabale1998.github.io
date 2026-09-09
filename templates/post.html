@@ -1,6 +1,12 @@
 {% extends "base.html" %}
 
 {% block main %}
+{% if page.extra is defined and page.extra.category is defined %}
+  {% set post_category = page.extra.category %}
+{% else %}
+  {% set post_category = "" %}
+{% endif %}
+
 <!-- Scroll Reading Progress Bar -->
 <div id="reading-progress-container" aria-hidden="true">
   <div id="reading-progress-bar"></div>
@@ -16,22 +22,24 @@
       </a>
       
       <div class="header-badges">
-        {% if page.extra.category %}
+        {% if post_category %}
         <span class="post-category-badge">
-          {% if page.extra.category == "Thesis Work" %}📖 Thesis Work
-          {% elif page.extra.category == "Research Articles" %}🔬 Research Article
-          {% elif page.extra.category == "Collaboration Work" %}🤝 Collaborative Work
-          {% elif page.extra.category == "Quantum Information Educational" %}🎓 Educational Primer
-          {% else %}{{ page.extra.category }}
+          {% if post_category == "Thesis Work" %}📖 Thesis Work
+          {% elif post_category == "Research Articles" %}🔬 Research Article
+          {% elif post_category == "Collaboration Work" %}🤝 Collaborative Work
+          {% elif post_category == "Quantum Information Educational" %}🎓 Educational Primer
+          {% else %}{{ post_category }}
           {% endif %}
         </span>
         {% endif %}
 
         <span class="post-audience-badge">
-          {% if page.extra.category == "Quantum Information Educational" %}
+          {% if post_category == "Quantum Information Educational" %}
             🌱 Accessible to All Learners
-          {% elif page.extra.category == "Collaboration Work" %}
+          {% elif post_category == "Collaboration Work" %}
             🌐 Interdisciplinary QML
+          {% elif post_category == "General" or not post_category %}
+            📌 General Update
           {% else %}
             🔬 Deep-Dive Research
           {% endif %}
@@ -49,8 +57,18 @@
 
       <!-- Author & Publishing Meta -->
       <div class="post-meta-bar">
-        {% set author_image = page.extra.author_image | default(value=config.extra.author_image) %}
-        {% set author_name = config.author | default(value="Vivek Sabale") %}
+        {% if page.extra is defined and page.extra.author_image is defined %}
+          {% set author_image = page.extra.author_image %}
+        {% elif config.extra is defined and config.extra.author_image is defined %}
+          {% set author_image = config.extra.author_image %}
+        {% else %}
+          {% set author_image = "assets/profile.jpeg" %}
+        {% endif %}
+        {% if config.author is defined and config.author %}
+          {% set author_name = config.author %}
+        {% else %}
+          {% set author_name = "Vivek Sabale" %}
+        {% endif %}
         
         <div class="post-author-box">
           <img src="{{ get_url(path=author_image) }}" alt="{{ author_name }}" class="post-author-avatar">
@@ -61,14 +79,14 @@
         </div>
 
         <div class="post-meta-details">
-          {% if page.date %}
+          {% if page.date is defined and page.date %}
           <div class="meta-item" title="Published date">
             <i class="ion ion-md-calendar" aria-hidden="true"></i>
             <time datetime="{{ page.date }}">{{ page.date | date(format=config.extra.date_format) }}</time>
           </div>
           {% endif %}
           
-          {% if page.reading_time %}
+          {% if page.reading_time is defined and page.reading_time %}
           <div class="meta-item" title="Estimated reading time">
             <i class="ion ion-md-time" aria-hidden="true"></i>
             <span>{{ page.reading_time }} min read</span>
@@ -78,7 +96,7 @@
       </div>
 
       <!-- Tag Pills -->
-      {% if page.taxonomies.tags %}
+      {% if page.taxonomies is defined and page.taxonomies.tags is defined and page.taxonomies.tags %}
       <div class="post-header-tags" aria-label="Article tags">
         {% for tag in page.taxonomies.tags %}
         {% set tag_url = get_taxonomy_url(kind="tags", name=tag, lang=page.lang) %}
@@ -89,14 +107,14 @@
     </header>
 
     <!-- Featured Image -->
-    {% if page.extra.image %}
+    {% if page.extra is defined and page.extra.image is defined and page.extra.image %}
     <figure class="post-hero-image-wrap">
       <img src="{{ get_url(path=page.extra.image) }}" alt="{{ page.title }}" class="post-hero-image">
     </figure>
     {% endif %}
 
     <!-- Inclusivity & Key Takeaway Callout -->
-    {% if page.description %}
+    {% if page.description is defined and page.description %}
     <aside class="post-key-takeaways" aria-label="Article overview">
       <div class="takeaways-header">
         <i class="ion ion-md-bulb" aria-hidden="true"></i>
@@ -110,7 +128,7 @@
     {% endif %}
 
     <!-- Table of Contents (if multi-section) -->
-    {% if page.toc and page.toc | length > 1 %}
+    {% if page.toc is defined and page.toc and page.toc | length > 1 %}
     <div class="post-toc-container">
       <details class="post-toc-details" open>
         <summary class="post-toc-summary">
@@ -206,9 +224,9 @@
     </aside>
 
     <!-- Post Navigation (Previous / Next) -->
-    {% if page.lower or page.higher %}
+    {% if page.lower is defined and page.lower or page.higher is defined and page.higher %}
     <nav class="post-adjacent-navigation" aria-label="More articles">
-      {% if page.lower %}
+      {% if page.lower is defined and page.lower %}
       <a class="nav-adjacent-card nav-prev" href="{{ page.lower.permalink }}">
         <span class="adjacent-label">← Previous Post</span>
         <h4 class="adjacent-title">{{ page.lower.title }}</h4>
@@ -217,7 +235,7 @@
       <div></div>
       {% endif %}
 
-      {% if page.higher %}
+      {% if page.higher is defined and page.higher %}
       <a class="nav-adjacent-card nav-next" href="{{ page.higher.permalink }}">
         <span class="adjacent-label">Next Post →</span>
         <h4 class="adjacent-title">{{ page.higher.title }}</h4>

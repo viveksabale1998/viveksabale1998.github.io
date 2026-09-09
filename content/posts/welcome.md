@@ -5,6 +5,7 @@ description = "First post on my new blog."
 [taxonomies]
 tags = ["general", "update"]
 [extra]
+category = "General"
 image = "images/posts/welcome.png"
 +++
 
