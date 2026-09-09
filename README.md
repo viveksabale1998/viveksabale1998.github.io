@@ -37,7 +37,7 @@ You don't need any local compilers or tools to update the website.
 | **Publications** | [`content/publications.md`](content/publications.md) | Papers list; citation stats auto-update weekly via GitHub Actions |
 | **Education & Awards** | [`content/awards.md`](content/awards.md) | Degrees, scholarships, and conference grants |
 | **CV (PDF & Embed)** | Replace [`static/assets/Vivek_Sabale_CV.pdf`](static/assets/Vivek_Sabale_CV.pdf) | Keep the exact filename so existing links work |
-| **Codes / Projects** | [`content/codes.md`](content/codes.md) & [`content/projects/`](content/projects/) | Edit intro in `codes.md`; add `.md` files in `content/projects/` |
+| **Codes / Repositories** | [`content/codes.md`](content/codes.md) | Directly add or edit repositories in `codes.md` frontmatter |
 | **Blog Posts** | [`content/posts/`](content/posts/) | Add a new `.md` file for each post |
 | **Collaboration** | [`content/collaboration.md`](content/collaboration.md) | Areas of collaborative research and contact |
 | **Gallery** | [`content/gallery.md`](content/gallery.md) | Add image card; place images in [`static/assets/`](static/assets/) |
@@ -78,21 +78,20 @@ Open [`content/_index.md`](content/_index.md):
 
 ---
 
-### 4. Adding a Code / Project Card
-Create a new file in `content/projects/my-new-project.md`:
+### 4. Adding or Updating Codes & Repositories
+You can add or update repositories directly inside [`content/codes.md`](content/codes.md) without creating extra files!
+
+Open [`content/codes.md`](content/codes.md) and add a new block at the bottom of the frontmatter:
 
 ```toml
-+++
-title = "Project Name"
-date = 2025-01-01
+[[extra.repositories]]
+title = "My New Project"
 description = "One-line summary of what this code does."
-[extra]
-link = "https://github.com/viveksabale1998/your-repo"
-+++
-
-Detailed description or documentation for the project goes here.
+link = "https://github.com/viveksabale1998/my-new-repo"
+image = "images/projects/quantum-states.png"  # image path in static/
+tags = ["Python", "Qiskit", "Research"]
 ```
-*(Project cards automatically receive pastel color styling).*
+*(Alternatively, you can still add individual markdown files under `content/projects/` if you want a dedicated details page).*
 
 ---
 

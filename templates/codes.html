@@ -19,14 +19,61 @@
 </div>
 {% endif %}
 
-<div class="container animate">
+<div class="container animate" style="margin-bottom: 3rem;">
   <div class="row">
-    {% set proj_section = get_section(path="projects/_index.md") %}
-    {% for p in proj_section.pages %}
-    <div class="col col-4 col-d-6 col-t-12">
-      {{ project_card::project_card(data = p, index = loop.index0) }}
-    </div>
-    {% endfor %}
+    {% if page.extra.repositories %}
+      {% for repo in page.extra.repositories %}
+      <div class="col col-4 col-d-6 col-t-12">
+        <article class="c-project-card has-image">
+          <div class="c-project-card__content">
+            {% if repo.image %}
+            <a href="{{ repo.link | default(value='#') }}" target="_blank" rel="noopener noreferrer" class="c-project-card__image-link">
+              <img src="{{ get_url(path=repo.image) }}" alt="{{ repo.title }}" class="c-project-card__thumb">
+            </a>
+            {% endif %}
+            
+            <div class="c-project-card__info">
+              {% if repo.tags %}
+              <div class="c-project-card__tags">
+                {% for tag in repo.tags %}
+                <span class="c-project-card__tag">{{ tag }}</span>
+                {% endfor %}
+              </div>
+              {% endif %}
+
+              <h3 class="c-project-card__title">
+                <a href="{{ repo.link | default(value='#') }}" target="_blank" rel="noopener noreferrer">{{ repo.title }}</a>
+              </h3>
+
+              {% if repo.description %}
+              <p class="c-project-card__desc">{{ repo.description }}</p>
+              {% endif %}
+
+              <div class="c-project-card__footer">
+                {% if repo.link %}
+                <a href="{{ repo.link }}" target="_blank" rel="noopener noreferrer" class="c-project-card__repo-link" title="Open GitHub Repository">
+                  <i class="ion ion-logo-github"></i> Repository ↗
+                </a>
+                {% endif %}
+                {% if repo.details_url %}
+                <a href="{{ repo.details_url }}" class="c-project-card__details-link">
+                  Read Details →
+                </a>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+      {% endfor %}
+    {% else %}
+      {% set proj_section = get_section(path="projects/_index.md") %}
+      {% for p in proj_section.pages %}
+      <div class="col col-4 col-d-6 col-t-12">
+        {{ project_card::project_card(data = p, index = loop.index0) }}
+      </div>
+      {% endfor %}
+    {% endif %}
   </div>
 </div>
 {% endblock %}
