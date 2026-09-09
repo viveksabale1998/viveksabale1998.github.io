@@ -50,7 +50,7 @@ If you have a potential research project in mind or would like to discuss an ide
 
 <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0;">
   <p style="margin-bottom: 0.75rem;"><strong>📧 Email:</strong> <a href="mailto:sabale.1@iitj.ac.in">sabale.1@iitj.ac.in</a></p>
-  <p style="margin-bottom: 0.75rem;"><strong>🏛️ Affiliation:</strong> Department of Chemistry, Indian Institute of Technology Jodhpur, NH 62, Nagaur Road, Karwar, Jodhpur 342037, Rajasthan, India</p>
+  <p style="margin-bottom: 0.75rem;"><strong>🏛️ Affiliation:</strong> Department of Chemistry, Indian Institute of Technology Jodhpur, NH 62, Nagaur Road, Karwar, Jodhpur 342030, Rajasthan, India</p>
   <p style="margin-bottom: 0.75rem;"><strong>🔬 Google Scholar:</strong> <a href="https://scholar.google.com/citations?user=LdMLDdwAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Vivek Sabale Profile ↗</a></p>
   <p style="margin-bottom: 0.75rem;"><strong>💻 GitHub:</strong> <a href="https://github.com/viveksabale1998" target="_blank" rel="noopener noreferrer">@viveksabale1998 ↗</a></p>
   <p style="margin-bottom: 0;"><strong>💼 LinkedIn:</strong> <a href="https://www.linkedin.com/in/vivek-sabale/" target="_blank" rel="noopener noreferrer">Vivek Sabale ↗</a></p>
