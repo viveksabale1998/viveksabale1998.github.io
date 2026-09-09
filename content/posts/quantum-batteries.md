@@ -5,6 +5,7 @@ description = "How anisotropic Heisenberg spin networks, non-trivial network top
 [taxonomies]
 tags = ["quantum-batteries", "quantum-thermodynamics", "heisenberg-spins", "ergotropy", "quantum-energy"]
 [extra]
+category = "Research Articles"
 image = "images/posts/quantum-batteries.jpg"
 +++
 

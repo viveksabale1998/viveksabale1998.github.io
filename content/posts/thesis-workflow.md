@@ -5,6 +5,7 @@ description = "How quantum correlations can be characterized, protected, underst
 [taxonomies]
 tags = ["thesis", "quantum-correlations", "open-quantum-systems", "non-markovian", "teleportation"]
 [extra]
+category = "Thesis Work"
 image = "images/posts/thesis-workflow.jpg"
 +++
 

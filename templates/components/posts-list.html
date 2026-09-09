@@ -2,16 +2,192 @@
 {% import "components/pagination.html" as pagination %}
 {% macro posts_list(data) %}
 {% if data.show_posts %}
-<div class="container animate">
-  <div class="row" data-pagebreak="6">
-    {% set section = get_section(path="posts/_index.md") %}
+{% set section = get_section(path="posts/_index.md") %}
+
+<!-- Category Quick Filter Navigation -->
+<div class="container animate" style="margin-bottom: 2.5rem;">
+  <div class="category-nav">
+    <a href="#thesis-work" class="category-nav-btn"><i class="ion ion-ios-book" style="margin-right: 6px;"></i> Thesis Work</a>
+    <a href="#research-articles" class="category-nav-btn"><i class="ion ion-ios-paper" style="margin-right: 6px;"></i> Research Articles</a>
+    <a href="#collaboration-work" class="category-nav-btn"><i class="ion ion-ios-people" style="margin-right: 6px;"></i> Collaboration Work</a>
+    <a href="#educational" class="category-nav-btn"><i class="ion ion-ios-school" style="margin-right: 6px;"></i> Quantum Information Educational</a>
+  </div>
+</div>
+
+<!-- Section 1: Thesis Work -->
+<div class="container animate" id="thesis-work" style="margin-bottom: 3.5rem; scroll-margin-top: 80px;">
+  <div class="category-section-header">
+    <span class="category-badge-pill">Doctoral Research</span>
+    <h2 class="category-heading-title">Thesis Work</h2>
+    <p class="category-heading-desc">Frameworks, milestones, and conceptual progressions from my PhD thesis.</p>
+  </div>
+  <div class="row">
+    {% set has_thesis = false %}
     {% for page in section.pages %}
-    {{ blog_card::blog_card(data = page) }}
+      {% if page.extra.category | default(value="") == "Thesis Work" %}
+        {% set_global has_thesis = true %}
+        {{ blog_card::blog_card(data = page) }}
+      {% endif %}
+    {% endfor %}
+    {% if not has_thesis %}
+    <div class="col col-12"><p class="category-empty">Posts coming soon.</p></div>
+    {% endif %}
+  </div>
+</div>
+
+<!-- Section 2: Research Articles -->
+<div class="container animate" id="research-articles" style="margin-bottom: 3.5rem; scroll-margin-top: 80px;">
+  <div class="category-section-header">
+    <span class="category-badge-pill">Publications</span>
+    <h2 class="category-heading-title">Research Articles</h2>
+    <p class="category-heading-desc">Deep-dives into published papers, theoretical derivations, and discoveries.</p>
+  </div>
+  <div class="row">
+    {% set has_research = false %}
+    {% for page in section.pages %}
+      {% if page.extra.category | default(value="") == "Research Articles" %}
+        {% set_global has_research = true %}
+        {{ blog_card::blog_card(data = page) }}
+      {% endif %}
+    {% endfor %}
+    {% if not has_research %}
+    <div class="col col-12"><p class="category-empty">Posts coming soon.</p></div>
+    {% endif %}
+  </div>
+</div>
+
+<!-- Section 3: Collaboration Work -->
+<div class="container animate" id="collaboration-work" style="margin-bottom: 3.5rem; scroll-margin-top: 80px;">
+  <div class="category-section-header">
+    <span class="category-badge-pill">Joint Research</span>
+    <h2 class="category-heading-title">Collaboration Work</h2>
+    <p class="category-heading-desc">Collaborative projects with research groups across quantum machine learning and quantum information.</p>
+  </div>
+  <div class="row">
+    {% set has_collab = false %}
+    {% for page in section.pages %}
+      {% if page.extra.category | default(value="") == "Collaboration Work" %}
+        {% set_global has_collab = true %}
+        {{ blog_card::blog_card(data = page) }}
+      {% endif %}
+    {% endfor %}
+    {% if not has_collab %}
+    <div class="col col-12"><p class="category-empty">Posts coming soon.</p></div>
+    {% endif %}
+  </div>
+</div>
+
+<!-- Section 4: Quantum Information Educational -->
+<div class="container animate" id="educational" style="margin-bottom: 3.5rem; scroll-margin-top: 80px;">
+  <div class="category-section-header">
+    <span class="category-badge-pill">Tutorials & Concepts</span>
+    <h2 class="category-heading-title">Quantum Information Educational</h2>
+    <p class="category-heading-desc">Pedagogical notes, beginner-friendly introductions, and educational guides on quantum concepts.</p>
+  </div>
+  <div class="row">
+    {% set has_edu = false %}
+    {% for page in section.pages %}
+      {% if page.extra.category | default(value="") == "Quantum Information Educational" %}
+        {% set_global has_edu = true %}
+        {{ blog_card::blog_card(data = page) }}
+      {% endif %}
+    {% endfor %}
+    {% if not has_edu %}
+    <div class="col col-12"><p class="category-empty">Posts coming soon.</p></div>
+    {% endif %}
+  </div>
+</div>
+
+<!-- Other / Unassigned Posts (if any) -->
+{% set has_other = false %}
+{% for page in section.pages %}
+  {% set cat = page.extra.category | default(value="") %}
+  {% if cat != "Thesis Work" and cat != "Research Articles" and cat != "Collaboration Work" and cat != "Quantum Information Educational" %}
+    {% set_global has_other = true %}
+  {% endif %}
+{% endfor %}
+
+{% if has_other %}
+<div class="container animate" id="other-posts" style="margin-bottom: 3.5rem; scroll-margin-top: 80px;">
+  <div class="category-section-header">
+    <span class="category-badge-pill">General</span>
+    <h2 class="category-heading-title">Other Updates</h2>
+    <p class="category-heading-desc">General announcements and updates.</p>
+  </div>
+  <div class="row">
+    {% for page in section.pages %}
+      {% set cat = page.extra.category | default(value="") %}
+      {% if cat != "Thesis Work" and cat != "Research Articles" and cat != "Collaboration Work" and cat != "Quantum Information Educational" %}
+        {{ blog_card::blog_card(data = page) }}
+      {% endif %}
     {% endfor %}
   </div>
 </div>
-{% if paginator %}
-{{ pagination::pagination() }}
 {% endif %}
+
+<style>
+.category-nav {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0.5rem 0;
+}
+.category-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  background: #ffffff;
+  color: #003687;
+  border: 1px solid #d0deee;
+  border-radius: 25px;
+  padding: 0.5rem 1.15rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 54, 135, 0.04);
+}
+.category-nav-btn:hover {
+  background: #003687;
+  color: #ffffff;
+  border-color: #003687;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(0, 54, 135, 0.15);
+}
+.category-section-header {
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #eef2f6;
+}
+.category-badge-pill {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #1495a7;
+  background: rgba(20, 149, 167, 0.1);
+  padding: 0.2rem 0.65rem;
+  border-radius: 12px;
+  margin-bottom: 0.35rem;
+}
+.category-heading-title {
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: #110e38;
+  margin: 0.25rem 0;
+}
+.category-heading-desc {
+  font-size: 0.95rem;
+  color: #64748b;
+  margin: 0;
+}
+.category-empty {
+  color: #94a3b8;
+  font-style: italic;
+  padding: 1rem 0;
+}
+</style>
+
 {% endif %}
 {% endmacro posts_list %}

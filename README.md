@@ -101,10 +101,18 @@ Create a new file in `content/posts/my-post-title.md`:
 ```toml
 +++
 title = "My Post Title"
-date = 2025-01-01
+date = 2026-03-10
 description = "A brief summary for previews."
 [taxonomies]
 tags = ["quantum", "research"]
+[extra]
+# Choose ONE of these 4 categories to place your post under that subtitle:
+# - "Thesis Work"
+# - "Research Articles"
+# - "Collaboration Work"
+# - "Quantum Information Educational"
+category = "Thesis Work"
+image = "images/posts/my-image.jpg"  # (optional: place image in static/images/posts/)
 +++
 
 Write your content here in standard Markdown.
