@@ -5,7 +5,7 @@ hero_title = "Hi, I am Vivek Sabale"
 hero_bio = "<strong>Quantum Information Researcher</strong> at IIT Jodhpur. I specialize in quantum information and computation, open quantum systems, and quantum machine learning."
 hero_image = "assets/profile.jpeg"
 cta_text = "Get in touch"
-cta_link = "$BASE_URL/cv"
+cta_link = "$BASE_URL/awards"
 # secondary_cta_text = "See my codes"
 # secondary_cta_link = "$BASE_URL/codes"
 +++

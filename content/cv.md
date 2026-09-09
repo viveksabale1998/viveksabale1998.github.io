@@ -1,24 +1,10 @@
 +++
-title = " CV "
-# date = 2024-01-01
+title = "Curriculum Vitae"
 template = "page.html"
 +++
 
-<!-- # Curriculum Vitae -->
+<meta http-equiv="refresh" content="0; url=/awards">
 
-You can view or download my full CV below:
-<br>
-<a href="https://viveksabale1998.github.io/assets/Vivek_Sabale_CV.pdf" target="_blank" class="skill-btn">Download CV (PDF)</a>
-<br><br>
-{{ pdf_embed(path="assets/Vivek_Sabale_CV.pdf") }}
+<p>My Curriculum Vitae has been merged into <a href="/awards"><strong>Education, Awards & CV</strong></a>.</p>
 
-
-
-# Contact
-
-If you'd like to collaborate, invite me to review, or ask about research, please get in touch:
-
-*   **Email**: [sabale.1@iitj.ac.in](mailto:sabale.1@iitj.ac.in)
-*   **GitHub**: [viveksabale1998](https://github.com/viveksabale1998)
-*   **Website**: [viveksabale1998.github.io](https://viveksabale1998.github.io)
-*   **LinkedIn**: [viveksabale](https://www.linkedin.com/in/vivek-sabale/)
+<p>If you are not redirected automatically, please <a href="/awards">click here to view my Education, Awards & CV →</a>.</p>

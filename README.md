@@ -35,8 +35,8 @@ You don't need any local compilers or tools to update the website.
 | **Research Interests** | [`content/_index.md`](content/_index.md) | Bullet list in the markdown body |
 | **Technical Skills** | [`content/_index.md`](content/_index.md) | Skill buttons in the markdown body |
 | **Publications** | [`content/publications.md`](content/publications.md) | Papers list; citation stats auto-update weekly via GitHub Actions |
-| **Education & Awards** | [`content/awards.md`](content/awards.md) | Degrees, scholarships, and conference grants |
-| **CV (PDF & Embed)** | Replace [`static/assets/Vivek_Sabale_CV.pdf`](static/assets/Vivek_Sabale_CV.pdf) | Keep the exact filename so existing links work |
+| **Education, Awards & CV** | [`content/awards.md`](content/awards.md) | Degrees, scholarships, conference grants, and embedded CV |
+| **CV PDF File** | Replace [`static/assets/Vivek_Sabale_CV.pdf`](static/assets/Vivek_Sabale_CV.pdf) | Keep the exact filename so existing links work |
 | **Codes / Repositories** | [`content/codes.md`](content/codes.md) | Directly add or edit repositories in `codes.md` frontmatter |
 | **Blog Posts** | [`content/posts/`](content/posts/) | Add a new `.md` file for each post |
 | **Collaboration** | [`content/collaboration.md`](content/collaboration.md) | Areas of collaborative research and contact |

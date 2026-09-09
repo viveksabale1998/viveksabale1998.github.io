@@ -38,9 +38,7 @@ navigation = [
     { url = "$BASE_URL", title = "Home" },
     { url = "$BASE_URL/codes", title = "Codes" },
     { url = "$BASE_URL/publications", title = "Publications" },
-    #{ url = "$BASE_URL/experience", title = "Experience" },
-{ url = "$BASE_URL/awards", title = "Education & Awards" },
-    { url = "$BASE_URL/cv", title = "CV" },
+    { url = "$BASE_URL/awards", title = "Education & CV" },
     { url = "$BASE_URL/posts", title = "Blog" },
     { url = "$BASE_URL/collaboration", title = "Collaboration" },
     { url = "$BASE_URL/gallery", title = "Gallery" }
@@ -66,10 +64,9 @@ menu = [
     { url = "$BASE_URL", title = "Home" },
     { url = "$BASE_URL/codes", title = "Codes" },
     { url = "$BASE_URL/publications", title = "Publications" },
-    #{ url = "$BASE_URL/experience", title = "Experience" },
-    { url = "$BASE_URL/awards", title = "Education & Awards" },
-    { url = "$BASE_URL/cv", title = "CV" },
-
+    { url = "$BASE_URL/awards", title = "Education & CV" },
+    { url = "$BASE_URL/posts", title = "Blog" },
+    { url = "$BASE_URL/collaboration", title = "Collaboration" },
     { url = "$BASE_URL/gallery", title = "Gallery" }
 ]
 #copyright = ""
