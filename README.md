@@ -27,6 +27,66 @@ You don't need any local compilers or tools to update the website.
 
 ---
 
+## 🚀 Deployment Architecture: How It Works & The `gh-pages` Branch
+
+This website uses a **dual-branch deployment model** automated through GitHub Actions:
+
+```
+┌───────────────────────────────────────┐
+│              main Branch              │  <── WHERE YOU WORK
+│  (Markdown, TOML, SASS, workflows)    │
+└──────────────────┬────────────────────┘
+                   │
+                   │  git push (or ./deploy.sh)
+                   ▼
+┌───────────────────────────────────────┐
+│        GitHub Actions Runner          │
+│   shalzz/zola-deploy-action@v0.21.0   │  <── AUTOMATIC BUILD
+│       (Compiles Zola site)            │
+└──────────────────┬────────────────────┘
+                   │
+                   │  Publishes compiled HTML + .nojekyll
+                   ▼
+┌───────────────────────────────────────┐
+│            gh-pages Branch            │  <── COMPILED ARTIFACTS
+│ (index.html, styles, JS, subfolders)  │      (DO NOT DELETE OR EDIT DIRECTLY)
+└──────────────────┬────────────────────┘
+                   │
+                   │  GitHub Pages CDN
+                   ▼
+┌───────────────────────────────────────┐
+│ https://viveksabale1998.github.io/    │  <── LIVE WEBSITE
+└───────────────────────────────────────┘
+```
+
+### Why Is the `gh-pages` Branch Required?
+
+1. **Zola is not natively supported by GitHub Pages:**
+   - GitHub Pages only has native, server-side compilation support for Jekyll. It does not natively run Zola.
+   - To host a Zola site on GitHub Pages, GitHub Actions compiles your source templates into pure, pre-rendered static HTML, CSS, JavaScript, and KaTeX bundles inside a Docker container, then commits and pushes that ready-to-serve output to the `gh-pages` branch.
+
+2. **Why deleting `gh-pages` breaks the site and shows only the README:**
+   - For user sites named `<username>.github.io`, if the `gh-pages` branch is deleted or missing, GitHub Pages automatically falls back to running **Jekyll** on the `main` branch.
+   - Because Jekyll does not recognize Zola templates or layouts, it ignores your site design entirely and simply renders [`README.md`](README.md) as the homepage `index.html`.
+   - All subpages (`/collaboration/`, `/awards/`, `/codes/`, `/publications/`, `/posts/`) immediately return **404 Not Found**.
+   - **Rule:** **Never delete the `gh-pages` branch.** It is the active deployment target that GitHub Pages serves to the internet.
+
+### Required GitHub Pages Repository Settings
+
+To ensure the site is always served from the compiled output:
+1. In your GitHub repository, open **Settings** $\rightarrow$ **Pages** (under the "Code and automation" sidebar).
+2. Under **Build and deployment**:
+   - **Source:** `Deploy from a branch`
+   - **Branch:** `gh-pages`
+   - **Folder:** `/ (root)`
+3. Click **Save** (if not already set).
+
+> [!IMPORTANT]
+> - Always make edits, commits, and pushes to the **`main`** branch.
+> - Never push source markdown or manual edits to the `gh-pages` branch directly. The `gh-pages` branch is automatically generated and updated on every push by `.github/workflows/main.yml`.
+
+---
+
 ## 🗺️ Quick Edit Map: What to Edit & Where
 
 | Section on Website | File to Edit | Notes |
@@ -180,6 +240,18 @@ All website builds and deployments happen via GitHub Actions under the **Actions
 ### 4. 404 Error on Links or Images
 - **Images:** Ensure all images are placed in `static/` (e.g. `static/images/posts/my-image.jpg` or `static/assets/my-photo.jpeg`). In markdown or frontmatter, refer to them without the `static/` prefix (e.g. `images/posts/my-image.jpg`).
 - **Repository Links:** In [`content/codes.md`](content/codes.md), external links should start with `https://github.com/...`.
+
+---
+
+### 5. Site Shows Only the README or 404 on Subpages
+- **Symptom:** Opening `https://viveksabale1998.github.io/` displays raw `README.md` text instead of your custom homepage, or navigation links like `/collaboration/` return 404.
+- **Cause:**
+  1. The **`gh-pages`** branch was deleted, or GitHub Pages settings were accidentally changed to deploy from `main`. When that happens, GitHub Pages falls back to default Jekyll, which cannot parse Zola and only serves `README.md`.
+  2. Or, your browser has cached an old error response (`Cache-Control: max-age=600`).
+- **How to fix it:**
+  1. Check that the `gh-pages` branch exists under your repository's branches. If missing, push a commit or trigger the *Build and Deploy Zola Site* workflow in GitHub Actions to regenerate it.
+  2. Go to **Settings** $\rightarrow$ **Pages** and confirm that **Source** is set to **`Deploy from a branch`**, branch is **`gh-pages`**, and folder is **`/ (root)`**.
+  3. Force-refresh your browser to bypass cached HTML: press `Cmd + Shift + R` (Mac) or `Ctrl + F5` (Windows/Linux), or test in an Incognito window.
 
 ---
 
