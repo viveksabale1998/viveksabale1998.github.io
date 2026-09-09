@@ -8,6 +8,6 @@ tags = ["general", "update"]
 image = "images/posts/welcome.png"
 +++
 
-Welcome to my new blog! I will be sharing updates about my research, projects, and other thoughts here.
+Welcome to my blog! I will be sharing updates about my research, projects, and other thoughts here.
 
 Stay tuned for more!

@@ -1,110 +1,382 @@
 +++
-title = "Decoherence, Protection, and Machine Learning: The Four Pillars of My PhD Research"
+title = "From Quantum Correlations to Their Microscopic Origin: A Journey Through Noise, Memory, and Open-System Dynamics"
 date = 2026-03-01
-description = "A deep dive into my PhD thesis workflow connecting four core publications: from non-Markovian open quantum dynamics and correlated noise to error mitigation and quantum machine learning."
+description = "How quantum correlations can be characterized, protected, understood under correlated noise, and ultimately connected to their microscopic physical origin."
 [taxonomies]
-tags = ["thesis", "open-quantum-systems", "non-markovian", "teleportation", "qml"]
+tags = ["thesis", "quantum-correlations", "open-quantum-systems", "non-markovian", "teleportation"]
 [extra]
 image = "images/posts/thesis-workflow.jpg"
 +++
 
-Quantum technologies—ranging from scalable quantum computing to distributed quantum communication networks—promise exponential speedups over classical computing. However, their primary obstacle remains **decoherence**: the inevitable, noisy interaction between fragile quantum systems and their surrounding thermal environments.
+Quantum technologies rely on phenomena that have no direct classical counterpart. Among them, **quantum correlations**—and particularly entanglement—play a central role in quantum communication, computation, sensing, and information processing. Yet there is a fundamental difficulty: quantum correlations are fragile. Interaction with an environment can degrade them, memory in a quantum channel can modify their dynamics, and collective interactions with a common environment can produce behavior that is very different from that of independently evolving systems.
 
-My doctoral research addresses this fundamental challenge through an integrated, four-stage workflow:
+My doctoral research investigates this problem from several complementary perspectives. Rather than treating quantum correlations, noise, memory, and open-system dynamics as separate topics, the thesis develops a progression:
 
-1. **Characterize**: Diagnosing memory effects and information backflow in open quantum systems.
-2. **Correlate**: Uncovering how structured multi-qubit correlated environments influence coherence.
-3. **Protect**: Designing active quantum error mitigation schemes using weak measurements to preserve protocols like quantum teleportation.
-4. **Classify & Benchmark**: Leveraging Quantum Machine Learning (QML) to classify complex quantum states across domains without exponential measurement overhead.
+$$
+\boxed{
+\text{Characterization}
+\rightarrow
+\text{Protection}
+\rightarrow
+\text{Channel Memory}
+\rightarrow
+\text{Microscopic Dynamics}
+}
+$$
 
-Here is the narrative of how these four investigations connect into a cohesive scientific journey.
+The central question evolves along the way:
 
----
-
-## 1. Exploring Non-Markovian Dynamics in Depolarizing Maps
-
-The conventional description of open quantum systems relies on the **Markovian approximation** (the Lindblad master equation), assuming that the environment has zero memory and continuously absorbs information from the system. In realistic solid-state architectures, superconducting qubits, and cavity QED systems, however, environmental memory effects cannot be ignored.
-
-In our work published in *Physical Review A*, we investigated non-Markovian dynamics under depolarizing noise channels:
-
-> **Exploring the non-Markovian dynamics in depolarizing maps**  
-> *A. Abu-Nada, S. Banerjee, and Vivek Balasaheb Sabale*  
-> **Physical Review A** 110 (5), 052209 (2024) — [Read on Physical Review A ↗](https://journals.aps.org/pra/abstract/10.1103/PhysRevA.110.052209)
-
-### Key Contributions & Insights
-- **CP-Divisibility Breakdown**: We analyzed the transition from completely positive divisible (CP-divisible) dynamics to non-Markovian regimes where decay rates turn temporarily negative.
-- **Information Backflow**: By tracking the Breuer-Laine-Piilo (BLP) trace distance witness, we demonstrated that non-Markovian reservoirs act as temporary information reservoirs, returning quantum distinguishability and coherence back into the qubit system.
-- **Channel Capacity Revivals**: Memory effects enable transient revivals in quantum communication capacities, proving that noise memory can be harnessed rather than merely endured.
+> **How can quantum correlations be characterized, protected, understood under correlated noise, and ultimately connected to their microscopic physical origin?**
 
 ---
 
-## 2. Facets of Correlated Non-Markovian Channels
+## 1. Why start with quantum correlations?
 
-While single-qubit open systems provide fundamental insights, practical quantum processors involve multi-qubit registers interacting with shared baths. In such multi-qubit systems, spatial and temporal correlations in the environment create collective noise effects that differ drastically from independent local noise.
+Quantum correlations are not merely mathematical features of quantum states. They can serve as resources for information-processing tasks.
 
-In our study published in *Annalen der Physik*, we investigated the behavior of correlated non-Markovian channels:
+Quantum teleportation is one of the clearest examples. In the standard teleportation protocol, an unknown quantum state can be reconstructed at a distant location using a shared entangled state and classical communication. Experimental demonstrations of quantum teleportation established that this is not merely a theoretical possibility but a realizable quantum-information protocol.
 
-> **Facets of Correlated Non‐Markovian Channels**  
-> *Vivek Balasaheb Sabale, N. R. Dash, A. Kumar, and S. Banerjee*  
-> **Annalen der Physik** 536 (10), 2400151 (2024) — [Read on Annalen der Physik ↗](https://onlinelibrary.wiley.com/doi/10.1002/andp.202400151)
+However, the usefulness of an entangled state is not determined simply by whether it is entangled. Its **structure and strength of correlations** matter.
 
-### Key Contributions & Insights
-- **Cross-Talk & Environmental Memory**: We modeled multi-qubit systems undergoing correlated non-Markovian dynamics, analyzing how environmental correlation parameters interact with reservoir memory times.
-- **Entanglement Preservation**: We identified sub-spaces and correlation regimes where environmental correlations shield multi-qubit entanglement against sudden death, slowing down decoherence rates compared to uncorrelated baths.
-- **Quantum Correlation Metrics**: We quantified quantum discord, concurrence, and coherence measures, demonstrating how spatial correlations determine the boundary between destructive and constructive noise interference.
+This immediately raises the first question:
 
----
+> **How should we characterize the correlations contained in a complex multipartite quantum state?**
 
-## 3. Active Protection: Universal Quantum Teleportation via Weak Measurements
+For two-qubit systems, quantities such as concurrence provide powerful tools. For larger systems, however, the situation becomes considerably more complicated. A multipartite state can contain correlations at different orders, and pairwise measures do not necessarily reveal the complete hierarchy of many-body correlations.
 
-Characterizing noise is essential, but protecting quantum information processing tasks is the ultimate engineering goal. Quantum teleportation is the foundational primitive for quantum repeaters and distributed quantum computing, yet amplitude damping (energy dissipation) readily destroys the shared entanglement between sender and receiver.
-
-To overcome this, we developed a measurement-based error mitigation strategy published in *Annalen der Physik*:
-
-> **Toward realization of universal quantum teleportation using weak measurements**  
-> *Vivek Balasaheb Sabale, A. Kumar, and S. Banerjee*  
-> **Annalen der Physik** 536 (4), 2300392 (2024) — [Read on Annalen der Physik ↗](https://onlinelibrary.wiley.com/doi/10.1002/andp.202300392)
-
-### The Weak Measurement Protection Protocol
-1. **Pre-measurement (Weak Measurement)**: Prior to sending an entangled qubit through a lossy channel, a weak non-unitary measurement gently nudges the state towards the ground state $|0\rangle$, which is invariant under amplitude damping.
-2. **Channel Traversal**: Because the qubit spends less time in the excited state $|1\rangle$, photon loss probability is heavily suppressed.
-3. **Quantum Measurement Reversal (QMR)**: Upon exiting the noisy channel, a post-measurement operation undoes the pre-measurement deformation, restoring the original high-fidelity entangled Bell pair.
-
-### Crucial Breakthrough
-- Standard weak measurement protocols often depend on knowing the input state beforehand. Our work established a **universal scheme**: regardless of the arbitrary input qubit state $|\psi_{\text{in}}\rangle$, the average teleportation fidelity can be systematically maintained above the classical threshold of $2/3$, even under strong dissipation.
+This motivates the first part of the thesis.
 
 ---
 
-## 4. Cross-Domain Quantum Machine Learning for Quantum State Classification
+## 2. Stage I — Characterizing multipartite quantum correlations
 
-As quantum circuits grow in depth and qubit count, validating state fidelity and classifying states (e.g., distinguishing separable from entangled states, or identifying noise signatures) becomes intractable. **Full Quantum State Tomography (QST)** requires $4^N - 1$ expectation values, scaling exponentially with qubit count $N$.
+The first research direction focuses on the **structure of quantum correlations**.
 
-In our article published in *Quantum Machine Intelligence*, we demonstrated how **Quantum Support Vector Machines (QSVM)** can bypass full tomography by performing cross-domain state classification:
+The central idea is to use connected correlations—or cumulants—to separate genuine higher-order contributions from correlations that can be constructed from lower-order terms. This leads to the **Cumulant-Norm Entanglement Index (CNEI)**, a correlation-based framework designed to characterize multipartite entanglement.
 
-> **Harnessing quantum support vector machines for cross-domain classification of quantum states**  
-> *D. Sharma, Vivek Balasaheb Sabale, P. Singh, and A. Kumar*  
-> **Quantum Machine Intelligence** 7 (1), 49 (2025) — [Read on Springer ↗](https://link.springer.com/article/10.1007/s42484-025-00274-4)
+The use of cumulants is particularly natural because cumulants are designed to isolate irreducible correlations. Instead of asking only whether a multipartite state is entangled, the approach asks a more refined question:
 
-### Key Contributions & Insights
-- **Quantum Kernel Hilbert Space**: We utilized parameterized quantum circuits to map quantum density matrices into high-dimensional Hilbert spaces, computing inner products via quantum fidelity kernels $|\langle \phi(x_i) | \phi(x_j) \rangle|^2$.
-- **Cross-Domain Generalization**: We trained classifiers in one domain (e.g., Werner or Bell states under specific noise levels) and demonstrated that the quantum model accurately generalizes across unseen noise parameters and mixing ratios.
-- **Entanglement vs. Separability Boundary**: The QSVM successfully identified the entanglement threshold without reconstructing the density matrix, offering a scalable diagnostic tool for experimental quantum devices.
+> **What order of correlation is genuinely present in the state?**
+
+The resulting index is investigated with respect to separability, local-unitary properties, and different multipartite states. It is also compared with conventional entanglement measures to understand what additional structural information can be obtained from connected correlations.
+
+This first stage establishes the **structural viewpoint** of the thesis:
+
+$$
+\text{Quantum state}
+\quad\longrightarrow\quad
+\text{correlation structure}
+\quad\longrightarrow\quad
+\text{quantitative characterization}.
+$$
+
+But characterization is only the beginning.
+
+A correlation can be quantified perfectly and still be practically useless if environmental noise destroys it before it can be used.
+
+This leads to the second question:
+
+> **Once quantum correlations have been characterized, how can they be protected?**
 
 ---
 
-## Summary of the PhD Thesis Workflow
+## 3. Stage II — Protecting quantum correlations from noise
 
-| Stage | Research Focus | Primary Publication | Key Takeaway |
-| :--- | :--- | :--- | :--- |
-| **Stage 1: Open Dynamics** | Non-Markovian depolarizing maps | *Phys. Rev. A* 110, 052209 (2024) | Environmental memory enables information backflow and capacity revivals. |
-| **Stage 2: Correlated Noise** | Multi-qubit correlated reservoirs | *Ann. Phys.* 536, 2400151 (2024) | Spatial correlations can protect entanglement against sudden death. |
-| **Stage 3: Mitigation** | Universal teleportation via weak measurements | *Ann. Phys.* 536, 2300392 (2024) | Weak pre/post measurements beat classical limits for all arbitrary input states. |
-| **Stage 4: AI & QML** | QSVM for state classification | *Quantum Mach. Intell.* 7, 49 (2025) | Quantum kernel methods classify states across noise domains without full tomography. |
+Real quantum systems are open systems. They interact with their surroundings, and these interactions introduce decoherence and dissipation.
+
+For quantum teleportation, this has a direct operational consequence. The shared entangled resource becomes degraded, and the quality of the teleported state decreases.
+
+Teleportation fidelity is therefore a natural quantity for measuring the performance of the protocol. But average fidelity alone does not tell the entire story. A protocol may perform well on average while treating different input states differently.
+
+This is where **fidelity deviation** becomes important. It measures the variation of teleportation fidelity over the input-state space and provides a way of assessing the uniformity required for universal quantum teleportation.
+
+This motivates the second stage of the thesis:
+
+> **Can quantum correlations be actively protected against noisy evolution?**
+
+One approach investigated in the thesis is **weak measurement (WM) and weak-measurement reversal (RWM)**.
+
+Weak measurement provides a way of extracting partial information from a quantum system while introducing less disturbance than a projective measurement. A subsequent reversal operation can partially compensate for the measurement-induced disturbance.
+
+The idea is not merely theoretical. Kim *et al.* demonstrated experimentally that weak measurement and measurement reversal can be used to protect entanglement from decoherence and even circumvent entanglement sudden death under suitable conditions.
+
+The thesis extends this protection perspective to different noise environments and examines their consequences for quantum correlations and teleportation.
+
+The analysis includes Markovian and non-Markovian noise processes and examines how WM/RWM affects:
+
+* entanglement,
+* teleportation fidelity,
+* fidelity deviation,
+* information back-flow,
+* and the usefulness of imperfectly entangled states for teleportation.
+
+This research direction is also directly connected to the article [**“Toward Realization of Universal Quantum Teleportation Using Weak Measurements,”**](https://onlinelibrary.wiley.com/doi/10.1002/andp.202300392) which investigates weak measurements, memory effects, and non-Markovian dynamics in the context of universal quantum teleportation.
+
+The important conceptual transition is:
+
+$$
+\text{Characterize correlations}
+\quad\rightarrow\quad
+\text{Protect correlations}.
+$$
+
+But this raises another issue.
+
+The environment does not always act independently at every stage.
 
 ---
 
-## Looking Forward
+## 4. Stage III — When the noise itself has memory
 
-By progressing from the mathematical foundations of open quantum systems to active error mitigation and machine learning-driven state classification, this research bridges the gap between theoretical quantum information and near-term quantum hardware diagnostics. 
+The previous stage treats noise as a dynamical process acting on the quantum system. But in realistic communication scenarios, **successive uses of a quantum channel may themselves be correlated**.
 
-If you are interested in collaborating or discussing any of these publications, feel free to [get in touch](/cv) or explore my full list of works on [Google Scholar](https://scholar.google.com/citations?user=LdMLDdwAAAAJ&hl=en).
+This creates an important distinction between two types of memory.
+
+### Environmental memory
+
+A system interacts with an environment that retains information about its previous state and can subsequently return information to the system.
+
+### Channel-use memory
+
+Different applications of a quantum channel are correlated. The noise acting during one channel use is therefore not statistically independent of the noise acting during another.
+
+These two ideas of memory are conceptually distinct, and their interplay has been studied explicitly in correlated quantum channels. Addis *et al.*, for example, showed how correlations between multiple channel uses can be related to non-Markovianity in the resulting dynamical map.
+
+This distinction forms the basis of the third stage of the thesis.
+
+Instead of asking:
+
+> “How can we protect correlations from noise?”
+
+the question becomes:
+
+> **“What happens when the noise process itself possesses correlations?”**
+
+A correlation parameter $\mu$ is used to interpolate between independent and fully correlated channel action:
+
+$$
+\mu=0
+\quad\rightarrow\quad
+\text{uncorrelated channel},
+$$
+
+$$
+0<\mu<1
+\quad\rightarrow\quad
+\text{partially correlated channel},
+$$
+
+$$
+\mu=1
+\quad\rightarrow\quad
+\text{fully correlated channel}.
+$$
+
+This framework allows the influence of channel correlation to be studied independently of the underlying noise model.
+
+The thesis investigates both **unital and non-unital correlated channels** and examines their non-Markovian behavior using complementary indicators. These include entanglement dynamics, the volume of accessible states, and temporal self-similarity.
+
+The resulting work was developed into the article [**“Facets of Correlated Non-Markovian Channels.”**](https://onlinelibrary.wiley.com/doi/10.1002/andp.202400151) The study examines the interplay between channel correlations and intrinsic non-Markovian dynamics, including entanglement evolution and the geometry of accessible states for both unital and non-unital channels.
+
+An important outcome of this analysis is that channel correlation does not necessarily behave as simply “more noise.”
+
+Instead, correlations can modify memory effects in ways that may sometimes be useful.
+
+For example, the thesis investigates **freezing of quantum correlations**, where a correlation measure remains approximately constant over a period despite ongoing noisy evolution.
+
+It also examines **quantum error correction under correlated non-Markovian noise**.
+
+Thus, the third stage changes the perspective once again:
+
+$$
+\text{Noise}
+\quad\rightarrow\quad
+\text{correlated noise}
+\quad\rightarrow\quad
+\text{memory as a dynamical resource}.
+$$
+
+But there is still a deeper question.
+
+If a correlated channel changes the dynamics, **where does that correlation physically come from?**
+
+---
+
+## 5. Stage IV — From effective channels to microscopic dynamics
+
+A quantum channel is an effective description. It tells us how a quantum state changes:
+
+$$
+\rho(0)\rightarrow\rho(t),
+$$
+
+but it does not necessarily tell us *why* the evolution has that particular form.
+
+This limitation motivates the final stage of the thesis.
+
+Instead of starting from a prescribed channel, we explicitly model the **system–environment interaction**.
+
+A particularly interesting situation occurs when multiple quantum emitters interact with a common environment. In such a setting, the environment can mediate correlations between the systems.
+
+Now spatial geometry becomes important.
+
+If two emitters are separated by a distance $r_{12}$, the strength of their collective interaction with the environment can depend on that separation. Consequently, the same environment can produce very different entanglement dynamics depending on the spatial configuration of the quantum systems.
+
+This connects the thesis to the Ficek–Tanaś framework of dissipative two-atom dynamics. Their work demonstrated that spontaneous emission and common-environment interactions can generate entanglement and produce phenomena such as transient entanglement and long-lived correlations.
+
+Related work by Ficek and Tanaś also examined entanglement sudden birth and sudden death for two atoms interacting with a common reservoir, showing how collective behavior can produce qualitatively different entanglement dynamics.
+
+This provides the physical setting for the final stage of the thesis.
+
+The analysis considers correlated dephasing and amplitude-damping dynamics and then moves to spatially separated quantum emitters interacting through a common environment.
+
+The key question becomes:
+
+> **How does the physical geometry of the system–environment interaction control the evolution of quantum correlations?**
+
+This leads naturally to phenomena such as:
+
+* entanglement sudden death,
+* entanglement sudden birth,
+* entanglement revival,
+* collective decay,
+* subradiant behavior,
+* and entanglement trapping.
+
+A common environment therefore does not merely destroy entanglement. Depending on the coupling structure, it can also create, revive, or preserve correlations.
+
+This microscopic perspective completes the transition:
+
+$$
+\text{effective correlated channel}
+\quad\longrightarrow\quad
+\text{physical interaction}
+\quad\longrightarrow\quad
+\text{correlated open-system dynamics}.
+$$
+
+---
+
+## 6. Connecting the four stages
+
+The most important feature of the thesis is therefore not any individual noise model or correlation measure. It is the **connection between levels of description**.
+
+The research can be summarized as:
+
+$$
+\boxed{
+\begin{array}{c}
+\textbf{Structure}\\
+\text{How are correlations characterized?}\\[2mm]
+\downarrow\\
+\textbf{Control}\\
+\text{How can correlations be protected?}\\[2mm]
+\downarrow\\
+\textbf{Channel memory}\\
+\text{How does correlated noise modify their dynamics?}\\[2mm]
+\downarrow\\
+\textbf{Microscopic origin}\\
+\text{What physical interactions generate those correlations?}
+\end{array}}
+$$
+
+This progression is useful because each stage addresses a limitation of the previous one.
+
+| Stage | Question | Description |
+| :--- | :--- | :--- |
+| **Chapter 2** | What correlations are present? | Structural |
+| **Chapter 3** | Can they be protected? | Operational |
+| **Chapter 4** | What if the channel has memory? | Channel-level |
+| **Chapter 5** | Where does that correlated dynamics come from? | Microscopic |
+
+The thesis therefore moves from **measurement of a resource** to **control of the resource**, then to **understanding the structure of the noise**, and finally to **identifying the physical mechanism behind the noise**.
+
+---
+
+## 7. What I learned from this workflow
+
+One of the broader lessons of this research is that quantum noise should not always be viewed simply as an obstacle.
+
+At first, the environment appears to be an adversary:
+
+$$
+\text{environment}
+\rightarrow
+\text{decoherence}
+\rightarrow
+\text{loss of correlations}.
+$$
+
+Weak-measurement control changes this picture by showing that the dynamics can be actively manipulated.
+
+Correlated channels change it further:
+
+$$
+\text{memory}
+\rightarrow
+\text{modified dynamics}
+\rightarrow
+\text{potentially useful behavior}.
+$$
+
+Finally, microscopic open-system models show that the environment itself can participate in the generation and preservation of quantum correlations.
+
+Thus, the goal is not always to eliminate environmental effects completely. A more useful perspective is to understand their **structure**, identify when they are detrimental, and determine when their correlations or memory can instead be exploited.
+
+Recent work on weak-measurement protection in channels with memory similarly illustrates this idea: channel memory can improve teleportation fidelity under appropriate conditions, while weak measurement can provide an additional layer of protection.
+
+---
+
+## 8. The broader picture
+
+The journey from CNEI to correlated open-system dynamics can therefore be viewed as a change in perspective.
+
+At the beginning, the question is:
+
+> **What is the correlation?**
+
+Then:
+
+> **Can I preserve it?**
+
+Then:
+
+> **How does memory in the channel change it?**
+
+And finally:
+
+> **What microscopic interaction produces that behavior?**
+
+This is ultimately the central theme connecting the thesis:
+
+$$
+\boxed{
+\text{Correlation}
+\rightarrow
+\text{Protection}
+\rightarrow
+\text{Memory}
+\rightarrow
+\text{Microscopic origin}
+}
+$$
+
+Rather than studying quantum correlations in isolation, the thesis follows them across different levels of description—from multipartite state structure, through operational quantum-information protocols, to correlated channels and finally to microscopic open-system dynamics.
+
+That progression provides a unified way of thinking about quantum correlations: **first characterize them, then protect them, understand how memory modifies them, and finally identify the physical mechanisms responsible for their dynamics.**
+
+---
+
+## Selected research articles behind the thesis
+
+For readers who want to follow the technical development, several papers provide useful entry points:
+
+* **Weak-measurement protection:** Kim *et al.*, [“Protecting entanglement from decoherence using weak measurement and quantum measurement reversal,”](https://www.nature.com/articles/nphys2170) *Nature Physics* **8**, 117–120 (2012). The work experimentally demonstrated the use of weak measurement and reversal for entanglement protection.
+
+* **Universal quantum teleportation and weak measurements:** Sabale, Kumar and Banerjee, [“Toward Realization of Universal Quantum Teleportation Using Weak Measurements,”](https://onlinelibrary.wiley.com/doi/10.1002/andp.202300392) *Annalen der Physik* **536**, 2300392 (2024). This work connects weak measurements, non-Markovianity, memory, teleportation fidelity, and fidelity deviation.
+
+* **Correlated quantum channels:** Addis *et al.*, [“Dynamical Memory Effects in Correlated Quantum Channels,”](https://journals.aps.org/pra/abstract/10.1103/PhysRevA.94.032121) *Physical Review A* **94**, 032121 (2016). This is particularly useful for understanding the distinction between channel-use correlations and dynamical non-Markovianity.
+
+* **Correlated non-Markovian channels:** Sabale *et al.*, [“Facets of Correlated Non-Markovian Channels,”](https://onlinelibrary.wiley.com/doi/10.1002/andp.202400151) *Annalen der Physik* **536**, 2400151 (2024). The article develops the correlated-channel/non-Markovianity analysis involving unital and non-unital channels, accessible-state volume, entanglement dynamics, and error correction.
+
+* **Microscopic correlated dynamics:** Ficek and Tanaś, work on two-atom entanglement and common-reservoir dynamics, provides the physical background for understanding collective dissipation, entanglement generation, sudden death, and sudden birth.
