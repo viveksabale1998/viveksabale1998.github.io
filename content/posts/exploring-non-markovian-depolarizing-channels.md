@@ -5,7 +5,7 @@ description = "A comprehensive exploration of memory effects, CP-divisibility br
 [taxonomies]
 tags = ["open-quantum-systems", "non-markovian", "depolarizing-channel", "quantum-information", "pra"]
 [extra]
-category = "Research Articles"
+category = "Collaboration Work"
 image = "images/posts/exploring-non-markovian-depolarizing-channels.jpg"
 +++
 

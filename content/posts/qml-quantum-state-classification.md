@@ -5,7 +5,7 @@ description = "Exploring how Quantum Support Vector Machines (QSVM) and Variatio
 [taxonomies]
 tags = ["qml", "quantum-machine-learning", "qsvm", "quantum-neural-networks", "quantum-states"]
 [extra]
-category = "Collaboration Work"
+category = "Research Articles"
 image = "images/posts/qml-quantum-state-classification.jpg"
 +++
 
