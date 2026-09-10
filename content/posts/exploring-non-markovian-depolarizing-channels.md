@@ -89,15 +89,7 @@ In the Markovian regime, both capacities decay monotonically to zero. Under non-
 
 ---
 
-## 4. Physical Realization & Reservoir Engineering
 
-Where do such non-Markovian depolarizing channels manifest in laboratory settings?
-
-- **Photonic Systems with Structured Spectral Densities**: Passing photons through Fabry-Pérot cavities or photonic bandgap crystals induces non-Lorentzian, structured reservoir modes that feed photon polarization states back into the optical mode.
-- **Solid-State Spin Baths**: A central electron spin (e.g., in a Nitrogen-Vacancy center or quantum dot) surrounded by an interacting bath of nuclear spins experiences non-Markovian collective back-action.
-- **Simulated Quantum Processors**: Modern superconducting transmon architectures (IBM Quantum, Google Sycamore) can artificially engineer time-dependent dissipative maps through auxiliary ancilla qubits and Floquet driving.
-
----
 
 ## Summary of Insights
 

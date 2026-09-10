@@ -41,16 +41,15 @@ Our investigation of this approach was published in *Quantum Machine Intelligenc
 
 ### Key Contributions & Results
 - **Cross-Domain Generalization**: Most existing classifiers are tested only on the exact noise parameters they were trained on. We trained our QSVM on specific families of states (such as Werner states and Bell states under local depolarizing noise) and tested it on entirely different noise regimes (amplitude damping and phase damping). The quantum kernel demonstrated remarkable cross-domain resilience, accurately classifying the entanglement boundary without needing retraining.
-- **Convexity & Stability**: Unlike variational approaches that can get trapped in local minima, QSVM training guarantees convergence to the global optimum because the dual formulation remains convex.
 - **Entanglement vs. Separability Boundary**: The quantum kernel successfully mapped the intricate boundary between entangled states (concurrence $C > 0$) and unentangled separable mixtures, yielding over **95%+ classification accuracy** with significantly fewer measurements than tomography.
 
 ---
 
 ## 2. Quantum Neural Networks Facilitating Quantum State Classification
 
-While kernel methods excel at convex classification, **Variational Quantum Neural Networks (QNNs)**—also known as Parameterized Quantum Classifiers (PQCs)—offer end-to-end quantum inference directly on quantum hardware.
+In this work we used **Variational Quantum Neural Networks (QNNs)** that offer end-to-end quantum inference directly on quantum hardware.
 
-Our follow-up research develops a tailored QNN framework specifically architected for multi-qubit state classification:
+Our research develops a tailored QNN framework specifically architected for multi-qubit state classification:
 
 > **Quantum neural networks facilitating quantum state classification**  
 > *D. Sharma, Vivek Balasaheb Sabale, M. Thirumalai, and A. Kumar*  
@@ -58,10 +57,10 @@ Our follow-up research develops a tailored QNN framework specifically architecte
 > 🔗 [Read on arXiv ↗](https://arxiv.org/abs/2504.06622) | [Google Scholar ↗](https://scholar.google.com/citations?user=LdMLDdwAAAAJ&hl=en)
 
 ### Architecture of the Variational Classifier
-1. **Quantum State Ingestion**: The candidate quantum state $\rho_{\text{in}}$ is loaded into the quantum circuit.
+1. **Quantum State Ingestion**: The candidate quantum state $\rho_{\text{in}}$ is plrepared using a initial quantum circuit. It brings down the required resources to number of qubits rather than number of elements in qubit statevectors.
 2. **Parameterized Variational Layers**: The register undergoes alternating layers of single-qubit rotations:
    $$R_y(\theta_{i,l}) \quad \text{and} \quad R_z(\phi_{i,l})$$
-   interspersed with entangling gates (such as controlled-NOT or controlled-Z ladders) to construct an expressive ansatz.
+   interspersed with entangling gates (such as controlled-NOT or controlled-Z ladders) to construct an expressive ansatz. We also use unitary operations constucted by Sz-nagi dialation theorem as it prowite parametrise control over entangling power and help to create dataset for study.
 3. **Measurement & Cost Function**: A designated readout qubit is measured in the Pauli-$Z$ basis:
    $$\langle Z_{\text{out}} \rangle = \text{Tr}\left[ Z \cdot \mathcal{U}(\vec{\theta}) \rho_{\text{in}} \mathcal{U}^\dagger(\vec{\theta}) \right]$$
 4. **Classical Parameter Optimization**: The parameter vector $\vec{\theta}$ is updated iteratively via gradient-based (Adam, SPSA) or gradient-free (COBYLA) algorithms to minimize binary cross-entropy or mean squared error.
