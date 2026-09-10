@@ -1,0 +1,1020 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>Home</title>
+    <subtitle>Academic website of Vivek Sabale — research in quantum information and open quantum systems.</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://viveksabale1998.github.io/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://viveksabale1998.github.io/"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2026-03-09T00:00:00+00:00</updated>
+    <id>https://viveksabale1998.github.io/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Understanding Correlated Quantum Channels: An Educational Primer</title>
+        <published>2026-03-09T00:00:00+00:00</published>
+        <updated>2026-03-09T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Vivek Sabale
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://viveksabale1998.github.io/posts/correlated-quantum-channels-primer/"/>
+        <id>https://viveksabale1998.github.io/posts/correlated-quantum-channels-primer/</id>
+        
+        <content type="html" xml:base="https://viveksabale1998.github.io/posts/correlated-quantum-channels-primer/">&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Who is this primer for?&lt;&#x2F;strong&gt;&lt;br &#x2F;&gt;
+Whether you are an undergraduate physics or CS student, a software developer exploring quantum computing, or a researcher from an adjacent field, this primer provides an accessible, step-by-step introduction to &lt;strong&gt;correlated quantum noise&lt;&#x2F;strong&gt; and why it matters for quantum hardware.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;introduction-the-independent-noise-assumption&quot;&gt;Introduction: The Independent Noise Assumption&lt;&#x2F;h2&gt;
+&lt;p&gt;In most introductory quantum computing courses and textbooks, noise is introduced using a convenient simplification: &lt;strong&gt;independent, memoryless errors&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Under this standard assumption, if two qubits travel through a communication channel or sit next to each other on a chip, each qubit interacts with its own separate, isolated thermal bath:&lt;&#x2F;p&gt;
+&lt;p&gt;$$\mathcal{E}_{\text{ind}}(\rho) = \left( \mathcal{E}_A \otimes \mathcal{E}_B \right)[\rho]$$&lt;&#x2F;p&gt;
+&lt;p&gt;Here:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;$\rho$ is the density matrix of the two-qubit quantum state.&lt;&#x2F;li&gt;
+&lt;li&gt;$\mathcal{E}_A$ and $\mathcal{E}_B$ are independent mathematical operations (quantum channels) acting on qubit $A$ and qubit $B$ respectively.&lt;&#x2F;li&gt;
+&lt;li&gt;The symbol $\otimes$ (tensor product) signifies that the two noise processes act independently without influencing one another.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;why-real-hardware-disobeys-this-assumption&quot;&gt;Why Real Hardware Disobeys This Assumption&lt;&#x2F;h3&gt;
+&lt;p&gt;In physical quantum computing hardware, qubits are never completely isolated:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Superconducting Processors&lt;&#x2F;strong&gt;: Qubits spaced micrometers apart on a silicon wafer experience mutual inductive coupling, substrate dielectric losses, and shared stray electromagnetic radiation.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Optical Fibers&lt;&#x2F;strong&gt;: Consecutive optical pulses (photons) traveling through long telecommunication cables pass through identical local temperature variations and fiber birefringence fluctuations.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Trapped-Ion Chains&lt;&#x2F;strong&gt;: Ions trapped in a common potential well share collective vibrational modes (phonons), causing laser phase fluctuations to affect all ions symmetrically.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;When environmental noise affects multiple qubits collectively or sequentially, we enter the realm of &lt;strong&gt;Correlated Quantum Channels&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;bulb-an-everyday-analogy&quot;&gt;💡 An Everyday Analogy&lt;&#x2F;h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Imagine two tightrope walkers crossing a windy canyon.&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Independent Noise ($\mu = 0$)&lt;&#x2F;strong&gt;: Each walker feels isolated, random air gusts that strike them at different moments. One might wobble left while the other wobbles right.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Correlated Noise ($\mu = 1$)&lt;&#x2F;strong&gt;: A massive crosswind sweeps across the entire canyon, blowing both walkers in the exact same direction at the exact same instant.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;If the two walkers are holding a rigid pole between them, the shared gust doesn&#x27;t twist them out of alignment—they move together! In quantum mechanics, this cooperative survival is the foundation of &lt;strong&gt;Decoherence-Free Subspaces&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;1-the-macchiavello-palma-model-of-correlated-noise&quot;&gt;1. The Macchiavello–Palma Model of Correlated Noise&lt;&#x2F;h2&gt;
+&lt;p&gt;How do theoretical physicists quantify the transition from independent noise to shared noise?&lt;&#x2F;p&gt;
+&lt;p&gt;A celebrated model formulated by &lt;strong&gt;Chiara Macchiavello and G. Massimo Palma&lt;&#x2F;strong&gt; introduces a real &lt;strong&gt;correlation parameter&lt;&#x2F;strong&gt; $\mu \in [0, 1]$ that interpolates smoothly between independent and collective operations:&lt;&#x2F;p&gt;
+&lt;p&gt;$$\mathcal{E}^{(2)}[\rho] = (1 - \mu) \sum_{i,j} \left(E_i \otimes E_j\right) \rho \left(E_i \otimes E_j\right)^\dagger + \mu \sum_k \left(E_k \otimes E_k\right) \rho \left(E_k \otimes E_k\right)^\dagger$$&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;breaking-down-the-math&quot;&gt;Breaking Down the Math:&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;${E_i}$ (Kraus Operators)&lt;&#x2F;strong&gt;: Mathematical operators describing the single-qubit noise process (such as bit-flips, phase-damping, or depolarizing noise) satisfying $\sum_i E_i^\dagger E_i = I$.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;$(1 - \mu)$ Term&lt;&#x2F;strong&gt;: With probability $(1 - \mu)$, independent noise operators $E_i \otimes E_j$ strike the qubits separately.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;$\mu$ Term&lt;&#x2F;strong&gt;: With probability $\mu$, identical noise operators $E_k \otimes E_k$ strike both qubits simultaneously.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;physical-interpretation-of-mu&quot;&gt;Physical Interpretation of $\mu$:&lt;&#x2F;h3&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th style=&quot;text-align: left&quot;&gt;Value of $\mu$&lt;&#x2F;th&gt;&lt;th style=&quot;text-align: left&quot;&gt;Channel Regime&lt;&#x2F;th&gt;&lt;th style=&quot;text-align: left&quot;&gt;Physical Meaning&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;$\mu = 0$&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Uncorrelated&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Completely independent noise. Standard quantum error correction theorems apply.&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;$0 &amp;lt; \mu &amp;lt; 1$&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Partially Correlated&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Realistic hardware setting where qubits experience both private and collective fluctuations.&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;$\mu = 1$&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Fully Correlated&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Identical collective noise across the register. Unlocks passive symmetry-protected subspaces.&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;2-two-types-of-memory-environmental-vs-channel-use&quot;&gt;2. Two Types of Memory: Environmental vs. Channel-Use&lt;&#x2F;h2&gt;
+&lt;p&gt;When researchers mention &quot;quantum memory,&quot; confusion often arises because the word is used in two different contexts:&lt;&#x2F;p&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th style=&quot;text-align: left&quot;&gt;Memory Type&lt;&#x2F;th&gt;&lt;th style=&quot;text-align: left&quot;&gt;Physical Origin&lt;&#x2F;th&gt;&lt;th style=&quot;text-align: left&quot;&gt;Key Characteristic&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Environmental Memory&lt;&#x2F;strong&gt; &lt;em&gt;(Non-Markovianity)&lt;&#x2F;em&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;The bath retains quantum information and feeds it back into the system over time.&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Information backflow&lt;&#x2F;strong&gt;, non-monotonic trace distance, CP-divisibility breakdown.&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Channel-Use Memory&lt;&#x2F;strong&gt; &lt;em&gt;(Correlated Noise)&lt;&#x2F;em&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Consecutive channel uses or adjacent spatial qubits experience correlated error events.&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Collective operations&lt;&#x2F;strong&gt; parameterized by the correlation parameter $\mu$.&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+&lt;p&gt;In real open quantum systems, both mechanisms can take place at the same time. In our research paper &lt;a href=&quot;https:&#x2F;&#x2F;onlinelibrary.wiley.com&#x2F;doi&#x2F;10.1002&#x2F;andp.202400151&quot;&gt;&lt;em&gt;Facets of Correlated Non-Markovian Channels&lt;&#x2F;em&gt;&lt;&#x2F;a&gt;, we showed that environmental non-Markovian memory and channel correlation $\mu$ can either amplify or counterbalance each other depending on the spectral properties of the bath.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;3-the-silver-lining-decoherence-free-subspaces-dfs&quot;&gt;3. The Silver Lining: Decoherence-Free Subspaces (DFS)&lt;&#x2F;h2&gt;
+&lt;p&gt;A common assumption among newcomers is that correlated noise must always be worse than independent noise. Remarkably, the opposite can be true!&lt;&#x2F;p&gt;
+&lt;p&gt;When environmental noise is collective ($\mu \to 1$), the noise couples symmetrically to both qubits. Consider a collective dephasing channel where the interaction Hamiltonian is:&lt;&#x2F;p&gt;
+&lt;p&gt;$$H_{\text{int}} = g \left( \sigma_z^{(1)} + \sigma_z^{(2)} \right) \otimes B_{\text{env}}$$&lt;&#x2F;p&gt;
+&lt;p&gt;Now examine the maximally entangled &lt;strong&gt;Bell singlet state&lt;&#x2F;strong&gt;:&lt;&#x2F;p&gt;
+&lt;p&gt;$$|\psi^-\rangle = \frac{|01\rangle - |10\rangle}{\sqrt{2}}$$&lt;&#x2F;p&gt;
+&lt;p&gt;Let us test how the collective phase-flip operator $(\sigma_z^{(1)} + \sigma_z^{(2)})$ acts on this singlet:&lt;&#x2F;p&gt;
+&lt;p&gt;$$\left(\sigma_z^{(1)} + \sigma_z^{(2)}\right) |01\rangle = (+1 - 1)|01\rangle = 0$$&lt;&#x2F;p&gt;
+&lt;p&gt;$$\left(\sigma_z^{(1)} + \sigma_z^{(2)}\right) |10\rangle = (-1 + 1)|10\rangle = 0$$&lt;&#x2F;p&gt;
+&lt;p&gt;Therefore:&lt;&#x2F;p&gt;
+&lt;p&gt;$$\left(\sigma_z^{(1)} + \sigma_z^{(2)}\right) |\psi^-\rangle = 0$$&lt;&#x2F;p&gt;
+&lt;p&gt;The Bell singlet has an eigenvalue of &lt;strong&gt;zero&lt;&#x2F;strong&gt; under the collective noise operator!&lt;&#x2F;p&gt;
+&lt;p&gt;This means that under purely collective dephasing, the singlet state does not change at all over time. It is &lt;strong&gt;completely immune to the environmental noise&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;This protected subspace of quantum states is called a &lt;strong&gt;Decoherence-Free Subspace (DFS)&lt;&#x2F;strong&gt;. By encoding quantum information into DFS states, one can shield qubits passively without needing complex active syndrome measurement circuits!&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;4-why-correlated-noise-matters-for-quantum-error-correction&quot;&gt;4. Why Correlated Noise Matters for Quantum Error Correction&lt;&#x2F;h2&gt;
+&lt;p&gt;While correlated noise makes DFS encodings possible, it poses challenges for standard &lt;strong&gt;Quantum Error Correcting (QEC)&lt;&#x2F;strong&gt; codes:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Independent Error Assumption&lt;&#x2F;strong&gt;: Classical and standard quantum codes (like Steane&#x27;s 7-qubit code or Surface codes) are optimized on the assumption that errors occur randomly and independently with a small error rate $p$.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Syndrome Confusion&lt;&#x2F;strong&gt;: If correlated noise causes two adjacent qubits to flip simultaneously ($X \otimes X$), a standard syndrome decoder might interpret this as a single-qubit error on a third qubit, applying an incorrect recovery operator and corrupting the logical information.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Modern Solutions&lt;&#x2F;strong&gt;: Today&#x27;s quantum computer engineers use correlated-syndrome matching algorithms, graph-based neural network decoders, and spatially aware compilation to detect and neutralize correlated hardware faults.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;summary-cheat-sheet&quot;&gt;Summary Cheat-Sheet&lt;&#x2F;h2&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th style=&quot;text-align: left&quot;&gt;Property&lt;&#x2F;th&gt;&lt;th style=&quot;text-align: left&quot;&gt;Independent Channel ($\mu = 0$)&lt;&#x2F;th&gt;&lt;th style=&quot;text-align: left&quot;&gt;Correlated Channel ($\mu &amp;gt; 0$)&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Kraus Map&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Tensor product $\mathcal{E}_1 \otimes \mathcal{E}_2$&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Convex mixture of product and collective Kraus operators&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Entanglement Dynamics&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Monotonic decay or sudden death&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Slower decay, freezing, or revival under collective modes&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Error Correction&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Standard stabilizer codes work optimally&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Requires correlated-syndrome decoders or DFS encodings&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Protection Strategy&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Active syndrome measurements&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Passive protection via Decoherence-Free Subspaces (DFS)&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;suggested-next-reads&quot;&gt;Suggested Next Reads&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Research Article&lt;&#x2F;strong&gt;: &lt;a href=&quot;https:&#x2F;&#x2F;onlinelibrary.wiley.com&#x2F;doi&#x2F;10.1002&#x2F;andp.202400151&quot;&gt;Facets of Correlated Non-Markovian Channels (Annalen der Physik, 2024)&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;PhD Thesis Journey&lt;&#x2F;strong&gt;: &lt;a href=&quot;&#x2F;posts&#x2F;thesis-workflow&quot;&gt;From Quantum Correlations to Their Microscopic Origin: A Journey Through Noise, Memory, and Open-System Dynamics&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Foundations Tutorial&lt;&#x2F;strong&gt;: &lt;a href=&quot;&#x2F;posts&#x2F;intro-to-quantum-information&quot;&gt;Foundations of Quantum Information: From Qubits to Density Matrices&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Foundations of Quantum Information: From Qubits and Superposition to Density Matrices</title>
+        <published>2026-03-09T00:00:00+00:00</published>
+        <updated>2026-03-09T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Vivek Sabale
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://viveksabale1998.github.io/posts/intro-to-quantum-information/"/>
+        <id>https://viveksabale1998.github.io/posts/intro-to-quantum-information/</id>
+        
+        <content type="html" xml:base="https://viveksabale1998.github.io/posts/intro-to-quantum-information/">&lt;p&gt;Quantum information science combines quantum mechanics with computer science and information theory. While classical computation encodes information into binary bits ($0$ or $1$), quantum systems operate in complex Hilbert spaces, unlocking phenomena like superposition, entanglement, and interference.&lt;&#x2F;p&gt;
+&lt;p&gt;This article provides a pedagogical introduction to the core mathematical language of quantum information.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;1-what-is-a-qubit&quot;&gt;1. What is a Qubit?&lt;&#x2F;h2&gt;
+&lt;p&gt;A &lt;strong&gt;qubit&lt;&#x2F;strong&gt; (quantum bit) is the fundamental unit of quantum information. Unlike a classical bit, a qubit can exist in a linear combination—or &lt;strong&gt;superposition&lt;&#x2F;strong&gt;—of its computational basis states ${|0\rangle, |1\rangle}$:&lt;&#x2F;p&gt;
+&lt;p&gt;$$|\psi\rangle = \alpha |0\rangle + \beta |1\rangle$$&lt;&#x2F;p&gt;
+&lt;p&gt;where $\alpha, \beta \in \mathbb{C}$ are complex probability amplitudes satisfying the normalization constraint:&lt;&#x2F;p&gt;
+&lt;p&gt;$$|\alpha|^2 + |\beta|^2 = 1$$&lt;&#x2F;p&gt;
+&lt;p&gt;When a projective measurement is performed in the standard basis:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;The probability of obtaining outcome $0$ is $P(0) = |\alpha|^2$.&lt;&#x2F;li&gt;
+&lt;li&gt;The probability of obtaining outcome $1$ is $P(1) = |\beta|^2$.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;2-geometric-representation-the-bloch-sphere&quot;&gt;2. Geometric Representation: The Bloch Sphere&lt;&#x2F;h2&gt;
+&lt;p&gt;Because global phase is physically unobservable ($e^{i\gamma}|\psi\rangle \sim |\psi\rangle$), any pure single-qubit state can be uniquely parameterized by two real angles $\theta \in [0, \pi]$ and $\phi \in [0, 2\pi)$:&lt;&#x2F;p&gt;
+&lt;p&gt;$$|\psi\rangle = \cos\left(\frac{\theta}{2}\right) |0\rangle + e^{i\phi} \sin\left(\frac{\theta}{2}\right) |1\rangle$$&lt;&#x2F;p&gt;
+&lt;p&gt;This establishes a 1-to-1 mapping between pure single-qubit states and points on the surface of a unit sphere in $\mathbb{R}^3$, known as the &lt;strong&gt;Bloch Sphere&lt;&#x2F;strong&gt;:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;North Pole&lt;&#x2F;strong&gt; ($\theta = 0$): $|0\rangle$&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;South Pole&lt;&#x2F;strong&gt; ($\theta = \pi$): $|1\rangle$&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Equator&lt;&#x2F;strong&gt; ($\theta = \pi&#x2F;2$): Superpositions such as:
+$$|+\rangle = \frac{|0\rangle + |1\rangle}{\sqrt{2}}, \quad |-\rangle = \frac{|0\rangle - |1\rangle}{\sqrt{2}}, \quad |+i\rangle = \frac{|0\rangle + i|1\rangle}{\sqrt{2}}$$&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Any single-qubit unitary gate corresponds to a 3D rotation of the state vector on this sphere!&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;3-pure-states-vs-mixed-states&quot;&gt;3. Pure States vs. Mixed States&lt;&#x2F;h2&gt;
+&lt;p&gt;In idealized closed quantum systems, states are described by state vectors $|\psi\rangle$ (pure states). However, in the real world:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;Systems interact with noisy environments (decoherence).&lt;&#x2F;li&gt;
+&lt;li&gt;We may only possess statistical knowledge about which quantum state was prepared.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;Such states cannot be written as a single ket $|\psi\rangle$. Instead, they form a &lt;strong&gt;statistical ensemble&lt;&#x2F;strong&gt;:&lt;&#x2F;p&gt;
+&lt;p&gt;$${\left(p_i, |\psi_i\rangle\right)}, \quad \text{where } p_i \ge 0 \text{ and } \sum_i p_i = 1$$&lt;&#x2F;p&gt;
+&lt;p&gt;This leads directly to the &lt;strong&gt;Density Matrix Formalism&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;4-the-density-operator-formalism&quot;&gt;4. The Density Operator Formalism&lt;&#x2F;h2&gt;
+&lt;p&gt;The density operator $\rho$ representing a quantum ensemble is defined as:&lt;&#x2F;p&gt;
+&lt;p&gt;$$\rho = \sum_i p_i |\psi_i\rangle \langle \psi_i|$$&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;essential-properties-of-density-matrices&quot;&gt;Essential Properties of Density Matrices&lt;&#x2F;h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Hermiticity&lt;&#x2F;strong&gt;: $\rho^\dagger = \rho$ (observable probabilities are real).&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Unit Trace&lt;&#x2F;strong&gt;: $\text{Tr}(\rho) = 1$ (total probability equals 1).&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Positive Semi-definiteness&lt;&#x2F;strong&gt;: $\rho \ge 0$ (all eigenvalues $\lambda_i \ge 0$).&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;h3 id=&quot;purity-criterion&quot;&gt;Purity Criterion&lt;&#x2F;h3&gt;
+&lt;p&gt;To distinguish whether a quantum state $\rho$ is pure or mixed, we compute its &lt;strong&gt;purity&lt;&#x2F;strong&gt; $\gamma$:&lt;&#x2F;p&gt;
+&lt;p&gt;$$\gamma = \text{Tr}(\rho^2)$$&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Pure state&lt;&#x2F;strong&gt;: $\text{Tr}(\rho^2) = 1$ (the state lies on the &lt;strong&gt;surface&lt;&#x2F;strong&gt; of the Bloch sphere, radius $r = 1$).&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Mixed state&lt;&#x2F;strong&gt;: $\text{Tr}(\rho^2) &amp;lt; 1$ (the state lies in the &lt;strong&gt;interior&lt;&#x2F;strong&gt; of the Bloch sphere, radius $r &amp;lt; 1$).&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Maximally mixed state&lt;&#x2F;strong&gt;: $\rho = \frac{I}{2}$ with $\text{Tr}(\rho^2) = \frac{1}{2}$ (the exact &lt;strong&gt;center&lt;&#x2F;strong&gt; of the sphere, $r = 0$, representing complete ignorance).&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;5-connecting-to-open-quantum-systems-qml&quot;&gt;5. Connecting to Open Quantum Systems &amp;amp; QML&lt;&#x2F;h2&gt;
+&lt;p&gt;Understanding density matrices is the indispensable bridge to advanced topics in modern research:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Open Quantum Systems&lt;&#x2F;strong&gt;: Environmental interactions transform pure states into mixed states via dynamical maps $\rho(t) = \mathcal{E}_t[\rho(0)]$.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Quantum Machine Learning&lt;&#x2F;strong&gt;: Quantum classifiers and neural networks operate directly on density matrices to distinguish entangled from separable mixtures without requiring full quantum state tomography.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;summary-cheat-sheet&quot;&gt;Summary Cheat-Sheet&lt;&#x2F;h2&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th style=&quot;text-align: left&quot;&gt;Concept&lt;&#x2F;th&gt;&lt;th style=&quot;text-align: left&quot;&gt;Pure State&lt;&#x2F;th&gt;&lt;th style=&quot;text-align: left&quot;&gt;Mixed State&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Mathematical Object&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;State vector $&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;\psi\rangle$&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Bloch Sphere Location&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Surface ($r = 1$)&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Interior ($0 \le r &amp;lt; 1$)&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Purity $\text{Tr}(\rho^2)$&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Exactly $1$&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Less than $1$ (down to $1&#x2F;d$)&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Entropy $S(\rho)$&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;$0$ (zero classical uncertainty)&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;$&amp;gt; 0$ (statistical mixedness)&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+&lt;p&gt;For more hands-on practice, check out our &lt;a href=&quot;&#x2F;projects&#x2F;quantum-computing-lab&quot;&gt;Quantum Computing Lab Notebooks&lt;&#x2F;a&gt; or read our research posts on &lt;a href=&quot;&#x2F;posts&#x2F;exploring-non-markovian-depolarizing-channels&quot;&gt;Non-Markovian Dynamics&lt;&#x2F;a&gt; and &lt;a href=&quot;&#x2F;posts&#x2F;qml-quantum-state-classification&quot;&gt;Quantum Machine Learning&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Exploring Non-Markovian Dynamics in Depolarizing Maps</title>
+        <published>2026-03-08T00:00:00+00:00</published>
+        <updated>2026-03-08T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Vivek Sabale
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://viveksabale1998.github.io/posts/exploring-non-markovian-depolarizing-channels/"/>
+        <id>https://viveksabale1998.github.io/posts/exploring-non-markovian-depolarizing-channels/</id>
+        
+        <content type="html" xml:base="https://viveksabale1998.github.io/posts/exploring-non-markovian-depolarizing-channels/">&lt;p&gt;In the study of open quantum systems, the &lt;strong&gt;depolarizing channel&lt;&#x2F;strong&gt; is widely regarded as the prototypical benchmark noise model. Because it degrades quantum information isotropically across all three spatial Pauli directions ($X$, $Y$, and $Z$), it represents the most egalitarian—and often the most destructive—form of environmental noise in quantum processors and communication links.&lt;&#x2F;p&gt;
+&lt;p&gt;Standard textbook treatments assume that noise is &lt;strong&gt;Markovian&lt;&#x2F;strong&gt; (memoryless): once quantum coherence leaks into the environment, it is lost forever. However, when quantum systems interact with structured reservoirs, high-density spin baths, or engineered photonic cavities, the bath retains memory of past interactions.&lt;&#x2F;p&gt;
+&lt;p&gt;In our paper published in &lt;em&gt;Physical Review A&lt;&#x2F;em&gt;, we conducted an in-depth investigation into the non-Markovian dynamics of depolarizing channels:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Exploring the non-Markovian dynamics in depolarizing maps&lt;&#x2F;strong&gt;&lt;br &#x2F;&gt;
+&lt;em&gt;A. Abu-Nada, S. Banerjee, and Vivek Balasaheb Sabale&lt;&#x2F;em&gt;&lt;br &#x2F;&gt;
+&lt;strong&gt;Physical Review A&lt;&#x2F;strong&gt; 110 (5), 052209 (2024)&lt;br &#x2F;&gt;
+🔗 &lt;a href=&quot;https:&#x2F;&#x2F;journals.aps.org&#x2F;pra&#x2F;abstract&#x2F;10.1103&#x2F;PhysRevA.110.052209&quot;&gt;Read on Physical Review A ↗&lt;&#x2F;a&gt; | &lt;a href=&quot;https:&#x2F;&#x2F;scholar.google.com&#x2F;citations?user=LdMLDdwAAAAJ&amp;amp;hl=en&quot;&gt;Google Scholar ↗&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;Here is a breakdown of the core physics, the mathematical criteria for non-Markovianity, and the operational advantages brought by information backflow.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;1-from-markovian-decay-to-non-markovian-memory&quot;&gt;1. From Markovian Decay to Non-Markovian Memory&lt;&#x2F;h2&gt;
+&lt;p&gt;An isotropic single-qubit depolarizing channel $\Phi_t$ transforms an arbitrary initial density matrix $\rho(0)$ into a mixture of the original state and the maximally mixed state $I&#x2F;2$:&lt;&#x2F;p&gt;
+&lt;p&gt;$$\Phi_t[\rho] = (1 - p(t)) \rho + p(t) \frac{I}{2}$$&lt;&#x2F;p&gt;
+&lt;p&gt;Geometrically, this corresponds to an isotropic contraction of the &lt;strong&gt;Bloch sphere&lt;&#x2F;strong&gt; toward its origin ($r \to 0$).&lt;&#x2F;p&gt;
+&lt;p&gt;Under the standard Lindblad master equation with constant decay rate $\gamma &amp;gt; 0$, the depolarization parameter grows monotonically:&lt;&#x2F;p&gt;
+&lt;p&gt;$$p(t) = \frac{3}{4} \left( 1 - e^{-\gamma t} \right)$$&lt;&#x2F;p&gt;
+&lt;p&gt;In this Markovian limit, the Bloch sphere shrinks continuously, monotonically erasing quantum information.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;the-time-local-master-equation&quot;&gt;The Time-Local Master Equation&lt;&#x2F;h3&gt;
+&lt;p&gt;In realistic structured environments, the dynamics are governed by a &lt;strong&gt;time-dependent generator&lt;&#x2F;strong&gt;:&lt;&#x2F;p&gt;
+&lt;p&gt;$$\frac{d\rho(t)}{dt} = \mathcal{L}&lt;em&gt;t[\rho(t)] = \sum&lt;&#x2F;em&gt;{k=1}^3 \gamma_k(t) \left( \sigma_k \rho(t) \sigma_k - \rho(t) \right)$$&lt;&#x2F;p&gt;
+&lt;p&gt;where $\gamma_k(t)$ are time-dependent canonical decay rates and $\sigma_k \in {\sigma_x, \sigma_y, \sigma_z}$.&lt;&#x2F;p&gt;
+&lt;p&gt;The crucial turning point occurs when the environment has memory:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;If all $\gamma_k(t) \ge 0$ for all $t$, the intermediate propagator $\Phi_{t_2, t_1} = \Phi_{t_2} \Phi_{t_1}^{-1}$ remains a completely positive (CP) map. This is known as &lt;strong&gt;CP-divisibility&lt;&#x2F;strong&gt;.&lt;&#x2F;li&gt;
+&lt;li&gt;When the decay rates turn &lt;strong&gt;temporarily negative&lt;&#x2F;strong&gt; ($\gamma_k(t) &amp;lt; 0$), CP-divisibility breaks down! Negative decay rates signify that the channel is temporarily acting in reverse, returning coherence to the system.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;2-witnessing-memory-via-information-backflow-blp-measure&quot;&gt;2. Witnessing Memory via Information Backflow (BLP Measure)&lt;&#x2F;h2&gt;
+&lt;p&gt;How do we rigorously quantify this memory effect?&lt;&#x2F;p&gt;
+&lt;p&gt;One of the most physically intuitive measures was introduced by Breuer, Laine, and Piilo (BLP). It relies on the &lt;strong&gt;trace distance&lt;&#x2F;strong&gt; $D(\rho_1, \rho_2)$ between two distinct quantum states:&lt;&#x2F;p&gt;
+&lt;p&gt;$$D(\rho_1(t), \rho_2(t)) = \frac{1}{2} \text{Tr}\left[ \sqrt{(\rho_1(t) - \rho_2(t))^\dagger (\rho_1(t) - \rho_2(t))} \right]$$&lt;&#x2F;p&gt;
+&lt;p&gt;Trace distance quantifies the maximal probability of distinguishing between state $\rho_1$ and state $\rho_2$ in a single measurement.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;the-contractivity-principle&quot;&gt;The Contractivity Principle&lt;&#x2F;h3&gt;
+&lt;p&gt;Under any CP-divisible (Markovian) channel, state distinguishability can never increase:&lt;&#x2F;p&gt;
+&lt;p&gt;$$\sigma(t, \rho_{1,2}) = \frac{d}{dt} D(\rho_1(t), \rho_2(t)) \le 0 \quad \forall t$$&lt;&#x2F;p&gt;
+&lt;p&gt;Whenever $\sigma(t) &amp;gt; 0$, information that previously leaked into environmental degrees of freedom is flowing back into the system:&lt;&#x2F;p&gt;
+&lt;p&gt;$$\mathcal{N}&lt;em&gt;{\text{BLP}} = \max&lt;&#x2F;em&gt;{\rho_{1,2}(0)} \int_{\sigma &amp;gt; 0} \sigma(t, \rho_{1,2}) , dt &amp;gt; 0$$&lt;&#x2F;p&gt;
+&lt;p&gt;In our paper, we derived analytical expressions for the trace distance under time-dependent depolarizing noise, identifying the precise temporal intervals where $\frac{d}{dt} D &amp;gt; 0$ produces distinct &lt;strong&gt;revival peaks&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;3-revivals-in-channel-capacity&quot;&gt;3. Revivals in Channel Capacity&lt;&#x2F;h2&gt;
+&lt;p&gt;Beyond theoretical state distinguishability, does non-Markovian memory provide tangible benefits for quantum communication?&lt;&#x2F;p&gt;
+&lt;p&gt;Yes! We examined how information backflow directly revives communication capacities:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Entanglement-Assisted Classical Capacity ($C_{\text{ea}}$)&lt;&#x2F;strong&gt;: Measures the rate at which classical bits can be transmitted across the quantum channel when sender and receiver share prior entanglement.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Quantum Capacity ($Q$)&lt;&#x2F;strong&gt;: Quantifies the rate of transmitting coherent quantum information.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;In the Markovian regime, both capacities decay monotonically to zero. Under non-Markovian depolarizing dynamics:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;As negative decay rates kick in, both capacities experience &lt;strong&gt;transient revivals&lt;&#x2F;strong&gt;, temporarily rebounding above zero even after having decayed significantly.&lt;&#x2F;li&gt;
+&lt;li&gt;This demonstrates that non-Markovian memory can be exploited to construct synchronized transmission protocols that pulse information during periods of maximal information return.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;summary-of-insights&quot;&gt;Summary of Insights&lt;&#x2F;h2&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th style=&quot;text-align: left&quot;&gt;Property&lt;&#x2F;th&gt;&lt;th style=&quot;text-align: left&quot;&gt;Markovian Depolarizing&lt;&#x2F;th&gt;&lt;th style=&quot;text-align: left&quot;&gt;Non-Markovian Depolarizing (Our Work)&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Decay Rates $\gamma(t)$&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Strictly positive constant ($\gamma &amp;gt; 0$)&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Oscillates with &lt;strong&gt;negative intervals&lt;&#x2F;strong&gt; ($\gamma(t) &amp;lt; 0$)&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;CP-Divisibility&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Always CP-divisible&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;CP-divisibility breakdown&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Trace Distance Rate $\sigma(t)$&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;$\sigma(t) \le 0$ (monotonic loss)&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;$\sigma(t) &amp;gt; 0$ (&lt;strong&gt;Information Backflow&lt;&#x2F;strong&gt;)&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Bloch Sphere Evolution&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Monotonically shrinks to $I&#x2F;2$&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Expands and contracts&lt;&#x2F;strong&gt; during revival windows&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Channel Capacity&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Permanently degrades&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Exhibits &lt;strong&gt;capacity revivals&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;read-the-full-article&quot;&gt;Read the Full Article&lt;&#x2F;h2&gt;
+&lt;p&gt;For full mathematical derivations, plots of the decay rates, and detailed proofs of CP-divisibility bounds, explore our published paper:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Physical Review A&lt;&#x2F;strong&gt;: &lt;a href=&quot;https:&#x2F;&#x2F;journals.aps.org&#x2F;pra&#x2F;abstract&#x2F;10.1103&#x2F;PhysRevA.110.052209&quot;&gt;Phys. Rev. A 110, 052209 (2024)&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Google Scholar&lt;&#x2F;strong&gt;: &lt;a href=&quot;https:&#x2F;&#x2F;scholar.google.com&#x2F;citations?user=LdMLDdwAAAAJ&amp;amp;hl=en&quot;&gt;Vivek Sabale&#x27;s Publications&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;Have questions or interested in collaborating? Check out the &lt;a href=&quot;&#x2F;collaboration&quot;&gt;Collaboration page&lt;&#x2F;a&gt; or &lt;a href=&quot;&#x2F;cv&quot;&gt;get in touch&lt;&#x2F;a&gt;.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Supercharging Quantum Energy Storage: Heisenberg Spin Networks and the Dzyaloshinskii–Moriya Interaction</title>
+        <published>2026-03-07T00:00:00+00:00</published>
+        <updated>2026-03-07T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Vivek Sabale
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://viveksabale1998.github.io/posts/quantum-batteries/"/>
+        <id>https://viveksabale1998.github.io/posts/quantum-batteries/</id>
+        
+        <content type="html" xml:base="https://viveksabale1998.github.io/posts/quantum-batteries/">&lt;p&gt;As quantum computing and quantum thermodynamics advance, researchers face a provocative question: &lt;em&gt;Can the non-classical properties of quantum mechanics—such as coherence, quantum correlations, and entanglement—be utilized to store and extract thermodynamic energy faster and more efficiently than classical devices?&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;This is the promise of &lt;strong&gt;Quantum Batteries (QBs)&lt;&#x2F;strong&gt;: nanoscale devices that store work in the quantum degrees of freedom of multi-body systems (such as spins, two-level atoms, or optical cavities).&lt;&#x2F;p&gt;
+&lt;p&gt;In our latest study published in the &lt;em&gt;New Journal of Physics&lt;&#x2F;em&gt; (IOP Publishing), we investigate how quantum spin networks can be engineered into highly efficient quantum batteries:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Heisenberg spin networks for realizing quantum battery with the aid of Dzyaloshinskii–Moriya interaction&lt;&#x2F;strong&gt;&lt;br &#x2F;&gt;
+&lt;em&gt;Suprabha Bhattacharya, Vivek Balasaheb Sabale, and Atul Kumar&lt;&#x2F;em&gt;&lt;br &#x2F;&gt;
+&lt;strong&gt;New Journal of Physics&lt;&#x2F;strong&gt; 28 (1), 014508 (2026)&lt;br &#x2F;&gt;
+🔗 &lt;a href=&quot;https:&#x2F;&#x2F;doi.org&#x2F;10.1088&#x2F;1367-2630&#x2F;adab0a&quot;&gt;Read on New Journal of Physics ↗&lt;&#x2F;a&gt; | &lt;a href=&quot;https:&#x2F;&#x2F;scholar.google.com&#x2F;citations?view_op=view_citation&amp;amp;hl=en&amp;amp;user=LdMLDdwAAAAJ&amp;amp;citation_for_view=LdMLDdwAAAAJ:_FxGoFyzp5QC&quot;&gt;Google Scholar ↗&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;Here is an overview of the fundamental physics, the crucial role of network geometry, and how the &lt;strong&gt;Dzyaloshinskii–Moriya Interaction (DMI)&lt;&#x2F;strong&gt; unlocks unprecedented charging performance.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;what-makes-a-battery-quantum&quot;&gt;What Makes a Battery &quot;Quantum&quot;?&lt;&#x2F;h2&gt;
+&lt;p&gt;In a conventional electrochemical battery, charging $N$ identical cells in parallel requires a time that scales independently of $N$, meaning total power scales linearly: $P \propto N$.&lt;&#x2F;p&gt;
+&lt;p&gt;In quantum batteries, entangling interactions during the charging process can trigger &lt;strong&gt;collective quantum speedups&lt;&#x2F;strong&gt;:&lt;&#x2F;p&gt;
+&lt;p&gt;$$P_{\text{max}} \propto N^{\alpha}, \quad \text{with } \alpha &amp;gt; 1$$&lt;&#x2F;p&gt;
+&lt;p&gt;This phenomenon—known as &lt;strong&gt;super-extensive charging&lt;&#x2F;strong&gt; or &lt;em&gt;quantum supercharging&lt;&#x2F;em&gt;—allows an entangled ensemble of quantum battery cells to charge significantly faster than if each cell were charged individually in isolation.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;stored-energy-vs-ergotropy-the-real-measure-of-work&quot;&gt;Stored Energy vs. Ergotropy: The Real Measure of Work&lt;&#x2F;h2&gt;
+&lt;p&gt;When evaluating a quantum battery, raw stored energy $E(t) = \text{Tr}[\rho(t) H_B]$ can be misleading. In quantum thermodynamics, not all stored energy is useful.&lt;&#x2F;p&gt;
+&lt;p&gt;The gold standard for work extraction is &lt;strong&gt;Ergotropy&lt;&#x2F;strong&gt; ($\mathcal{E}$): the maximum amount of work that can be extracted from a quantum state $\rho$ via cyclic unitary operations without changing its entropy:&lt;&#x2F;p&gt;
+&lt;p&gt;$$\mathcal{E}(\rho) = \text{Tr}[\rho H_B] - \min_{U \in \mathcal{U}} \text{Tr}\left[ U \rho U^\dagger H_B \right]$$&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;If a state has reached a &lt;strong&gt;passive state&lt;&#x2F;strong&gt; (where population is monotonically decreasing with energy eigenvalues), no work can be extracted unitarily, resulting in $\mathcal{E} = 0$ even if internal energy $E &amp;gt; 0$.&lt;&#x2F;li&gt;
+&lt;li&gt;A high-performance quantum battery must maximize the &lt;strong&gt;ergotropy ratio&lt;&#x2F;strong&gt; $\mathcal{E}&#x2F;E$, guaranteeing that stored energy translates into accessible, extractable work.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;designing-the-battery-heisenberg-spin-networks&quot;&gt;Designing the Battery: Heisenberg Spin Networks&lt;&#x2F;h2&gt;
+&lt;p&gt;In our paper, we model the quantum battery as a network of interacting spin-$1&#x2F;2$ particles described by the anisotropic &lt;strong&gt;Heisenberg $XXZ$ model&lt;&#x2F;strong&gt; subjected to transverse magnetic fields and charging Hamiltonians:&lt;&#x2F;p&gt;
+&lt;p&gt;$$H_{\text{XXZ}} = \sum_{\langle i, j \rangle} J \left( \sigma_i^x \sigma_j^x + \sigma_i^y \sigma_j^y + \Delta \sigma_i^z \sigma_j^z \right)$$&lt;&#x2F;p&gt;
+&lt;p&gt;where:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;$J$ is the exchange coupling strength between spins,&lt;&#x2F;li&gt;
+&lt;li&gt;$\Delta$ is the anisotropy parameter along the $z$-axis,&lt;&#x2F;li&gt;
+&lt;li&gt;$\sigma_i^{x,y,z}$ are the standard Pauli operators for the $i$-th spin cell.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;the-role-of-network-geometry&quot;&gt;The Role of Network Geometry&lt;&#x2F;h3&gt;
+&lt;p&gt;The physical topology of the spin network dictates how energy flows during charging. We systematically evaluated:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Open Spin Chains&lt;&#x2F;strong&gt;: Linear arrays with open boundary conditions.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Closed Rings&lt;&#x2F;strong&gt;: Periodic boundary conditions facilitating circular flow.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Supercube Configurations&lt;&#x2F;strong&gt;: Multi-dimensional hypercube topologies with dense interconnects.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;$c$-Regular Graphs &amp;amp; Platonic Geometries&lt;&#x2F;strong&gt;: Highly symmetric polyhedral arrangements ranging from 3 to 12 qubits, including &lt;strong&gt;tetrahedron&lt;&#x2F;strong&gt;, &lt;strong&gt;octahedron&lt;&#x2F;strong&gt;, and &lt;strong&gt;icosahedron&lt;&#x2F;strong&gt; geometries.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;the-breakthrough-dzyaloshinskii-moriya-interaction-dmi&quot;&gt;The Breakthrough: Dzyaloshinskii–Moriya Interaction (DMI)&lt;&#x2F;h2&gt;
+&lt;p&gt;Standard symmetric Heisenberg couplings can encounter bottlenecks: energy tends to get trapped in symmetric, decoherence-free sub-spaces or &quot;dark states&quot; that refuse to dump their energy into usable ergotropy.&lt;&#x2F;p&gt;
+&lt;p&gt;To solve this, we introduced the &lt;strong&gt;Dzyaloshinskii–Moriya Interaction (DMI)&lt;&#x2F;strong&gt;:&lt;&#x2F;p&gt;
+&lt;p&gt;$$H_{\text{DMI}} = \sum_{\langle i, j \rangle} \vec{D}_{ij} \cdot \left( \vec{\sigma}_i \times \vec{\sigma}_j \right)$$&lt;&#x2F;p&gt;
+&lt;p&gt;Arising physically from spin-orbit coupling in systems lacking spatial inversion symmetry, DMI introduces an &lt;strong&gt;antisymmetric, chiral exchange&lt;&#x2F;strong&gt; between neighboring spins.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;why-dmi-boosts-quantum-battery-performance&quot;&gt;Why DMI Boosts Quantum Battery Performance&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Chiral Energy Transport&lt;&#x2F;strong&gt;: The cross-product nature of DMI breaks spatial reflection symmetry, driving directed, non-reciprocal energy flow across the spin lattice and bypassing destructive interference traps.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Enhanced Ergotropy in Supercubes&lt;&#x2F;strong&gt;: In the anisotropic $XXZ$ regime, DMI substantially enhances ergotropy—most prominently in &lt;strong&gt;supercube geometries&lt;&#x2F;strong&gt;—enabling nearly complete extraction of the stored energy.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Faster Charging Cycles&lt;&#x2F;strong&gt;: By accelerating state transitions toward maximally non-passive configurations, DMI shortens charging times, yielding marked improvements in the peak charging power $P_{\text{max}}$.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Structural Resilience&lt;&#x2F;strong&gt;: When testing across $c$-regular graphs and Platonic geometries, DMI consistently stabilizes energy storage against local parameter fluctuations.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;experimental-outlook-bringing-quantum-batteries-to-the-lab&quot;&gt;Experimental Outlook: Bringing Quantum Batteries to the Lab&lt;&#x2F;h2&gt;
+&lt;p&gt;The theoretical models developed in our paper align with several cutting-edge experimental quantum architectures:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Solid-State Molecular Magnets&lt;&#x2F;strong&gt;: Single-molecule magnets and transition metal complexes naturally exhibit significant Dzyaloshinskii–Moriya coupling due to strong spin-orbit interactions.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Rydberg Atom Arrays&lt;&#x2F;strong&gt;: Optical tweezers allow arbitrary 2D and 3D positioning of neutral atoms (e.g., in tetrahedral or cubic geometries), enabling programmable Heisenberg and DMI-like Hamiltonians.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Superconducting Circuit Networks&lt;&#x2F;strong&gt;: Tunable inductive couplers between transmons allow direct synthesis of non-collinear exchange couplings.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;summary-next-horizons&quot;&gt;Summary &amp;amp; Next Horizons&lt;&#x2F;h2&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th style=&quot;text-align: left&quot;&gt;Architecture Feature&lt;&#x2F;th&gt;&lt;th style=&quot;text-align: left&quot;&gt;Without DMI&lt;&#x2F;th&gt;&lt;th style=&quot;text-align: left&quot;&gt;With DMI (Our Work)&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Symmetry Constraints&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Trapped in symmetric dark states&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Broken inversion symmetry drives directional energy&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Ergotropy Fraction ($\mathcal{E}&#x2F;E$)&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Moderate; significant locked passive energy&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Significantly elevated&lt;&#x2F;strong&gt;, especially in supercubes&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Optimal Geometry&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Sensitive to boundary reflection&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Supercube &amp;amp; regular graphs&lt;&#x2F;strong&gt; yield robust performance&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Charging Power ($P_{\text{max}}$)&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Constrained by isotropic dispersion&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Accelerated&lt;&#x2F;strong&gt; due to chiral interaction channels&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+&lt;p&gt;As quantum processors continue to evolve toward on-chip nanoscale energy management, understanding the interplay between exchange interactions, chiral symmetry breaking, and geometric connectivity will be central to building sustainable quantum technologies.&lt;&#x2F;p&gt;
+&lt;p&gt;For a deeper mathematical exploration of the eigenvalues, ergotropy derivations, and dynamical plots, read our full article in &lt;a href=&quot;https:&#x2F;&#x2F;doi.org&#x2F;10.1088&#x2F;1367-2630&#x2F;adab0a&quot;&gt;New Journal of Physics&lt;&#x2F;a&gt; or visit my &lt;a href=&quot;https:&#x2F;&#x2F;scholar.google.com&#x2F;citations?user=LdMLDdwAAAAJ&amp;amp;hl=en&quot;&gt;Google Scholar profile&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Quantum Machine Learning for Quantum State Classification: From QSVMs to Quantum Neural Networks</title>
+        <published>2026-03-05T00:00:00+00:00</published>
+        <updated>2026-03-05T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Vivek Sabale
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://viveksabale1998.github.io/posts/qml-quantum-state-classification/"/>
+        <id>https://viveksabale1998.github.io/posts/qml-quantum-state-classification/</id>
+        
+        <content type="html" xml:base="https://viveksabale1998.github.io/posts/qml-quantum-state-classification/">&lt;p&gt;In the current &lt;strong&gt;Noisy Intermediate-Scale Quantum (NISQ)&lt;&#x2F;strong&gt; era, one of the most critical operational tasks is determining whether a prepared quantum register is truly entangled, separable, or corrupted by environmental noise.&lt;&#x2F;p&gt;
+&lt;p&gt;Traditionally, characterizing an unknown quantum state requires &lt;strong&gt;Full Quantum State Tomography (QST)&lt;&#x2F;strong&gt;. However, QST requires measuring $4^N - 1$ independent expectation values for an $N$-qubit system. For even modest register sizes ($N \ge 6$), full tomography becomes computationally and experimentally intractable.&lt;&#x2F;p&gt;
+&lt;p&gt;To break this measurement bottleneck, our research explores &lt;strong&gt;Quantum Machine Learning (QML)&lt;&#x2F;strong&gt;. By leveraging quantum kernel methods and variational quantum circuits, we demonstrate that quantum algorithms can directly learn the boundaries separating separable from entangled states—even across unseen noise domains.&lt;&#x2F;p&gt;
+&lt;p&gt;Here, I discuss our two recent publications on Google Scholar that advance this frontier:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Quantum Support Vector Machines (QSVM)&lt;&#x2F;strong&gt; in &lt;em&gt;Quantum Machine Intelligence&lt;&#x2F;em&gt; (Springer, 2025)&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Quantum Neural Networks (QNN)&lt;&#x2F;strong&gt; in &lt;em&gt;arXiv:2504.06622&lt;&#x2F;em&gt; (2025)&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;1-quantum-support-vector-machines-for-cross-domain-classification&quot;&gt;1. Quantum Support Vector Machines for Cross-Domain Classification&lt;&#x2F;h2&gt;
+&lt;p&gt;Support Vector Machines (SVMs) are among the most robust classical supervised learning algorithms. They work by using a &lt;strong&gt;kernel function&lt;&#x2F;strong&gt; to project non-linearly separable data into a higher-dimensional feature space where an optimal separating hyperplane can be constructed.&lt;&#x2F;p&gt;
+&lt;p&gt;In quantum computing, this principle translates into &lt;strong&gt;Quantum Kernel Estimation&lt;&#x2F;strong&gt;:&lt;&#x2F;p&gt;
+&lt;p&gt;$$K(x_i, x_j) = |\langle \phi(x_i) | \phi(x_j) \rangle|^2$$&lt;&#x2F;p&gt;
+&lt;p&gt;A quantum computer evaluates the transition fidelity between states prepared by parameterized quantum circuits $\mathcal{U}_\Phi(x)$, while a classical optimizer solves the resulting convex quadratic programming problem.&lt;&#x2F;p&gt;
+&lt;p&gt;Our investigation of this approach was published in &lt;em&gt;Quantum Machine Intelligence&lt;&#x2F;em&gt;:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Harnessing quantum support vector machines for cross-domain classification of quantum states&lt;&#x2F;strong&gt;&lt;br &#x2F;&gt;
+&lt;em&gt;D. Sharma, Vivek Balasaheb Sabale, P. Singh, and A. Kumar&lt;&#x2F;em&gt;&lt;br &#x2F;&gt;
+&lt;strong&gt;Quantum Machine Intelligence&lt;&#x2F;strong&gt; 7 (1), 49 (2025)&lt;br &#x2F;&gt;
+🔗 &lt;a href=&quot;https:&#x2F;&#x2F;link.springer.com&#x2F;article&#x2F;10.1007&#x2F;s42484-025-00274-4&quot;&gt;Read on Springer Nature ↗&lt;&#x2F;a&gt; | &lt;a href=&quot;https:&#x2F;&#x2F;scholar.google.com&#x2F;citations?user=LdMLDdwAAAAJ&amp;amp;hl=en&quot;&gt;Google Scholar ↗&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;h3 id=&quot;key-contributions-results&quot;&gt;Key Contributions &amp;amp; Results&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Cross-Domain Generalization&lt;&#x2F;strong&gt;: Most existing classifiers are tested only on the exact noise parameters they were trained on. We trained our QSVM on specific families of states (such as Werner states and Bell states under local depolarizing noise) and tested it on entirely different noise regimes (amplitude damping and phase damping). The quantum kernel demonstrated remarkable cross-domain resilience, accurately classifying the entanglement boundary without needing retraining.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Entanglement vs. Separability Boundary&lt;&#x2F;strong&gt;: The quantum kernel successfully mapped the intricate boundary between entangled states (concurrence $C &amp;gt; 0$) and unentangled separable mixtures, yielding over &lt;strong&gt;95%+ classification accuracy&lt;&#x2F;strong&gt; with significantly fewer measurements than tomography.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;2-quantum-neural-networks-facilitating-quantum-state-classification&quot;&gt;2. Quantum Neural Networks Facilitating Quantum State Classification&lt;&#x2F;h2&gt;
+&lt;p&gt;In this work we used &lt;strong&gt;Variational Quantum Neural Networks (QNNs)&lt;&#x2F;strong&gt; that offer end-to-end quantum inference directly on quantum hardware.&lt;&#x2F;p&gt;
+&lt;p&gt;Our research develops a tailored QNN framework specifically architected for multi-qubit state classification:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Quantum neural networks facilitating quantum state classification&lt;&#x2F;strong&gt;&lt;br &#x2F;&gt;
+&lt;em&gt;D. Sharma, Vivek Balasaheb Sabale, M. Thirumalai, and A. Kumar&lt;&#x2F;em&gt;&lt;br &#x2F;&gt;
+&lt;strong&gt;arXiv preprint&lt;&#x2F;strong&gt; arXiv:2504.06622 (2025)&lt;br &#x2F;&gt;
+🔗 &lt;a href=&quot;https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;2504.06622&quot;&gt;Read on arXiv ↗&lt;&#x2F;a&gt; | &lt;a href=&quot;https:&#x2F;&#x2F;scholar.google.com&#x2F;citations?user=LdMLDdwAAAAJ&amp;amp;hl=en&quot;&gt;Google Scholar ↗&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;h3 id=&quot;architecture-of-the-variational-classifier&quot;&gt;Architecture of the Variational Classifier&lt;&#x2F;h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Quantum State Ingestion&lt;&#x2F;strong&gt;: The candidate quantum state $\rho_{\text{in}}$ is plrepared using a initial quantum circuit. It brings down the required resources to number of qubits rather than number of elements in qubit statevectors.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Parameterized Variational Layers&lt;&#x2F;strong&gt;: The register undergoes alternating layers of single-qubit rotations:
+$$R_y(\theta_{i,l}) \quad \text{and} \quad R_z(\phi_{i,l})$$
+interspersed with entangling gates (such as controlled-NOT or controlled-Z ladders) to construct an expressive ansatz. We also use unitary operations constucted by Sz-nagi dialation theorem as it prowite parametrise control over entangling power and help to create dataset for study.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Measurement &amp;amp; Cost Function&lt;&#x2F;strong&gt;: A designated readout qubit is measured in the Pauli-$Z$ basis:
+$$\langle Z_{\text{out}} \rangle = \text{Tr}\left[ Z \cdot \mathcal{U}(\vec{\theta}) \rho_{\text{in}} \mathcal{U}^\dagger(\vec{\theta}) \right]$$&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Classical Parameter Optimization&lt;&#x2F;strong&gt;: The parameter vector $\vec{\theta}$ is updated iteratively via gradient-based (Adam, SPSA) or gradient-free (COBYLA) algorithms to minimize binary cross-entropy or mean squared error.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;h3 id=&quot;addressing-the-barren-plateau-phenomenon&quot;&gt;Addressing the Barren Plateau Phenomenon&lt;&#x2F;h3&gt;
+&lt;p&gt;A notorious hurdle in deep QNNs is &lt;strong&gt;barren plateaus&lt;&#x2F;strong&gt;—where gradients vanish exponentially with qubit count $N$. In this work, we tackled this issue by:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Employing &lt;strong&gt;local measurement observables&lt;&#x2F;strong&gt; rather than global projectors.&lt;&#x2F;li&gt;
+&lt;li&gt;Structuring shallow, hardware-efficient ansatz layers that balance expressibility with gradient trainability.&lt;&#x2F;li&gt;
+&lt;li&gt;Initializing parameters within identity-like perturbation regimes to ensure consistent convergence.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;comparing-the-two-paradigms-qsvm-vs-qnn&quot;&gt;Comparing the Two Paradigms: QSVM vs. QNN&lt;&#x2F;h2&gt;
+&lt;p&gt;Both quantum machine learning architectures exhibit distinct strengths when applied to quantum state diagnosis:&lt;&#x2F;p&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th style=&quot;text-align: left&quot;&gt;Feature&lt;&#x2F;th&gt;&lt;th style=&quot;text-align: left&quot;&gt;Quantum Support Vector Machine (QSVM)&lt;&#x2F;th&gt;&lt;th style=&quot;text-align: left&quot;&gt;Variational Quantum Neural Network (QNN)&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Optimization Landscape&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Convex&lt;&#x2F;strong&gt; (guaranteed global optimum)&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Non-convex&lt;&#x2F;strong&gt; (potential local minima &amp;amp; barren plateaus)&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Measurement Burden&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Evaluates $O(M^2)$ pairwise kernel fidelities for $M$ data samples&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Evaluates $O(\text{epochs} \times \text{batch size})$ forward-backward passes&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Hardware Execution&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Quantum computer computes kernels; classical CPU performs classification&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Fully on-chip inference after parameters $\vec{\theta}^*$ are trained&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Cross-Domain Transfer&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Exceptional transferability across unseen noise parameters&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Requires expressive parameter retraining for altered noise channels&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Primary Reference&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;em&gt;Quantum Mach. Intell.&lt;&#x2F;em&gt; 7, 49 (2025)&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;em&gt;arXiv:2504.06622&lt;&#x2F;em&gt; (2025)&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;why-this-matters-for-the-quantum-roadmap&quot;&gt;Why This Matters for the Quantum Roadmap&lt;&#x2F;h2&gt;
+&lt;p&gt;As quantum computers scale toward hundreds and thousands of physical qubits, autonomous state verification and error diagnosis will be paramount. Traditional diagnostic protocols scale with Hilbert space dimension ($\mathcal{D} = 2^N$), making classical validation impossible.&lt;&#x2F;p&gt;
+&lt;p&gt;By pairing quantum hardware with quantum learning algorithms:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;We can &lt;strong&gt;benchmark quantum entanglement&lt;&#x2F;strong&gt; in-situ inside quantum processors.&lt;&#x2F;li&gt;
+&lt;li&gt;We can detect &lt;strong&gt;noise channel drift&lt;&#x2F;strong&gt; in real time during circuit execution.&lt;&#x2F;li&gt;
+&lt;li&gt;We open new avenues for &lt;strong&gt;fault-tolerant quantum networks&lt;&#x2F;strong&gt;, where intermediate nodes can certify entanglement quality before authorizing teleportation protocols.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;For more details, check out both papers linked above or visit my &lt;a href=&quot;https:&#x2F;&#x2F;scholar.google.com&#x2F;citations?user=LdMLDdwAAAAJ&amp;amp;hl=en&quot;&gt;Google Scholar profile&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>From Quantum Correlations to Their Microscopic Origin: A Journey Through Noise, Memory, and Open-System Dynamics</title>
+        <published>2026-03-01T00:00:00+00:00</published>
+        <updated>2026-03-01T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Vivek Sabale
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://viveksabale1998.github.io/posts/thesis-workflow/"/>
+        <id>https://viveksabale1998.github.io/posts/thesis-workflow/</id>
+        
+        <content type="html" xml:base="https://viveksabale1998.github.io/posts/thesis-workflow/">&lt;p&gt;Quantum technologies rely on phenomena that have no direct classical counterpart. Among them, &lt;strong&gt;quantum correlations&lt;&#x2F;strong&gt;—and particularly entanglement—play a central role in quantum communication, computation, sensing, and information processing. Yet there is a fundamental difficulty: quantum correlations are fragile. Interaction with an environment can degrade them, memory in a quantum channel can modify their dynamics, and collective interactions with a common environment can produce behavior that is very different from that of independently evolving systems.&lt;&#x2F;p&gt;
+&lt;p&gt;My doctoral research investigates this problem from several complementary perspectives. Rather than treating quantum correlations, noise, memory, and open-system dynamics as separate topics, the thesis develops a progression:&lt;&#x2F;p&gt;
+&lt;div class=&quot;thesis-horizontal-flow&quot;&gt;
+  &lt;span class=&quot;step-pill&quot;&gt;Characterization&lt;&#x2F;span&gt;
+  &lt;span class=&quot;step-arrow&quot;&gt;→&lt;&#x2F;span&gt;
+  &lt;span class=&quot;step-pill&quot;&gt;Protection&lt;&#x2F;span&gt;
+  &lt;span class=&quot;step-arrow&quot;&gt;→&lt;&#x2F;span&gt;
+  &lt;span class=&quot;step-pill&quot;&gt;Channel Memory&lt;&#x2F;span&gt;
+  &lt;span class=&quot;step-arrow&quot;&gt;→&lt;&#x2F;span&gt;
+  &lt;span class=&quot;step-pill&quot;&gt;Microscopic Dynamics&lt;&#x2F;span&gt;
+&lt;&#x2F;div&gt;
+&lt;p&gt;The central question evolves along the way:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;How can quantum correlations be characterized, protected, understood under correlated noise, and ultimately connected to their microscopic physical origin?&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;1-why-start-with-quantum-correlations&quot;&gt;1. Why start with quantum correlations?&lt;&#x2F;h2&gt;
+&lt;p&gt;Quantum correlations are not merely mathematical features of quantum states. They can serve as resources for information-processing tasks.&lt;&#x2F;p&gt;
+&lt;p&gt;Quantum teleportation is one of the clearest examples. In the standard teleportation protocol, an unknown quantum state can be reconstructed at a distant location using a shared entangled state and classical communication. Experimental demonstrations of quantum teleportation established that this is not merely a theoretical possibility but a realizable quantum-information protocol.&lt;&#x2F;p&gt;
+&lt;p&gt;However, the usefulness of an entangled state is not determined simply by whether it is entangled. Its &lt;strong&gt;structure and strength of correlations&lt;&#x2F;strong&gt; matter.&lt;&#x2F;p&gt;
+&lt;p&gt;This immediately raises the first question:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;How should we characterize the correlations contained in a complex multipartite quantum state?&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;For two-qubit systems, quantities such as concurrence provide powerful tools. For larger systems, however, the situation becomes considerably more complicated. A multipartite state can contain correlations at different orders, and pairwise measures do not necessarily reveal the complete hierarchy of many-body correlations.&lt;&#x2F;p&gt;
+&lt;p&gt;This motivates the first part of the thesis.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;2-stage-i-characterizing-multipartite-quantum-correlations&quot;&gt;2. Stage I — Characterizing multipartite quantum correlations&lt;&#x2F;h2&gt;
+&lt;p&gt;The first research direction focuses on the &lt;strong&gt;structure of quantum correlations&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;The central idea is to use connected correlations—or cumulants—to separate genuine higher-order contributions from correlations that can be constructed from lower-order terms. This leads to the &lt;strong&gt;Cumulant-Norm Entanglement Index (CNEI)&lt;&#x2F;strong&gt;, a correlation-based framework designed to characterize multipartite entanglement.&lt;&#x2F;p&gt;
+&lt;p&gt;The use of cumulants is particularly natural because cumulants are designed to isolate irreducible correlations. Instead of asking only whether a multipartite state is entangled, the approach asks a more refined question:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;What order of correlation is genuinely present in the state?&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;The resulting index is investigated with respect to separability, local-unitary properties, and different multipartite states. It is also compared with conventional entanglement measures to understand what additional structural information can be obtained from connected correlations.&lt;&#x2F;p&gt;
+&lt;p&gt;This first stage establishes the &lt;strong&gt;structural viewpoint&lt;&#x2F;strong&gt; of the thesis:&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+\text{Quantum state}
+\quad\longrightarrow\quad
+\text{correlation structure}
+\quad\longrightarrow\quad
+\text{quantitative characterization}.
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;But characterization is only the beginning.&lt;&#x2F;p&gt;
+&lt;p&gt;A correlation can be quantified perfectly and still be practically useless if environmental noise destroys it before it can be used.&lt;&#x2F;p&gt;
+&lt;p&gt;This leads to the second question:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Once quantum correlations have been characterized, how can they be protected?&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;3-stage-ii-protecting-quantum-correlations-from-noise&quot;&gt;3. Stage II — Protecting quantum correlations from noise&lt;&#x2F;h2&gt;
+&lt;p&gt;Real quantum systems are open systems. They interact with their surroundings, and these interactions introduce decoherence and dissipation.&lt;&#x2F;p&gt;
+&lt;p&gt;For quantum teleportation, this has a direct operational consequence. The shared entangled resource becomes degraded, and the quality of the teleported state decreases.&lt;&#x2F;p&gt;
+&lt;p&gt;Teleportation fidelity is therefore a natural quantity for measuring the performance of the protocol. But average fidelity alone does not tell the entire story. A protocol may perform well on average while treating different input states differently.&lt;&#x2F;p&gt;
+&lt;p&gt;This is where &lt;strong&gt;fidelity deviation&lt;&#x2F;strong&gt; becomes important. It measures the variation of teleportation fidelity over the input-state space and provides a way of assessing the uniformity required for universal quantum teleportation.&lt;&#x2F;p&gt;
+&lt;p&gt;This motivates the second stage of the thesis:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Can quantum correlations be actively protected against noisy evolution?&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;One approach investigated in the thesis is &lt;strong&gt;weak measurement (WM) and weak-measurement reversal (RWM)&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Weak measurement provides a way of extracting partial information from a quantum system while introducing less disturbance than a projective measurement. A subsequent reversal operation can partially compensate for the measurement-induced disturbance.&lt;&#x2F;p&gt;
+&lt;p&gt;The idea is not merely theoretical. Kim &lt;em&gt;et al.&lt;&#x2F;em&gt; demonstrated experimentally that weak measurement and measurement reversal can be used to protect entanglement from decoherence and even circumvent entanglement sudden death under suitable conditions.&lt;&#x2F;p&gt;
+&lt;p&gt;The thesis extends this protection perspective to different noise environments and examines their consequences for quantum correlations and teleportation.&lt;&#x2F;p&gt;
+&lt;p&gt;The analysis includes Markovian and non-Markovian noise processes and examines how WM&#x2F;RWM affects:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;entanglement,&lt;&#x2F;li&gt;
+&lt;li&gt;teleportation fidelity,&lt;&#x2F;li&gt;
+&lt;li&gt;fidelity deviation,&lt;&#x2F;li&gt;
+&lt;li&gt;information back-flow,&lt;&#x2F;li&gt;
+&lt;li&gt;and the usefulness of imperfectly entangled states for teleportation.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;This research direction is also directly connected to the article &lt;a href=&quot;https:&#x2F;&#x2F;onlinelibrary.wiley.com&#x2F;doi&#x2F;10.1002&#x2F;andp.202300392&quot;&gt;&lt;strong&gt;“Toward Realization of Universal Quantum Teleportation Using Weak Measurements,”&lt;&#x2F;strong&gt;&lt;&#x2F;a&gt; which investigates weak measurements, memory effects, and non-Markovian dynamics in the context of universal quantum teleportation.&lt;&#x2F;p&gt;
+&lt;p&gt;The important conceptual transition is:&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+\text{Characterize correlations}
+\quad\rightarrow\quad
+\text{Protect correlations}.
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;But this raises another issue.&lt;&#x2F;p&gt;
+&lt;p&gt;The environment does not always act independently at every stage.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;4-stage-iii-when-the-noise-itself-has-memory&quot;&gt;4. Stage III — When the noise itself has memory&lt;&#x2F;h2&gt;
+&lt;p&gt;The previous stage treats noise as a dynamical process acting on the quantum system. But in realistic communication scenarios, &lt;strong&gt;successive uses of a quantum channel may themselves be correlated&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;This creates an important distinction between two types of memory.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;environmental-memory&quot;&gt;Environmental memory&lt;&#x2F;h3&gt;
+&lt;p&gt;A system interacts with an environment that retains information about its previous state and can subsequently return information to the system.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;channel-use-memory&quot;&gt;Channel-use memory&lt;&#x2F;h3&gt;
+&lt;p&gt;Different applications of a quantum channel are correlated. The noise acting during one channel use is therefore not statistically independent of the noise acting during another.&lt;&#x2F;p&gt;
+&lt;p&gt;These two ideas of memory are conceptually distinct, and their interplay has been studied explicitly in correlated quantum channels. Addis &lt;em&gt;et al.&lt;&#x2F;em&gt;, for example, showed how correlations between multiple channel uses can be related to non-Markovianity in the resulting dynamical map.&lt;&#x2F;p&gt;
+&lt;p&gt;This distinction forms the basis of the third stage of the thesis.&lt;&#x2F;p&gt;
+&lt;p&gt;Instead of asking:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;“How can we protect correlations from noise?”&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;the question becomes:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;“What happens when the noise process itself possesses correlations?”&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;A correlation parameter $\mu$ is used to interpolate between independent and fully correlated channel action:&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+\mu=0
+\quad\rightarrow\quad
+\text{uncorrelated channel},
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+0&amp;lt;\mu&amp;lt;1
+\quad\rightarrow\quad
+\text{partially correlated channel},
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+\mu=1
+\quad\rightarrow\quad
+\text{fully correlated channel}.
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;This framework allows the influence of channel correlation to be studied independently of the underlying noise model.&lt;&#x2F;p&gt;
+&lt;p&gt;The thesis investigates both &lt;strong&gt;unital and non-unital correlated channels&lt;&#x2F;strong&gt; and examines their non-Markovian behavior using complementary indicators. These include entanglement dynamics, the volume of accessible states, and temporal self-similarity.&lt;&#x2F;p&gt;
+&lt;p&gt;The resulting work was developed into the article &lt;a href=&quot;https:&#x2F;&#x2F;onlinelibrary.wiley.com&#x2F;doi&#x2F;10.1002&#x2F;andp.202400151&quot;&gt;&lt;strong&gt;“Facets of Correlated Non-Markovian Channels.”&lt;&#x2F;strong&gt;&lt;&#x2F;a&gt; The study examines the interplay between channel correlations and intrinsic non-Markovian dynamics, including entanglement evolution and the geometry of accessible states for both unital and non-unital channels.&lt;&#x2F;p&gt;
+&lt;p&gt;An important outcome of this analysis is that channel correlation does not necessarily behave as simply “more noise.”&lt;&#x2F;p&gt;
+&lt;p&gt;Instead, correlations can modify memory effects in ways that may sometimes be useful.&lt;&#x2F;p&gt;
+&lt;p&gt;For example, the thesis investigates &lt;strong&gt;freezing of quantum correlations&lt;&#x2F;strong&gt;, where a correlation measure remains approximately constant over a period despite ongoing noisy evolution.&lt;&#x2F;p&gt;
+&lt;p&gt;It also examines &lt;strong&gt;quantum error correction under correlated non-Markovian noise&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Thus, the third stage changes the perspective once again:&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+\text{Noise}
+\quad\rightarrow\quad
+\text{correlated noise}
+\quad\rightarrow\quad
+\text{memory as a dynamical resource}.
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;But there is still a deeper question.&lt;&#x2F;p&gt;
+&lt;p&gt;If a correlated channel changes the dynamics, &lt;strong&gt;where does that correlation physically come from?&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;5-stage-iv-from-effective-channels-to-microscopic-dynamics&quot;&gt;5. Stage IV — From effective channels to microscopic dynamics&lt;&#x2F;h2&gt;
+&lt;p&gt;A quantum channel is an effective description. It tells us how a quantum state changes:&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+\rho(0)\rightarrow\rho(t),
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;but it does not necessarily tell us &lt;em&gt;why&lt;&#x2F;em&gt; the evolution has that particular form.&lt;&#x2F;p&gt;
+&lt;p&gt;This limitation motivates the final stage of the thesis.&lt;&#x2F;p&gt;
+&lt;p&gt;Instead of starting from a prescribed channel, we explicitly model the &lt;strong&gt;system–environment interaction&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;A particularly interesting situation occurs when multiple quantum emitters interact with a common environment. In such a setting, the environment can mediate correlations between the systems.&lt;&#x2F;p&gt;
+&lt;p&gt;Now spatial geometry becomes important.&lt;&#x2F;p&gt;
+&lt;p&gt;If two emitters are separated by a distance $r_{12}$, the strength of their collective interaction with the environment can depend on that separation. Consequently, the same environment can produce very different entanglement dynamics depending on the spatial configuration of the quantum systems.&lt;&#x2F;p&gt;
+&lt;p&gt;This connects the thesis to the Ficek–Tanaś framework of dissipative two-atom dynamics. Their work demonstrated that spontaneous emission and common-environment interactions can generate entanglement and produce phenomena such as transient entanglement and long-lived correlations.&lt;&#x2F;p&gt;
+&lt;p&gt;Related work by Ficek and Tanaś also examined entanglement sudden birth and sudden death for two atoms interacting with a common reservoir, showing how collective behavior can produce qualitatively different entanglement dynamics.&lt;&#x2F;p&gt;
+&lt;p&gt;This provides the physical setting for the final stage of the thesis.&lt;&#x2F;p&gt;
+&lt;p&gt;The analysis considers correlated dephasing and amplitude-damping dynamics and then moves to spatially separated quantum emitters interacting through a common environment.&lt;&#x2F;p&gt;
+&lt;p&gt;The key question becomes:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;How does the physical geometry of the system–environment interaction control the evolution of quantum correlations?&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;This leads naturally to phenomena such as:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;entanglement sudden death,&lt;&#x2F;li&gt;
+&lt;li&gt;entanglement sudden birth,&lt;&#x2F;li&gt;
+&lt;li&gt;entanglement revival,&lt;&#x2F;li&gt;
+&lt;li&gt;collective decay,&lt;&#x2F;li&gt;
+&lt;li&gt;subradiant behavior,&lt;&#x2F;li&gt;
+&lt;li&gt;and entanglement trapping.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;A common environment therefore does not merely destroy entanglement. Depending on the coupling structure, it can also create, revive, or preserve correlations.&lt;&#x2F;p&gt;
+&lt;p&gt;This microscopic perspective completes the transition:&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+\text{effective correlated channel}
+\quad\longrightarrow\quad
+\text{physical interaction}
+\quad\longrightarrow\quad
+\text{correlated open-system dynamics}.
+$$&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;6-connecting-the-four-stages&quot;&gt;6. Connecting the four stages&lt;&#x2F;h2&gt;
+&lt;p&gt;The most important feature of the thesis is therefore not any individual noise model or correlation measure. It is the &lt;strong&gt;connection between levels of description&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;The research can be summarized as:&lt;&#x2F;p&gt;
+&lt;div class=&quot;thesis-flowchart-card&quot;&gt;
+  &lt;div class=&quot;flow-step&quot;&gt;
+    &lt;span class=&quot;flow-badge&quot;&gt;Structure&lt;&#x2F;span&gt;
+    &lt;span class=&quot;flow-question&quot;&gt;How are correlations characterized?&lt;&#x2F;span&gt;
+  &lt;&#x2F;div&gt;
+  &lt;div class=&quot;flow-down-arrow&quot;&gt;↓&lt;&#x2F;div&gt;
+  &lt;div class=&quot;flow-step&quot;&gt;
+    &lt;span class=&quot;flow-badge&quot;&gt;Control&lt;&#x2F;span&gt;
+    &lt;span class=&quot;flow-question&quot;&gt;How can correlations be protected?&lt;&#x2F;span&gt;
+  &lt;&#x2F;div&gt;
+  &lt;div class=&quot;flow-down-arrow&quot;&gt;↓&lt;&#x2F;div&gt;
+  &lt;div class=&quot;flow-step&quot;&gt;
+    &lt;span class=&quot;flow-badge&quot;&gt;Channel Memory&lt;&#x2F;span&gt;
+    &lt;span class=&quot;flow-question&quot;&gt;How does correlated noise modify their dynamics?&lt;&#x2F;span&gt;
+  &lt;&#x2F;div&gt;
+  &lt;div class=&quot;flow-down-arrow&quot;&gt;↓&lt;&#x2F;div&gt;
+  &lt;div class=&quot;flow-step&quot;&gt;
+    &lt;span class=&quot;flow-badge&quot;&gt;Microscopic Origin&lt;&#x2F;span&gt;
+    &lt;span class=&quot;flow-question&quot;&gt;What physical interactions generate those correlations?&lt;&#x2F;span&gt;
+  &lt;&#x2F;div&gt;
+&lt;&#x2F;div&gt;
+&lt;p&gt;This progression is useful because each stage addresses a limitation of the previous one.&lt;&#x2F;p&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th style=&quot;text-align: left&quot;&gt;Stage&lt;&#x2F;th&gt;&lt;th style=&quot;text-align: left&quot;&gt;Question&lt;&#x2F;th&gt;&lt;th style=&quot;text-align: left&quot;&gt;Description&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Chapter 2&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;What correlations are present?&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Structural&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Chapter 3&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Can they be protected?&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Operational&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Chapter 4&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;What if the channel has memory?&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Channel-level&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Chapter 5&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Where does that correlated dynamics come from?&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Microscopic&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+&lt;p&gt;The thesis therefore moves from &lt;strong&gt;measurement of a resource&lt;&#x2F;strong&gt; to &lt;strong&gt;control of the resource&lt;&#x2F;strong&gt;, then to &lt;strong&gt;understanding the structure of the noise&lt;&#x2F;strong&gt;, and finally to &lt;strong&gt;identifying the physical mechanism behind the noise&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;7-what-i-learned-from-this-workflow&quot;&gt;7. What I learned from this workflow&lt;&#x2F;h2&gt;
+&lt;p&gt;One of the broader lessons of this research is that quantum noise should not always be viewed simply as an obstacle.&lt;&#x2F;p&gt;
+&lt;p&gt;At first, the environment appears to be an adversary:&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+\text{environment}
+\rightarrow
+\text{decoherence}
+\rightarrow
+\text{loss of correlations}.
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;Weak-measurement control changes this picture by showing that the dynamics can be actively manipulated.&lt;&#x2F;p&gt;
+&lt;p&gt;Correlated channels change it further:&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+\text{memory}
+\rightarrow
+\text{modified dynamics}
+\rightarrow
+\text{potentially useful behavior}.
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;Finally, microscopic open-system models show that the environment itself can participate in the generation and preservation of quantum correlations.&lt;&#x2F;p&gt;
+&lt;p&gt;Thus, the goal is not always to eliminate environmental effects completely. A more useful perspective is to understand their &lt;strong&gt;structure&lt;&#x2F;strong&gt;, identify when they are detrimental, and determine when their correlations or memory can instead be exploited.&lt;&#x2F;p&gt;
+&lt;p&gt;Recent work on weak-measurement protection in channels with memory similarly illustrates this idea: channel memory can improve teleportation fidelity under appropriate conditions, while weak measurement can provide an additional layer of protection.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;8-the-broader-picture&quot;&gt;8. The broader picture&lt;&#x2F;h2&gt;
+&lt;p&gt;The journey from CNEI to correlated open-system dynamics can therefore be viewed as a change in perspective.&lt;&#x2F;p&gt;
+&lt;p&gt;At the beginning, the question is:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;What is the correlation?&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;Then:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Can I preserve it?&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;Then:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;How does memory in the channel change it?&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;And finally:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;What microscopic interaction produces that behavior?&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;This is ultimately the central theme connecting the thesis:&lt;&#x2F;p&gt;
+&lt;div class=&quot;thesis-horizontal-flow&quot;&gt;
+  &lt;span class=&quot;step-pill&quot;&gt;Correlation&lt;&#x2F;span&gt;
+  &lt;span class=&quot;step-arrow&quot;&gt;→&lt;&#x2F;span&gt;
+  &lt;span class=&quot;step-pill&quot;&gt;Protection&lt;&#x2F;span&gt;
+  &lt;span class=&quot;step-arrow&quot;&gt;→&lt;&#x2F;span&gt;
+  &lt;span class=&quot;step-pill&quot;&gt;Memory&lt;&#x2F;span&gt;
+  &lt;span class=&quot;step-arrow&quot;&gt;→&lt;&#x2F;span&gt;
+  &lt;span class=&quot;step-pill&quot;&gt;Microscopic Origin&lt;&#x2F;span&gt;
+&lt;&#x2F;div&gt;
+&lt;p&gt;Rather than studying quantum correlations in isolation, the thesis follows them across different levels of description—from multipartite state structure, through operational quantum-information protocols, to correlated channels and finally to microscopic open-system dynamics.&lt;&#x2F;p&gt;
+&lt;p&gt;That progression provides a unified way of thinking about quantum correlations: &lt;strong&gt;first characterize them, then protect them, understand how memory modifies them, and finally identify the physical mechanisms responsible for their dynamics.&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;selected-research-articles-behind-the-thesis&quot;&gt;Selected research articles behind the thesis&lt;&#x2F;h2&gt;
+&lt;p&gt;For readers who want to follow the technical development, several papers provide useful entry points:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Weak-measurement protection:&lt;&#x2F;strong&gt; Kim &lt;em&gt;et al.&lt;&#x2F;em&gt;, &lt;a href=&quot;https:&#x2F;&#x2F;www.nature.com&#x2F;articles&#x2F;nphys2170&quot;&gt;“Protecting entanglement from decoherence using weak measurement and quantum measurement reversal,”&lt;&#x2F;a&gt; &lt;em&gt;Nature Physics&lt;&#x2F;em&gt; &lt;strong&gt;8&lt;&#x2F;strong&gt;, 117–120 (2012). The work experimentally demonstrated the use of weak measurement and reversal for entanglement protection.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Universal quantum teleportation and weak measurements:&lt;&#x2F;strong&gt; Sabale, Kumar and Banerjee, &lt;a href=&quot;https:&#x2F;&#x2F;onlinelibrary.wiley.com&#x2F;doi&#x2F;10.1002&#x2F;andp.202300392&quot;&gt;“Toward Realization of Universal Quantum Teleportation Using Weak Measurements,”&lt;&#x2F;a&gt; &lt;em&gt;Annalen der Physik&lt;&#x2F;em&gt; &lt;strong&gt;536&lt;&#x2F;strong&gt;, 2300392 (2024). This work connects weak measurements, non-Markovianity, memory, teleportation fidelity, and fidelity deviation.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Correlated quantum channels:&lt;&#x2F;strong&gt; Addis &lt;em&gt;et al.&lt;&#x2F;em&gt;, &lt;a href=&quot;https:&#x2F;&#x2F;journals.aps.org&#x2F;pra&#x2F;abstract&#x2F;10.1103&#x2F;PhysRevA.94.032121&quot;&gt;“Dynamical Memory Effects in Correlated Quantum Channels,”&lt;&#x2F;a&gt; &lt;em&gt;Physical Review A&lt;&#x2F;em&gt; &lt;strong&gt;94&lt;&#x2F;strong&gt;, 032121 (2016). This is particularly useful for understanding the distinction between channel-use correlations and dynamical non-Markovianity.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Correlated non-Markovian channels:&lt;&#x2F;strong&gt; Sabale &lt;em&gt;et al.&lt;&#x2F;em&gt;, &lt;a href=&quot;https:&#x2F;&#x2F;onlinelibrary.wiley.com&#x2F;doi&#x2F;10.1002&#x2F;andp.202400151&quot;&gt;“Facets of Correlated Non-Markovian Channels,”&lt;&#x2F;a&gt; &lt;em&gt;Annalen der Physik&lt;&#x2F;em&gt; &lt;strong&gt;536&lt;&#x2F;strong&gt;, 2400151 (2024). The article develops the correlated-channel&#x2F;non-Markovianity analysis involving unital and non-unital channels, accessible-state volume, entanglement dynamics, and error correction.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Microscopic correlated dynamics:&lt;&#x2F;strong&gt; Ficek and Tanaś, work on two-atom entanglement and common-reservoir dynamics, provides the physical background for understanding collective dissipation, entanglement generation, sudden death, and sudden birth.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;style&gt;
+.thesis-flowchart-card {
+  max-width: 540px;
+  margin: 2.25rem auto;
+  padding: 1.5rem;
+  background: #ffffff;
+  border: 2px solid #003687;
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(0, 54, 135, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.65rem;
+}
+.flow-step {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0.85rem 1.25rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+.flow-step:hover {
+  transform: translateY(-2px);
+  border-color: #1495a7;
+}
+.flow-badge {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: #003687;
+  margin-bottom: 0.35rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.flow-question {
+  font-size: 0.95rem;
+  color: #334155;
+  font-style: italic;
+}
+.flow-down-arrow {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #1495a7;
+  line-height: 1;
+}
+
+.thesis-horizontal-flow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 1.75rem 0;
+  padding: 1rem 1.25rem;
+  background: #f0f4fc;
+  border: 1px solid #d0deee;
+  border-radius: 12px;
+}
+.step-pill {
+  background: #003687;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.92rem;
+  padding: 0.45rem 1rem;
+  border-radius: 20px;
+  display: inline-block;
+  box-shadow: 0 2px 6px rgba(0, 54, 135, 0.15);
+}
+.step-arrow {
+  color: #1495a7;
+  font-weight: 800;
+  font-size: 1.3rem;
+}
+@media (max-width: 600px) {
+  .thesis-flowchart-card {
+    padding: 1rem;
+  }
+  .thesis-horizontal-flow {
+    gap: 0.4rem;
+  }
+  .step-pill {
+    font-size: 0.8rem;
+    padding: 0.35rem 0.75rem;
+  }
+}
+&lt;&#x2F;style&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Welcome to my Blog</title>
+        <published>2025-12-05T00:00:00+00:00</published>
+        <updated>2025-12-05T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Vivek Sabale
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://viveksabale1998.github.io/posts/welcome/"/>
+        <id>https://viveksabale1998.github.io/posts/welcome/</id>
+        
+        <content type="html" xml:base="https://viveksabale1998.github.io/posts/welcome/">&lt;p&gt;Welcome to my blog! I will be sharing updates about my research, projects, and other thoughts here.&lt;&#x2F;p&gt;
+&lt;p&gt;Stay tuned for more!&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Quantum State Classification Using QNN</title>
+        <published>2024-01-04T00:00:00+00:00</published>
+        <updated>2024-01-04T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Vivek Sabale
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://viveksabale1998.github.io/projects/qnn-classification/"/>
+        <id>https://viveksabale1998.github.io/projects/qnn-classification/</id>
+        
+        <content type="html" xml:base="https://viveksabale1998.github.io/projects/qnn-classification/">&lt;h1 id=&quot;quantum-state-classification-using-qnn&quot;&gt;Quantum State Classification Using QNN&lt;&#x2F;h1&gt;
+&lt;p&gt;This project implements parameterised quantum circuits (PQCs) and quantum neural networks for entanglement and separability classification of multi-qubit quantum states. Developed in collaboration with Thirumalai and Diksha Sharma.&lt;&#x2F;p&gt;
+&lt;div class=&quot;project-actions&quot; style=&quot;margin: 1.5rem 0; display: flex; gap: 12px; flex-wrap: wrap;&quot;&gt;
+  &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Thirumalai-97&#x2F;QuantumStateClassification_UsingQNN&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; class=&quot;c-button c-button--primary c-button--small&quot; style=&quot;text-decoration: none;&quot;&gt;
+    &lt;i class=&quot;ion ion-logo-github&quot; style=&quot;margin-right: 6px;&quot;&gt;&lt;&#x2F;i&gt; View Repository on GitHub
+  &lt;&#x2F;a&gt;
+&lt;&#x2F;div&gt;
+&lt;h2 id=&quot;pushpin-key-highlights&quot;&gt;📌 Key Highlights&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Variational Architectures&lt;&#x2F;strong&gt;: Designs and tests ansatz structures optimized for state classification tasks.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Entanglement Detection&lt;&#x2F;strong&gt;: High-accuracy boundary identification distinguishing entangled from separable state geometries.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Noise Resilience&lt;&#x2F;strong&gt;: Evaluated under depolarizing and amplitude damping noise channels on simulated backends.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Quantum Battery Hamiltonian Simulations</title>
+        <published>2024-01-03T00:00:00+00:00</published>
+        <updated>2024-01-03T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Vivek Sabale
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://viveksabale1998.github.io/projects/quantum-battery/"/>
+        <id>https://viveksabale1998.github.io/projects/quantum-battery/</id>
+        
+        <content type="html" xml:base="https://viveksabale1998.github.io/projects/quantum-battery/">&lt;h1 id=&quot;quantum-battery-hamiltonian-simulations&quot;&gt;Quantum Battery Hamiltonian Simulations&lt;&#x2F;h1&gt;
+&lt;p&gt;Open-source numerical simulations of many-body quantum battery systems investigating charging dynamics, extractable work (ergotropy), and capacity speedup enabled by Dzyaloshinskii–Moriya interaction (DMI) and Heisenberg XXZ couplings.&lt;&#x2F;p&gt;
+&lt;div class=&quot;project-actions&quot; style=&quot;margin: 1.5rem 0; display: flex; gap: 12px; flex-wrap: wrap;&quot;&gt;
+  &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Suprabha-b&#x2F;QB-HS-DMI&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; class=&quot;c-button c-button--primary c-button--small&quot; style=&quot;text-decoration: none;&quot;&gt;
+    &lt;i class=&quot;ion ion-logo-github&quot; style=&quot;margin-right: 6px;&quot;&gt;&lt;&#x2F;i&gt; View Repository on GitHub
+  &lt;&#x2F;a&gt;
+&lt;&#x2F;div&gt;
+&lt;h2 id=&quot;pushpin-key-highlights&quot;&gt;📌 Key Highlights&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Spin Chain Networks&lt;&#x2F;strong&gt;: Simulates finite-size spin-1&#x2F;2 Heisenberg spin chains driven by external charging fields.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;DMI Effects&lt;&#x2F;strong&gt;: Demonstrates how asymmetric exchange interactions boost charging power and suppress energy backflow.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Ergotropy Analysis&lt;&#x2F;strong&gt;: Quantifies maximal work extraction using unitaries applied to the charged battery state.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Quantum Computing Lab Notebooks</title>
+        <published>2024-01-02T00:00:00+00:00</published>
+        <updated>2024-01-02T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Vivek Sabale
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://viveksabale1998.github.io/projects/quantum-computing-lab/"/>
+        <id>https://viveksabale1998.github.io/projects/quantum-computing-lab/</id>
+        
+        <content type="html" xml:base="https://viveksabale1998.github.io/projects/quantum-computing-lab/">&lt;h1 id=&quot;quantum-computing-lab-notebooks&quot;&gt;Quantum Computing Lab Notebooks&lt;&#x2F;h1&gt;
+&lt;p&gt;Comprehensive, open-access laboratory notebooks designed for students and researchers exploring fundamental and intermediate quantum computation, circuit composition, quantum algorithms, and introductory quantum machine learning.&lt;&#x2F;p&gt;
+&lt;div class=&quot;project-actions&quot; style=&quot;margin: 1.5rem 0; display: flex; gap: 12px; flex-wrap: wrap;&quot;&gt;
+  &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Mait-Sark&#x2F;Quantum-Computing-Lab&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; class=&quot;c-button c-button--primary c-button--small&quot; style=&quot;text-decoration: none;&quot;&gt;
+    &lt;i class=&quot;ion ion-logo-github&quot; style=&quot;margin-right: 6px;&quot;&gt;&lt;&#x2F;i&gt; View Repository on GitHub
+  &lt;&#x2F;a&gt;
+&lt;&#x2F;div&gt;
+&lt;h2 id=&quot;pushpin-covered-topics&quot;&gt;📌 Covered Topics&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Quantum Fundamentals&lt;&#x2F;strong&gt;: Superposition, entanglement, Bell state verification, and quantum teleportation.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Quantum Algorithms&lt;&#x2F;strong&gt;: Deutsch-Jozsa, Grover search algorithm, and Quantum Phase Estimation (QPE).&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Quantum Machine Learning&lt;&#x2F;strong&gt;: Quantum feature encoding, parameterised circuits, and variational state classification.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Quantum States Data Set</title>
+        <published>2024-01-01T00:00:00+00:00</published>
+        <updated>2024-01-01T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Vivek Sabale
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://viveksabale1998.github.io/projects/quantum-states/"/>
+        <id>https://viveksabale1998.github.io/projects/quantum-states/</id>
+        
+        <content type="html" xml:base="https://viveksabale1998.github.io/projects/quantum-states/">&lt;h1 id=&quot;quantum-states-data-set&quot;&gt;Quantum States Data Set&lt;&#x2F;h1&gt;
+&lt;p&gt;This open dataset provides multi-qubit density matrices categorized by their separability and entanglement characteristics, specially formatted for benchmarking quantum machine learning models, state classifiers, and entanglement witnesses.&lt;&#x2F;p&gt;
+&lt;div class=&quot;project-actions&quot; style=&quot;margin: 1.5rem 0; display: flex; gap: 12px; flex-wrap: wrap;&quot;&gt;
+  &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;viveksabale1998&#x2F;Quantum-States-Data-Set&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; class=&quot;c-button c-button--primary c-button--small&quot; style=&quot;text-decoration: none;&quot;&gt;
+    &lt;i class=&quot;ion ion-logo-github&quot; style=&quot;margin-right: 6px;&quot;&gt;&lt;&#x2F;i&gt; View Repository on GitHub
+  &lt;&#x2F;a&gt;
+&lt;&#x2F;div&gt;
+&lt;h2 id=&quot;bar-chart-dataset-contents&quot;&gt;📊 Dataset Contents&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Two-Qubit States&lt;&#x2F;strong&gt;: Werner states, Horodecki states, Bell diagonal states, and Maximally Entangled Mixed States (MEMS).&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Three-Qubit States&lt;&#x2F;strong&gt;: Genuine tripartite entangled states (GHZ, W), biseparable states, and fully separable states.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Parameters Provided&lt;&#x2F;strong&gt;: Density matrices ($\rho$), concurrence, negativity, purity, and entanglement spectrum eigenvalues.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</content>
+        
+    </entry>
+</feed>

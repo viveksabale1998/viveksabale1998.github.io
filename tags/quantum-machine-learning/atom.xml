@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>Home - quantum-machine-learning</title>
+    <subtitle>Academic website of Vivek Sabale — research in quantum information and open quantum systems.</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://viveksabale1998.github.io/tags/quantum-machine-learning/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://viveksabale1998.github.io/"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2026-03-05T00:00:00+00:00</updated>
+    <id>https://viveksabale1998.github.io/tags/quantum-machine-learning/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Quantum Machine Learning for Quantum State Classification: From QSVMs to Quantum Neural Networks</title>
+        <published>2026-03-05T00:00:00+00:00</published>
+        <updated>2026-03-05T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Vivek Sabale
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://viveksabale1998.github.io/posts/qml-quantum-state-classification/"/>
+        <id>https://viveksabale1998.github.io/posts/qml-quantum-state-classification/</id>
+        
+        <content type="html" xml:base="https://viveksabale1998.github.io/posts/qml-quantum-state-classification/">&lt;p&gt;In the current &lt;strong&gt;Noisy Intermediate-Scale Quantum (NISQ)&lt;&#x2F;strong&gt; era, one of the most critical operational tasks is determining whether a prepared quantum register is truly entangled, separable, or corrupted by environmental noise.&lt;&#x2F;p&gt;
+&lt;p&gt;Traditionally, characterizing an unknown quantum state requires &lt;strong&gt;Full Quantum State Tomography (QST)&lt;&#x2F;strong&gt;. However, QST requires measuring $4^N - 1$ independent expectation values for an $N$-qubit system. For even modest register sizes ($N \ge 6$), full tomography becomes computationally and experimentally intractable.&lt;&#x2F;p&gt;
+&lt;p&gt;To break this measurement bottleneck, our research explores &lt;strong&gt;Quantum Machine Learning (QML)&lt;&#x2F;strong&gt;. By leveraging quantum kernel methods and variational quantum circuits, we demonstrate that quantum algorithms can directly learn the boundaries separating separable from entangled states—even across unseen noise domains.&lt;&#x2F;p&gt;
+&lt;p&gt;Here, I discuss our two recent publications on Google Scholar that advance this frontier:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Quantum Support Vector Machines (QSVM)&lt;&#x2F;strong&gt; in &lt;em&gt;Quantum Machine Intelligence&lt;&#x2F;em&gt; (Springer, 2025)&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Quantum Neural Networks (QNN)&lt;&#x2F;strong&gt; in &lt;em&gt;arXiv:2504.06622&lt;&#x2F;em&gt; (2025)&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;1-quantum-support-vector-machines-for-cross-domain-classification&quot;&gt;1. Quantum Support Vector Machines for Cross-Domain Classification&lt;&#x2F;h2&gt;
+&lt;p&gt;Support Vector Machines (SVMs) are among the most robust classical supervised learning algorithms. They work by using a &lt;strong&gt;kernel function&lt;&#x2F;strong&gt; to project non-linearly separable data into a higher-dimensional feature space where an optimal separating hyperplane can be constructed.&lt;&#x2F;p&gt;
+&lt;p&gt;In quantum computing, this principle translates into &lt;strong&gt;Quantum Kernel Estimation&lt;&#x2F;strong&gt;:&lt;&#x2F;p&gt;
+&lt;p&gt;$$K(x_i, x_j) = |\langle \phi(x_i) | \phi(x_j) \rangle|^2$$&lt;&#x2F;p&gt;
+&lt;p&gt;A quantum computer evaluates the transition fidelity between states prepared by parameterized quantum circuits $\mathcal{U}_\Phi(x)$, while a classical optimizer solves the resulting convex quadratic programming problem.&lt;&#x2F;p&gt;
+&lt;p&gt;Our investigation of this approach was published in &lt;em&gt;Quantum Machine Intelligence&lt;&#x2F;em&gt;:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Harnessing quantum support vector machines for cross-domain classification of quantum states&lt;&#x2F;strong&gt;&lt;br &#x2F;&gt;
+&lt;em&gt;D. Sharma, Vivek Balasaheb Sabale, P. Singh, and A. Kumar&lt;&#x2F;em&gt;&lt;br &#x2F;&gt;
+&lt;strong&gt;Quantum Machine Intelligence&lt;&#x2F;strong&gt; 7 (1), 49 (2025)&lt;br &#x2F;&gt;
+🔗 &lt;a href=&quot;https:&#x2F;&#x2F;link.springer.com&#x2F;article&#x2F;10.1007&#x2F;s42484-025-00274-4&quot;&gt;Read on Springer Nature ↗&lt;&#x2F;a&gt; | &lt;a href=&quot;https:&#x2F;&#x2F;scholar.google.com&#x2F;citations?user=LdMLDdwAAAAJ&amp;amp;hl=en&quot;&gt;Google Scholar ↗&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;h3 id=&quot;key-contributions-results&quot;&gt;Key Contributions &amp;amp; Results&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Cross-Domain Generalization&lt;&#x2F;strong&gt;: Most existing classifiers are tested only on the exact noise parameters they were trained on. We trained our QSVM on specific families of states (such as Werner states and Bell states under local depolarizing noise) and tested it on entirely different noise regimes (amplitude damping and phase damping). The quantum kernel demonstrated remarkable cross-domain resilience, accurately classifying the entanglement boundary without needing retraining.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Entanglement vs. Separability Boundary&lt;&#x2F;strong&gt;: The quantum kernel successfully mapped the intricate boundary between entangled states (concurrence $C &amp;gt; 0$) and unentangled separable mixtures, yielding over &lt;strong&gt;95%+ classification accuracy&lt;&#x2F;strong&gt; with significantly fewer measurements than tomography.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;2-quantum-neural-networks-facilitating-quantum-state-classification&quot;&gt;2. Quantum Neural Networks Facilitating Quantum State Classification&lt;&#x2F;h2&gt;
+&lt;p&gt;In this work we used &lt;strong&gt;Variational Quantum Neural Networks (QNNs)&lt;&#x2F;strong&gt; that offer end-to-end quantum inference directly on quantum hardware.&lt;&#x2F;p&gt;
+&lt;p&gt;Our research develops a tailored QNN framework specifically architected for multi-qubit state classification:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Quantum neural networks facilitating quantum state classification&lt;&#x2F;strong&gt;&lt;br &#x2F;&gt;
+&lt;em&gt;D. Sharma, Vivek Balasaheb Sabale, M. Thirumalai, and A. Kumar&lt;&#x2F;em&gt;&lt;br &#x2F;&gt;
+&lt;strong&gt;arXiv preprint&lt;&#x2F;strong&gt; arXiv:2504.06622 (2025)&lt;br &#x2F;&gt;
+🔗 &lt;a href=&quot;https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;2504.06622&quot;&gt;Read on arXiv ↗&lt;&#x2F;a&gt; | &lt;a href=&quot;https:&#x2F;&#x2F;scholar.google.com&#x2F;citations?user=LdMLDdwAAAAJ&amp;amp;hl=en&quot;&gt;Google Scholar ↗&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;h3 id=&quot;architecture-of-the-variational-classifier&quot;&gt;Architecture of the Variational Classifier&lt;&#x2F;h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Quantum State Ingestion&lt;&#x2F;strong&gt;: The candidate quantum state $\rho_{\text{in}}$ is plrepared using a initial quantum circuit. It brings down the required resources to number of qubits rather than number of elements in qubit statevectors.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Parameterized Variational Layers&lt;&#x2F;strong&gt;: The register undergoes alternating layers of single-qubit rotations:
+$$R_y(\theta_{i,l}) \quad \text{and} \quad R_z(\phi_{i,l})$$
+interspersed with entangling gates (such as controlled-NOT or controlled-Z ladders) to construct an expressive ansatz. We also use unitary operations constucted by Sz-nagi dialation theorem as it prowite parametrise control over entangling power and help to create dataset for study.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Measurement &amp;amp; Cost Function&lt;&#x2F;strong&gt;: A designated readout qubit is measured in the Pauli-$Z$ basis:
+$$\langle Z_{\text{out}} \rangle = \text{Tr}\left[ Z \cdot \mathcal{U}(\vec{\theta}) \rho_{\text{in}} \mathcal{U}^\dagger(\vec{\theta}) \right]$$&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Classical Parameter Optimization&lt;&#x2F;strong&gt;: The parameter vector $\vec{\theta}$ is updated iteratively via gradient-based (Adam, SPSA) or gradient-free (COBYLA) algorithms to minimize binary cross-entropy or mean squared error.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;h3 id=&quot;addressing-the-barren-plateau-phenomenon&quot;&gt;Addressing the Barren Plateau Phenomenon&lt;&#x2F;h3&gt;
+&lt;p&gt;A notorious hurdle in deep QNNs is &lt;strong&gt;barren plateaus&lt;&#x2F;strong&gt;—where gradients vanish exponentially with qubit count $N$. In this work, we tackled this issue by:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Employing &lt;strong&gt;local measurement observables&lt;&#x2F;strong&gt; rather than global projectors.&lt;&#x2F;li&gt;
+&lt;li&gt;Structuring shallow, hardware-efficient ansatz layers that balance expressibility with gradient trainability.&lt;&#x2F;li&gt;
+&lt;li&gt;Initializing parameters within identity-like perturbation regimes to ensure consistent convergence.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;comparing-the-two-paradigms-qsvm-vs-qnn&quot;&gt;Comparing the Two Paradigms: QSVM vs. QNN&lt;&#x2F;h2&gt;
+&lt;p&gt;Both quantum machine learning architectures exhibit distinct strengths when applied to quantum state diagnosis:&lt;&#x2F;p&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th style=&quot;text-align: left&quot;&gt;Feature&lt;&#x2F;th&gt;&lt;th style=&quot;text-align: left&quot;&gt;Quantum Support Vector Machine (QSVM)&lt;&#x2F;th&gt;&lt;th style=&quot;text-align: left&quot;&gt;Variational Quantum Neural Network (QNN)&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Optimization Landscape&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Convex&lt;&#x2F;strong&gt; (guaranteed global optimum)&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Non-convex&lt;&#x2F;strong&gt; (potential local minima &amp;amp; barren plateaus)&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Measurement Burden&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Evaluates $O(M^2)$ pairwise kernel fidelities for $M$ data samples&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Evaluates $O(\text{epochs} \times \text{batch size})$ forward-backward passes&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Hardware Execution&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Quantum computer computes kernels; classical CPU performs classification&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Fully on-chip inference after parameters $\vec{\theta}^*$ are trained&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Cross-Domain Transfer&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Exceptional transferability across unseen noise parameters&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Requires expressive parameter retraining for altered noise channels&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Primary Reference&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;em&gt;Quantum Mach. Intell.&lt;&#x2F;em&gt; 7, 49 (2025)&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;em&gt;arXiv:2504.06622&lt;&#x2F;em&gt; (2025)&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;why-this-matters-for-the-quantum-roadmap&quot;&gt;Why This Matters for the Quantum Roadmap&lt;&#x2F;h2&gt;
+&lt;p&gt;As quantum computers scale toward hundreds and thousands of physical qubits, autonomous state verification and error diagnosis will be paramount. Traditional diagnostic protocols scale with Hilbert space dimension ($\mathcal{D} = 2^N$), making classical validation impossible.&lt;&#x2F;p&gt;
+&lt;p&gt;By pairing quantum hardware with quantum learning algorithms:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;We can &lt;strong&gt;benchmark quantum entanglement&lt;&#x2F;strong&gt; in-situ inside quantum processors.&lt;&#x2F;li&gt;
+&lt;li&gt;We can detect &lt;strong&gt;noise channel drift&lt;&#x2F;strong&gt; in real time during circuit execution.&lt;&#x2F;li&gt;
+&lt;li&gt;We open new avenues for &lt;strong&gt;fault-tolerant quantum networks&lt;&#x2F;strong&gt;, where intermediate nodes can certify entanglement quality before authorizing teleportation protocols.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;For more details, check out both papers linked above or visit my &lt;a href=&quot;https:&#x2F;&#x2F;scholar.google.com&#x2F;citations?user=LdMLDdwAAAAJ&amp;amp;hl=en&quot;&gt;Google Scholar profile&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+</feed>
