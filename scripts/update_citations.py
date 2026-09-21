@@ -1,81 +1,162 @@
 #!/usr/bin/env python3
 """
-Automatically fetches citation statistics from Google Scholar for Vivek Sabale
+Automatically fetches citation statistics from Semantic Scholar API for Vivek Sabale
 and updates the pictorial stats section in content/publications.md.
+
+Uses the free Semantic Scholar API (no auth required, no bot-detection issues
+in CI environments) instead of scraping Google Scholar directly.
 """
 
+import json
 import os
 import re
 import sys
+import time
+import urllib.error
 import urllib.request
+from collections import defaultdict
 
-SCHOLAR_USER_ID = "LdMLDdwAAAAJ"
-SCHOLAR_URL = f"https://scholar.google.com/citations?user={SCHOLAR_USER_ID}&hl=en"
-PUBLICATIONS_FILE = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "content", "publications.md")
+# Semantic Scholar author ID for Vivek Balasaheb Sabale
+SEMANTIC_SCHOLAR_AUTHOR_ID = "2223756880"
+SEMANTIC_SCHOLAR_BASE = "https://api.semanticscholar.org/graph/v1"
+
+# Google Scholar profile (for the badge link on the page — not scraped)
+SCHOLAR_PROFILE_URL = "https://scholar.google.com/citations?user=LdMLDdwAAAAJ&hl=en"
+
+PUBLICATIONS_FILE = os.path.join(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+    "content",
+    "publications.md",
+)
+
+_HEADERS = {"User-Agent": "viveksabale-site-bot/1.0 (contact: sabale.1@iitj.ac.in)"}
 
 
-def fetch_scholar_stats():
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en-US,en;q=0.9",
-    }
-    
-    req = urllib.request.Request(SCHOLAR_URL, headers=headers)
-    try:
-        html = urllib.request.urlopen(req, timeout=15).read().decode("utf-8")
-    except Exception as e:
-        print(f"⚠️ Warning: Could not fetch Google Scholar page ({e}). Skipping update without failing.")
+def _fetch_json(url: str, retries: int = 4) -> dict | None:
+    """Fetch JSON from URL with retry logic and 429-aware backoff."""
+    for attempt in range(1, retries + 1):
+        try:
+            req = urllib.request.Request(url, headers=_HEADERS)
+            resp = urllib.request.urlopen(req, timeout=15)
+            return json.loads(resp.read().decode("utf-8"))
+        except urllib.error.HTTPError as e:
+            if e.code == 429:
+                # Rate limited — wait longer before retrying
+                wait = 10 * attempt
+                print(f"  Rate limited (429) on attempt {attempt}/{retries}. Waiting {wait}s...")
+                time.sleep(wait)
+            else:
+                print(f"  Attempt {attempt}/{retries} failed for {url}: {e}")
+                if attempt < retries:
+                    time.sleep(2 ** attempt)
+        except Exception as e:
+            print(f"  Attempt {attempt}/{retries} failed for {url}: {e}")
+            if attempt < retries:
+                time.sleep(2 ** attempt)
+    return None
+
+
+def fetch_scholar_stats() -> dict | None:
+    """
+    Fetches citation metrics from the Semantic Scholar API.
+
+    Returns a dict with keys:
+      - citations (int): total citation count
+      - h_index (int): h-index
+      - i10_index (int): number of papers with >= 10 citations
+      - yearly (list[tuple[str, int]]): sorted list of (year_str, count) pairs
+    """
+    print("📡 Fetching author stats from Semantic Scholar API...")
+
+    # 1. Get top-level author metrics
+    author_url = (
+        f"{SEMANTIC_SCHOLAR_BASE}/author/{SEMANTIC_SCHOLAR_AUTHOR_ID}"
+        "?fields=citationCount,hIndex,paperCount"
+    )
+    author_data = _fetch_json(author_url)
+    if not author_data:
+        print("⚠️  Warning: Could not fetch author data from Semantic Scholar.")
         return None
 
-    # Parse citation summary table
-    cit_match = re.search(r'Citations.*?class=\"gsc_rsb_std\">(\d+)', html)
-    h_match = re.search(r'h-index.*?class=\"gsc_rsb_std\">(\d+)', html)
-    i10_match = re.search(r'i10-index.*?class=\"gsc_rsb_std\">(\d+)', html)
+    citations = author_data.get("citationCount", 0)
+    h_index = author_data.get("hIndex", 0)
 
-    if not (cit_match and h_match and i10_match):
-        print("⚠️ Warning: Could not parse table metrics from Google Scholar response. Skipping update.")
+    # 2. Get per-paper citation counts to compute i10-index
+    papers_url = (
+        f"{SEMANTIC_SCHOLAR_BASE}/author/{SEMANTIC_SCHOLAR_AUTHOR_ID}"
+        "/papers?fields=paperId,title,citationCount&limit=100"
+    )
+    papers_data = _fetch_json(papers_url)
+    if not papers_data:
+        print("⚠️  Warning: Could not fetch papers list from Semantic Scholar.")
         return None
 
-    citations = int(cit_match.group(1))
-    h_index = int(h_match.group(1))
-    i10_index = int(i10_match.group(1))
+    papers = papers_data.get("data", [])
+    i10_index = sum(1 for p in papers if p.get("citationCount", 0) >= 10)
 
-    # Parse years and counts from histogram
-    years = re.findall(r'<span class=\"gsc_g_t\"[^>]*>(\d+)</span>', html)
-    counts = [int(c) for c in re.findall(r'<span class=\"gsc_g_al\">(\d+)</span>', html)]
+    # 3. Build per-year citation histogram from citing papers
+    print(f"  Found {len(papers)} papers — building yearly citation histogram...")
+    yearly: dict[int, int] = defaultdict(int)
+    for paper in papers:
+        pid = paper.get("paperId")
+        if not pid:
+            continue
+        cit_url = (
+            f"{SEMANTIC_SCHOLAR_BASE}/paper/{pid}"
+            "/citations?fields=year&limit=500"
+        )
+        cit_data = _fetch_json(cit_url)
+        if not cit_data:
+            continue
+        for entry in cit_data.get("data", []):
+            yr = entry.get("citingPaper", {}).get("year")
+            if yr and isinstance(yr, int):
+                yearly[yr] += 1
+        # Be polite to the API — 2s between paper requests to avoid 429s
+        time.sleep(2)
 
-    # Pair them together
-    yearly_data = []
-    if len(years) == len(counts) and years:
-        yearly_data = list(zip(years, counts))
-    else:
-        yearly_data = [("2024", 5), ("2025", 23), ("2026", 21)]
+    yearly_sorted = sorted(yearly.items())  # [(year_int, count), ...]
+    yearly_list = [(str(yr), cnt) for yr, cnt in yearly_sorted]
+
+    print(
+        f"📊 Stats: {citations} citations | h-index {h_index} | i10-index {i10_index}"
+    )
+    if yearly_list:
+        print(f"   Yearly: {yearly_list}")
 
     return {
         "citations": citations,
         "h_index": h_index,
         "i10_index": i10_index,
-        "yearly": yearly_data,
+        "yearly": yearly_list,
     }
 
 
-def generate_html_block(stats):
+def generate_html_block(stats: dict) -> str:
     citations = stats["citations"]
     h_index = stats["h_index"]
     i10_index = stats["i10_index"]
     yearly = stats["yearly"]
 
-    max_count = max([c for _, c in yearly]) if yearly else 1
-    
+    max_count = max((c for _, c in yearly), default=1)
+
     bars_html = []
     for year, count in yearly:
         pct = max(int(round((count / max_count) * 100)), 12) if max_count > 0 else 12
-        bars_html.append(f'<div class="hist-col"><div class="hist-value">{count}</div><div class="hist-bar-track"><div class="hist-bar-fill" style="height: {pct}%;"></div></div><div class="hist-label">{year}</div></div>')
+        bars_html.append(
+            f'<div class="hist-col">'
+            f'<div class="hist-value">{count}</div>'
+            f'<div class="hist-bar-track">'
+            f'<div class="hist-bar-fill" style="height: {pct}%;"></div>'
+            f'</div>'
+            f'<div class="hist-label">{year}</div>'
+            f'</div>'
+        )
 
     bars_str = "\n".join(bars_html)
 
-    # Note: Zero leading spaces and no empty lines to prevent CommonMark from treating HTML as code blocks
+    # Note: Zero leading spaces and no empty lines to prevent CommonMark
+    # from treating raw HTML as indented code blocks.
     return f"""<!-- CITATION_METRICS_START -->
 <div class="metrics-overview">
 <div class="metrics-grid">
@@ -85,17 +166,17 @@ def generate_html_block(stats):
 </div>
 <div class="metric-card">
 <div class="metric-icon-wrap hindex-theme"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></div>
-<div class="metric-body"><div class="metric-num">{h_index}</div><div class="metric-title">h-index</div><div class="metric-sub">{h_index} papers with ≥ {h_index} citations</div></div>
+<div class="metric-body"><div class="metric-num">{h_index}</div><div class="metric-title">h-index</div><div class="metric-sub">{h_index} papers with &ge; {h_index} citations</div></div>
 </div>
 <div class="metric-card">
 <div class="metric-icon-wrap i10-theme"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
-<div class="metric-body"><div class="metric-num">{i10_index}</div><div class="metric-title">i10-index</div><div class="metric-sub">{i10_index} papers with ≥ 10 citations</div></div>
+<div class="metric-body"><div class="metric-num">{i10_index}</div><div class="metric-title">i10-index</div><div class="metric-sub">{i10_index} papers with &ge; 10 citations</div></div>
 </div>
 </div>
 <div class="chart-box">
 <div class="chart-header">
 <div class="chart-title"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -3px; margin-right: 6px;"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Citations Growth</div>
-<a href="https://scholar.google.com/citations?user=LdMLDdwAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" class="scholar-badge"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: -2px; margin-right: 4px;"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4 3.18v6.82h3v-4.5h10v4.5h3V12.7l4-3.2L12 0z"/></svg>Google Scholar Profile ↗</a>
+<a href="{SCHOLAR_PROFILE_URL}" target="_blank" rel="noopener noreferrer" class="scholar-badge"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: -2px; margin-right: 4px;"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4 3.18v6.82h3v-4.5h10v4.5h3V12.7l4-3.2L12 0z"/></svg>Google Scholar Profile ↗</a>
 </div>
 <div class="histogram">
 {bars_str}
@@ -136,14 +217,12 @@ def generate_html_block(stats):
 <!-- CITATION_METRICS_END -->"""
 
 
-def main():
-    print("🔍 Fetching latest Google Scholar metrics...")
+def main() -> int:
+    print("🔍 Fetching latest citation metrics from Semantic Scholar...")
     stats = fetch_scholar_stats()
     if not stats:
-        print("Done (no changes made).")
+        print("Done (no changes made — could not retrieve stats).")
         return 0
-
-    print(f"📊 Found: {stats['citations']} citations, h-index {stats['h_index']}, i10-index {stats['i10_index']}")
 
     if not os.path.exists(PUBLICATIONS_FILE):
         print(f"❌ Error: {PUBLICATIONS_FILE} does not exist.")
