@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>Home - quantum-correlations</title>
+    <subtitle>Academic website of Vivek Sabale — research in quantum information and open quantum systems.</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://viveksabale1998.github.io/tags/quantum-correlations/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://viveksabale1998.github.io/"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2026-03-01T00:00:00+00:00</updated>
+    <id>https://viveksabale1998.github.io/tags/quantum-correlations/atom.xml</id>
+    <entry xml:lang="en">
+        <title>From Quantum Correlations to Their Microscopic Origin: A Journey Through Noise, Memory, and Open-System Dynamics</title>
+        <published>2026-03-01T00:00:00+00:00</published>
+        <updated>2026-03-01T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Vivek Sabale
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://viveksabale1998.github.io/posts/thesis-workflow/"/>
+        <id>https://viveksabale1998.github.io/posts/thesis-workflow/</id>
+        
+        <content type="html" xml:base="https://viveksabale1998.github.io/posts/thesis-workflow/">&lt;p&gt;Quantum technologies rely on phenomena that have no direct classical counterpart. Among them, &lt;strong&gt;quantum correlations&lt;&#x2F;strong&gt;—and particularly entanglement—play a central role in quantum communication, computation, sensing, and information processing. Yet there is a fundamental difficulty: quantum correlations are fragile. Interaction with an environment can degrade them, memory in a quantum channel can modify their dynamics, and collective interactions with a common environment can produce behavior that is very different from that of independently evolving systems.&lt;&#x2F;p&gt;
+&lt;p&gt;My doctoral research investigates this problem from several complementary perspectives. Rather than treating quantum correlations, noise, memory, and open-system dynamics as separate topics, the thesis develops a progression:&lt;&#x2F;p&gt;
+&lt;div class=&quot;thesis-horizontal-flow&quot;&gt;
+  &lt;span class=&quot;step-pill&quot;&gt;Characterization&lt;&#x2F;span&gt;
+  &lt;span class=&quot;step-arrow&quot;&gt;→&lt;&#x2F;span&gt;
+  &lt;span class=&quot;step-pill&quot;&gt;Protection&lt;&#x2F;span&gt;
+  &lt;span class=&quot;step-arrow&quot;&gt;→&lt;&#x2F;span&gt;
+  &lt;span class=&quot;step-pill&quot;&gt;Channel Memory&lt;&#x2F;span&gt;
+  &lt;span class=&quot;step-arrow&quot;&gt;→&lt;&#x2F;span&gt;
+  &lt;span class=&quot;step-pill&quot;&gt;Microscopic Dynamics&lt;&#x2F;span&gt;
+&lt;&#x2F;div&gt;
+&lt;p&gt;The central question evolves along the way:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;How can quantum correlations be characterized, protected, understood under correlated noise, and ultimately connected to their microscopic physical origin?&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;1-why-start-with-quantum-correlations&quot;&gt;1. Why start with quantum correlations?&lt;&#x2F;h2&gt;
+&lt;p&gt;Quantum correlations are not merely mathematical features of quantum states. They can serve as resources for information-processing tasks.&lt;&#x2F;p&gt;
+&lt;p&gt;Quantum teleportation is one of the clearest examples. In the standard teleportation protocol, an unknown quantum state can be reconstructed at a distant location using a shared entangled state and classical communication. Experimental demonstrations of quantum teleportation established that this is not merely a theoretical possibility but a realizable quantum-information protocol.&lt;&#x2F;p&gt;
+&lt;p&gt;However, the usefulness of an entangled state is not determined simply by whether it is entangled. Its &lt;strong&gt;structure and strength of correlations&lt;&#x2F;strong&gt; matter.&lt;&#x2F;p&gt;
+&lt;p&gt;This immediately raises the first question:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;How should we characterize the correlations contained in a complex multipartite quantum state?&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;For two-qubit systems, quantities such as concurrence provide powerful tools. For larger systems, however, the situation becomes considerably more complicated. A multipartite state can contain correlations at different orders, and pairwise measures do not necessarily reveal the complete hierarchy of many-body correlations.&lt;&#x2F;p&gt;
+&lt;p&gt;This motivates the first part of the thesis.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;2-stage-i-characterizing-multipartite-quantum-correlations&quot;&gt;2. Stage I — Characterizing multipartite quantum correlations&lt;&#x2F;h2&gt;
+&lt;p&gt;The first research direction focuses on the &lt;strong&gt;structure of quantum correlations&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;The central idea is to use connected correlations—or cumulants—to separate genuine higher-order contributions from correlations that can be constructed from lower-order terms. This leads to the &lt;strong&gt;Cumulant-Norm Entanglement Index (CNEI)&lt;&#x2F;strong&gt;, a correlation-based framework designed to characterize multipartite entanglement.&lt;&#x2F;p&gt;
+&lt;p&gt;The use of cumulants is particularly natural because cumulants are designed to isolate irreducible correlations. Instead of asking only whether a multipartite state is entangled, the approach asks a more refined question:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;What order of correlation is genuinely present in the state?&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;The resulting index is investigated with respect to separability, local-unitary properties, and different multipartite states. It is also compared with conventional entanglement measures to understand what additional structural information can be obtained from connected correlations.&lt;&#x2F;p&gt;
+&lt;p&gt;This first stage establishes the &lt;strong&gt;structural viewpoint&lt;&#x2F;strong&gt; of the thesis:&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+\text{Quantum state}
+\quad\longrightarrow\quad
+\text{correlation structure}
+\quad\longrightarrow\quad
+\text{quantitative characterization}.
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;But characterization is only the beginning.&lt;&#x2F;p&gt;
+&lt;p&gt;A correlation can be quantified perfectly and still be practically useless if environmental noise destroys it before it can be used.&lt;&#x2F;p&gt;
+&lt;p&gt;This leads to the second question:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Once quantum correlations have been characterized, how can they be protected?&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;3-stage-ii-protecting-quantum-correlations-from-noise&quot;&gt;3. Stage II — Protecting quantum correlations from noise&lt;&#x2F;h2&gt;
+&lt;p&gt;Real quantum systems are open systems. They interact with their surroundings, and these interactions introduce decoherence and dissipation.&lt;&#x2F;p&gt;
+&lt;p&gt;For quantum teleportation, this has a direct operational consequence. The shared entangled resource becomes degraded, and the quality of the teleported state decreases.&lt;&#x2F;p&gt;
+&lt;p&gt;Teleportation fidelity is therefore a natural quantity for measuring the performance of the protocol. But average fidelity alone does not tell the entire story. A protocol may perform well on average while treating different input states differently.&lt;&#x2F;p&gt;
+&lt;p&gt;This is where &lt;strong&gt;fidelity deviation&lt;&#x2F;strong&gt; becomes important. It measures the variation of teleportation fidelity over the input-state space and provides a way of assessing the uniformity required for universal quantum teleportation.&lt;&#x2F;p&gt;
+&lt;p&gt;This motivates the second stage of the thesis:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Can quantum correlations be actively protected against noisy evolution?&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;One approach investigated in the thesis is &lt;strong&gt;weak measurement (WM) and weak-measurement reversal (RWM)&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Weak measurement provides a way of extracting partial information from a quantum system while introducing less disturbance than a projective measurement. A subsequent reversal operation can partially compensate for the measurement-induced disturbance.&lt;&#x2F;p&gt;
+&lt;p&gt;The idea is not merely theoretical. Kim &lt;em&gt;et al.&lt;&#x2F;em&gt; demonstrated experimentally that weak measurement and measurement reversal can be used to protect entanglement from decoherence and even circumvent entanglement sudden death under suitable conditions.&lt;&#x2F;p&gt;
+&lt;p&gt;The thesis extends this protection perspective to different noise environments and examines their consequences for quantum correlations and teleportation.&lt;&#x2F;p&gt;
+&lt;p&gt;The analysis includes Markovian and non-Markovian noise processes and examines how WM&#x2F;RWM affects:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;entanglement,&lt;&#x2F;li&gt;
+&lt;li&gt;teleportation fidelity,&lt;&#x2F;li&gt;
+&lt;li&gt;fidelity deviation,&lt;&#x2F;li&gt;
+&lt;li&gt;information back-flow,&lt;&#x2F;li&gt;
+&lt;li&gt;and the usefulness of imperfectly entangled states for teleportation.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;This research direction is also directly connected to the article &lt;a href=&quot;https:&#x2F;&#x2F;onlinelibrary.wiley.com&#x2F;doi&#x2F;10.1002&#x2F;andp.202300392&quot;&gt;&lt;strong&gt;“Toward Realization of Universal Quantum Teleportation Using Weak Measurements,”&lt;&#x2F;strong&gt;&lt;&#x2F;a&gt; which investigates weak measurements, memory effects, and non-Markovian dynamics in the context of universal quantum teleportation.&lt;&#x2F;p&gt;
+&lt;p&gt;The important conceptual transition is:&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+\text{Characterize correlations}
+\quad\rightarrow\quad
+\text{Protect correlations}.
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;But this raises another issue.&lt;&#x2F;p&gt;
+&lt;p&gt;The environment does not always act independently at every stage.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;4-stage-iii-when-the-noise-itself-has-memory&quot;&gt;4. Stage III — When the noise itself has memory&lt;&#x2F;h2&gt;
+&lt;p&gt;The previous stage treats noise as a dynamical process acting on the quantum system. But in realistic communication scenarios, &lt;strong&gt;successive uses of a quantum channel may themselves be correlated&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;This creates an important distinction between two types of memory.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;environmental-memory&quot;&gt;Environmental memory&lt;&#x2F;h3&gt;
+&lt;p&gt;A system interacts with an environment that retains information about its previous state and can subsequently return information to the system.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;channel-use-memory&quot;&gt;Channel-use memory&lt;&#x2F;h3&gt;
+&lt;p&gt;Different applications of a quantum channel are correlated. The noise acting during one channel use is therefore not statistically independent of the noise acting during another.&lt;&#x2F;p&gt;
+&lt;p&gt;These two ideas of memory are conceptually distinct, and their interplay has been studied explicitly in correlated quantum channels. Addis &lt;em&gt;et al.&lt;&#x2F;em&gt;, for example, showed how correlations between multiple channel uses can be related to non-Markovianity in the resulting dynamical map.&lt;&#x2F;p&gt;
+&lt;p&gt;This distinction forms the basis of the third stage of the thesis.&lt;&#x2F;p&gt;
+&lt;p&gt;Instead of asking:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;“How can we protect correlations from noise?”&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;the question becomes:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;“What happens when the noise process itself possesses correlations?”&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;A correlation parameter $\mu$ is used to interpolate between independent and fully correlated channel action:&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+\mu=0
+\quad\rightarrow\quad
+\text{uncorrelated channel},
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+0&amp;lt;\mu&amp;lt;1
+\quad\rightarrow\quad
+\text{partially correlated channel},
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+\mu=1
+\quad\rightarrow\quad
+\text{fully correlated channel}.
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;This framework allows the influence of channel correlation to be studied independently of the underlying noise model.&lt;&#x2F;p&gt;
+&lt;p&gt;The thesis investigates both &lt;strong&gt;unital and non-unital correlated channels&lt;&#x2F;strong&gt; and examines their non-Markovian behavior using complementary indicators. These include entanglement dynamics, the volume of accessible states, and temporal self-similarity.&lt;&#x2F;p&gt;
+&lt;p&gt;The resulting work was developed into the article &lt;a href=&quot;https:&#x2F;&#x2F;onlinelibrary.wiley.com&#x2F;doi&#x2F;10.1002&#x2F;andp.202400151&quot;&gt;&lt;strong&gt;“Facets of Correlated Non-Markovian Channels.”&lt;&#x2F;strong&gt;&lt;&#x2F;a&gt; The study examines the interplay between channel correlations and intrinsic non-Markovian dynamics, including entanglement evolution and the geometry of accessible states for both unital and non-unital channels.&lt;&#x2F;p&gt;
+&lt;p&gt;An important outcome of this analysis is that channel correlation does not necessarily behave as simply “more noise.”&lt;&#x2F;p&gt;
+&lt;p&gt;Instead, correlations can modify memory effects in ways that may sometimes be useful.&lt;&#x2F;p&gt;
+&lt;p&gt;For example, the thesis investigates &lt;strong&gt;freezing of quantum correlations&lt;&#x2F;strong&gt;, where a correlation measure remains approximately constant over a period despite ongoing noisy evolution.&lt;&#x2F;p&gt;
+&lt;p&gt;It also examines &lt;strong&gt;quantum error correction under correlated non-Markovian noise&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Thus, the third stage changes the perspective once again:&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+\text{Noise}
+\quad\rightarrow\quad
+\text{correlated noise}
+\quad\rightarrow\quad
+\text{memory as a dynamical resource}.
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;But there is still a deeper question.&lt;&#x2F;p&gt;
+&lt;p&gt;If a correlated channel changes the dynamics, &lt;strong&gt;where does that correlation physically come from?&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;5-stage-iv-from-effective-channels-to-microscopic-dynamics&quot;&gt;5. Stage IV — From effective channels to microscopic dynamics&lt;&#x2F;h2&gt;
+&lt;p&gt;A quantum channel is an effective description. It tells us how a quantum state changes:&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+\rho(0)\rightarrow\rho(t),
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;but it does not necessarily tell us &lt;em&gt;why&lt;&#x2F;em&gt; the evolution has that particular form.&lt;&#x2F;p&gt;
+&lt;p&gt;This limitation motivates the final stage of the thesis.&lt;&#x2F;p&gt;
+&lt;p&gt;Instead of starting from a prescribed channel, we explicitly model the &lt;strong&gt;system–environment interaction&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;A particularly interesting situation occurs when multiple quantum emitters interact with a common environment. In such a setting, the environment can mediate correlations between the systems.&lt;&#x2F;p&gt;
+&lt;p&gt;Now spatial geometry becomes important.&lt;&#x2F;p&gt;
+&lt;p&gt;If two emitters are separated by a distance $r_{12}$, the strength of their collective interaction with the environment can depend on that separation. Consequently, the same environment can produce very different entanglement dynamics depending on the spatial configuration of the quantum systems.&lt;&#x2F;p&gt;
+&lt;p&gt;This connects the thesis to the Ficek–Tanaś framework of dissipative two-atom dynamics. Their work demonstrated that spontaneous emission and common-environment interactions can generate entanglement and produce phenomena such as transient entanglement and long-lived correlations.&lt;&#x2F;p&gt;
+&lt;p&gt;Related work by Ficek and Tanaś also examined entanglement sudden birth and sudden death for two atoms interacting with a common reservoir, showing how collective behavior can produce qualitatively different entanglement dynamics.&lt;&#x2F;p&gt;
+&lt;p&gt;This provides the physical setting for the final stage of the thesis.&lt;&#x2F;p&gt;
+&lt;p&gt;The analysis considers correlated dephasing and amplitude-damping dynamics and then moves to spatially separated quantum emitters interacting through a common environment.&lt;&#x2F;p&gt;
+&lt;p&gt;The key question becomes:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;How does the physical geometry of the system–environment interaction control the evolution of quantum correlations?&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;This leads naturally to phenomena such as:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;entanglement sudden death,&lt;&#x2F;li&gt;
+&lt;li&gt;entanglement sudden birth,&lt;&#x2F;li&gt;
+&lt;li&gt;entanglement revival,&lt;&#x2F;li&gt;
+&lt;li&gt;collective decay,&lt;&#x2F;li&gt;
+&lt;li&gt;subradiant behavior,&lt;&#x2F;li&gt;
+&lt;li&gt;and entanglement trapping.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;A common environment therefore does not merely destroy entanglement. Depending on the coupling structure, it can also create, revive, or preserve correlations.&lt;&#x2F;p&gt;
+&lt;p&gt;This microscopic perspective completes the transition:&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+\text{effective correlated channel}
+\quad\longrightarrow\quad
+\text{physical interaction}
+\quad\longrightarrow\quad
+\text{correlated open-system dynamics}.
+$$&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;6-connecting-the-four-stages&quot;&gt;6. Connecting the four stages&lt;&#x2F;h2&gt;
+&lt;p&gt;The most important feature of the thesis is therefore not any individual noise model or correlation measure. It is the &lt;strong&gt;connection between levels of description&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;The research can be summarized as:&lt;&#x2F;p&gt;
+&lt;div class=&quot;thesis-flowchart-card&quot;&gt;
+  &lt;div class=&quot;flow-step&quot;&gt;
+    &lt;span class=&quot;flow-badge&quot;&gt;Structure&lt;&#x2F;span&gt;
+    &lt;span class=&quot;flow-question&quot;&gt;How are correlations characterized?&lt;&#x2F;span&gt;
+  &lt;&#x2F;div&gt;
+  &lt;div class=&quot;flow-down-arrow&quot;&gt;↓&lt;&#x2F;div&gt;
+  &lt;div class=&quot;flow-step&quot;&gt;
+    &lt;span class=&quot;flow-badge&quot;&gt;Control&lt;&#x2F;span&gt;
+    &lt;span class=&quot;flow-question&quot;&gt;How can correlations be protected?&lt;&#x2F;span&gt;
+  &lt;&#x2F;div&gt;
+  &lt;div class=&quot;flow-down-arrow&quot;&gt;↓&lt;&#x2F;div&gt;
+  &lt;div class=&quot;flow-step&quot;&gt;
+    &lt;span class=&quot;flow-badge&quot;&gt;Channel Memory&lt;&#x2F;span&gt;
+    &lt;span class=&quot;flow-question&quot;&gt;How does correlated noise modify their dynamics?&lt;&#x2F;span&gt;
+  &lt;&#x2F;div&gt;
+  &lt;div class=&quot;flow-down-arrow&quot;&gt;↓&lt;&#x2F;div&gt;
+  &lt;div class=&quot;flow-step&quot;&gt;
+    &lt;span class=&quot;flow-badge&quot;&gt;Microscopic Origin&lt;&#x2F;span&gt;
+    &lt;span class=&quot;flow-question&quot;&gt;What physical interactions generate those correlations?&lt;&#x2F;span&gt;
+  &lt;&#x2F;div&gt;
+&lt;&#x2F;div&gt;
+&lt;p&gt;This progression is useful because each stage addresses a limitation of the previous one.&lt;&#x2F;p&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th style=&quot;text-align: left&quot;&gt;Stage&lt;&#x2F;th&gt;&lt;th style=&quot;text-align: left&quot;&gt;Question&lt;&#x2F;th&gt;&lt;th style=&quot;text-align: left&quot;&gt;Description&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Chapter 2&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;What correlations are present?&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Structural&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Chapter 3&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Can they be protected?&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Operational&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Chapter 4&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;What if the channel has memory?&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Channel-level&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Chapter 5&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Where does that correlated dynamics come from?&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Microscopic&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+&lt;p&gt;The thesis therefore moves from &lt;strong&gt;measurement of a resource&lt;&#x2F;strong&gt; to &lt;strong&gt;control of the resource&lt;&#x2F;strong&gt;, then to &lt;strong&gt;understanding the structure of the noise&lt;&#x2F;strong&gt;, and finally to &lt;strong&gt;identifying the physical mechanism behind the noise&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;7-what-i-learned-from-this-workflow&quot;&gt;7. What I learned from this workflow&lt;&#x2F;h2&gt;
+&lt;p&gt;One of the broader lessons of this research is that quantum noise should not always be viewed simply as an obstacle.&lt;&#x2F;p&gt;
+&lt;p&gt;At first, the environment appears to be an adversary:&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+\text{environment}
+\rightarrow
+\text{decoherence}
+\rightarrow
+\text{loss of correlations}.
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;Weak-measurement control changes this picture by showing that the dynamics can be actively manipulated.&lt;&#x2F;p&gt;
+&lt;p&gt;Correlated channels change it further:&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+\text{memory}
+\rightarrow
+\text{modified dynamics}
+\rightarrow
+\text{potentially useful behavior}.
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;Finally, microscopic open-system models show that the environment itself can participate in the generation and preservation of quantum correlations.&lt;&#x2F;p&gt;
+&lt;p&gt;Thus, the goal is not always to eliminate environmental effects completely. A more useful perspective is to understand their &lt;strong&gt;structure&lt;&#x2F;strong&gt;, identify when they are detrimental, and determine when their correlations or memory can instead be exploited.&lt;&#x2F;p&gt;
+&lt;p&gt;Recent work on weak-measurement protection in channels with memory similarly illustrates this idea: channel memory can improve teleportation fidelity under appropriate conditions, while weak measurement can provide an additional layer of protection.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;8-the-broader-picture&quot;&gt;8. The broader picture&lt;&#x2F;h2&gt;
+&lt;p&gt;The journey from CNEI to correlated open-system dynamics can therefore be viewed as a change in perspective.&lt;&#x2F;p&gt;
+&lt;p&gt;At the beginning, the question is:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;What is the correlation?&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;Then:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Can I preserve it?&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;Then:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;How does memory in the channel change it?&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;And finally:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;What microscopic interaction produces that behavior?&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;This is ultimately the central theme connecting the thesis:&lt;&#x2F;p&gt;
+&lt;div class=&quot;thesis-horizontal-flow&quot;&gt;
+  &lt;span class=&quot;step-pill&quot;&gt;Correlation&lt;&#x2F;span&gt;
+  &lt;span class=&quot;step-arrow&quot;&gt;→&lt;&#x2F;span&gt;
+  &lt;span class=&quot;step-pill&quot;&gt;Protection&lt;&#x2F;span&gt;
+  &lt;span class=&quot;step-arrow&quot;&gt;→&lt;&#x2F;span&gt;
+  &lt;span class=&quot;step-pill&quot;&gt;Memory&lt;&#x2F;span&gt;
+  &lt;span class=&quot;step-arrow&quot;&gt;→&lt;&#x2F;span&gt;
+  &lt;span class=&quot;step-pill&quot;&gt;Microscopic Origin&lt;&#x2F;span&gt;
+&lt;&#x2F;div&gt;
+&lt;p&gt;Rather than studying quantum correlations in isolation, the thesis follows them across different levels of description—from multipartite state structure, through operational quantum-information protocols, to correlated channels and finally to microscopic open-system dynamics.&lt;&#x2F;p&gt;
+&lt;p&gt;That progression provides a unified way of thinking about quantum correlations: &lt;strong&gt;first characterize them, then protect them, understand how memory modifies them, and finally identify the physical mechanisms responsible for their dynamics.&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;selected-research-articles-behind-the-thesis&quot;&gt;Selected research articles behind the thesis&lt;&#x2F;h2&gt;
+&lt;p&gt;For readers who want to follow the technical development, several papers provide useful entry points:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Weak-measurement protection:&lt;&#x2F;strong&gt; Kim &lt;em&gt;et al.&lt;&#x2F;em&gt;, &lt;a href=&quot;https:&#x2F;&#x2F;www.nature.com&#x2F;articles&#x2F;nphys2170&quot;&gt;“Protecting entanglement from decoherence using weak measurement and quantum measurement reversal,”&lt;&#x2F;a&gt; &lt;em&gt;Nature Physics&lt;&#x2F;em&gt; &lt;strong&gt;8&lt;&#x2F;strong&gt;, 117–120 (2012). The work experimentally demonstrated the use of weak measurement and reversal for entanglement protection.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Universal quantum teleportation and weak measurements:&lt;&#x2F;strong&gt; Sabale, Kumar and Banerjee, &lt;a href=&quot;https:&#x2F;&#x2F;onlinelibrary.wiley.com&#x2F;doi&#x2F;10.1002&#x2F;andp.202300392&quot;&gt;“Toward Realization of Universal Quantum Teleportation Using Weak Measurements,”&lt;&#x2F;a&gt; &lt;em&gt;Annalen der Physik&lt;&#x2F;em&gt; &lt;strong&gt;536&lt;&#x2F;strong&gt;, 2300392 (2024). This work connects weak measurements, non-Markovianity, memory, teleportation fidelity, and fidelity deviation.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Correlated quantum channels:&lt;&#x2F;strong&gt; Addis &lt;em&gt;et al.&lt;&#x2F;em&gt;, &lt;a href=&quot;https:&#x2F;&#x2F;journals.aps.org&#x2F;pra&#x2F;abstract&#x2F;10.1103&#x2F;PhysRevA.94.032121&quot;&gt;“Dynamical Memory Effects in Correlated Quantum Channels,”&lt;&#x2F;a&gt; &lt;em&gt;Physical Review A&lt;&#x2F;em&gt; &lt;strong&gt;94&lt;&#x2F;strong&gt;, 032121 (2016). This is particularly useful for understanding the distinction between channel-use correlations and dynamical non-Markovianity.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Correlated non-Markovian channels:&lt;&#x2F;strong&gt; Sabale &lt;em&gt;et al.&lt;&#x2F;em&gt;, &lt;a href=&quot;https:&#x2F;&#x2F;onlinelibrary.wiley.com&#x2F;doi&#x2F;10.1002&#x2F;andp.202400151&quot;&gt;“Facets of Correlated Non-Markovian Channels,”&lt;&#x2F;a&gt; &lt;em&gt;Annalen der Physik&lt;&#x2F;em&gt; &lt;strong&gt;536&lt;&#x2F;strong&gt;, 2400151 (2024). The article develops the correlated-channel&#x2F;non-Markovianity analysis involving unital and non-unital channels, accessible-state volume, entanglement dynamics, and error correction.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Microscopic correlated dynamics:&lt;&#x2F;strong&gt; Ficek and Tanaś, work on two-atom entanglement and common-reservoir dynamics, provides the physical background for understanding collective dissipation, entanglement generation, sudden death, and sudden birth.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;style&gt;
+.thesis-flowchart-card {
+  max-width: 540px;
+  margin: 2.25rem auto;
+  padding: 1.5rem;
+  background: #ffffff;
+  border: 2px solid #003687;
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(0, 54, 135, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.65rem;
+}
+.flow-step {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0.85rem 1.25rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+.flow-step:hover {
+  transform: translateY(-2px);
+  border-color: #1495a7;
+}
+.flow-badge {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: #003687;
+  margin-bottom: 0.35rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.flow-question {
+  font-size: 0.95rem;
+  color: #334155;
+  font-style: italic;
+}
+.flow-down-arrow {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #1495a7;
+  line-height: 1;
+}
+
+.thesis-horizontal-flow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 1.75rem 0;
+  padding: 1rem 1.25rem;
+  background: #f0f4fc;
+  border: 1px solid #d0deee;
+  border-radius: 12px;
+}
+.step-pill {
+  background: #003687;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.92rem;
+  padding: 0.45rem 1rem;
+  border-radius: 20px;
+  display: inline-block;
+  box-shadow: 0 2px 6px rgba(0, 54, 135, 0.15);
+}
+.step-arrow {
+  color: #1495a7;
+  font-weight: 800;
+  font-size: 1.3rem;
+}
+@media (max-width: 600px) {
+  .thesis-flowchart-card {
+    padding: 1rem;
+  }
+  .thesis-horizontal-flow {
+    gap: 0.4rem;
+  }
+  .step-pill {
+    font-size: 0.8rem;
+    padding: 0.35rem 0.75rem;
+  }
+}
+&lt;&#x2F;style&gt;
+</content>
+        
+    </entry>
+</feed>

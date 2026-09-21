@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>Home - Dataset</title>
+    <subtitle>Academic website of Vivek Sabale — research in quantum information and open quantum systems.</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://viveksabale1998.github.io/tags/dataset/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://viveksabale1998.github.io/"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2024-01-01T00:00:00+00:00</updated>
+    <id>https://viveksabale1998.github.io/tags/dataset/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Quantum States Data Set</title>
+        <published>2024-01-01T00:00:00+00:00</published>
+        <updated>2024-01-01T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Vivek Sabale
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://viveksabale1998.github.io/projects/quantum-states/"/>
+        <id>https://viveksabale1998.github.io/projects/quantum-states/</id>
+        
+        <content type="html" xml:base="https://viveksabale1998.github.io/projects/quantum-states/">&lt;h1 id=&quot;quantum-states-data-set&quot;&gt;Quantum States Data Set&lt;&#x2F;h1&gt;
+&lt;p&gt;This open dataset provides multi-qubit density matrices categorized by their separability and entanglement characteristics, specially formatted for benchmarking quantum machine learning models, state classifiers, and entanglement witnesses.&lt;&#x2F;p&gt;
+&lt;div class=&quot;project-actions&quot; style=&quot;margin: 1.5rem 0; display: flex; gap: 12px; flex-wrap: wrap;&quot;&gt;
+  &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;viveksabale1998&#x2F;Quantum-States-Data-Set&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; class=&quot;c-button c-button--primary c-button--small&quot; style=&quot;text-decoration: none;&quot;&gt;
+    &lt;i class=&quot;ion ion-logo-github&quot; style=&quot;margin-right: 6px;&quot;&gt;&lt;&#x2F;i&gt; View Repository on GitHub
+  &lt;&#x2F;a&gt;
+&lt;&#x2F;div&gt;
+&lt;h2 id=&quot;bar-chart-dataset-contents&quot;&gt;📊 Dataset Contents&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Two-Qubit States&lt;&#x2F;strong&gt;: Werner states, Horodecki states, Bell diagonal states, and Maximally Entangled Mixed States (MEMS).&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Three-Qubit States&lt;&#x2F;strong&gt;: Genuine tripartite entangled states (GHZ, W), biseparable states, and fully separable states.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Parameters Provided&lt;&#x2F;strong&gt;: Density matrices ($\rho$), concurrence, negativity, purity, and entanglement spectrum eigenvalues.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</content>
+        
+    </entry>
+</feed>

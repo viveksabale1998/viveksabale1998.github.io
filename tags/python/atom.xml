@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>Home - Python</title>
+    <subtitle>Academic website of Vivek Sabale — research in quantum information and open quantum systems.</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://viveksabale1998.github.io/tags/python/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://viveksabale1998.github.io/"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2024-01-04T00:00:00+00:00</updated>
+    <id>https://viveksabale1998.github.io/tags/python/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Quantum State Classification Using QNN</title>
+        <published>2024-01-04T00:00:00+00:00</published>
+        <updated>2024-01-04T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Vivek Sabale
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://viveksabale1998.github.io/projects/qnn-classification/"/>
+        <id>https://viveksabale1998.github.io/projects/qnn-classification/</id>
+        
+        <content type="html" xml:base="https://viveksabale1998.github.io/projects/qnn-classification/">&lt;h1 id=&quot;quantum-state-classification-using-qnn&quot;&gt;Quantum State Classification Using QNN&lt;&#x2F;h1&gt;
+&lt;p&gt;This project implements parameterised quantum circuits (PQCs) and quantum neural networks for entanglement and separability classification of multi-qubit quantum states. Developed in collaboration with Thirumalai and Diksha Sharma.&lt;&#x2F;p&gt;
+&lt;div class=&quot;project-actions&quot; style=&quot;margin: 1.5rem 0; display: flex; gap: 12px; flex-wrap: wrap;&quot;&gt;
+  &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Thirumalai-97&#x2F;QuantumStateClassification_UsingQNN&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; class=&quot;c-button c-button--primary c-button--small&quot; style=&quot;text-decoration: none;&quot;&gt;
+    &lt;i class=&quot;ion ion-logo-github&quot; style=&quot;margin-right: 6px;&quot;&gt;&lt;&#x2F;i&gt; View Repository on GitHub
+  &lt;&#x2F;a&gt;
+&lt;&#x2F;div&gt;
+&lt;h2 id=&quot;pushpin-key-highlights&quot;&gt;📌 Key Highlights&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Variational Architectures&lt;&#x2F;strong&gt;: Designs and tests ansatz structures optimized for state classification tasks.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Entanglement Detection&lt;&#x2F;strong&gt;: High-accuracy boundary identification distinguishing entangled from separable state geometries.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Noise Resilience&lt;&#x2F;strong&gt;: Evaluated under depolarizing and amplitude damping noise channels on simulated backends.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Quantum Battery Hamiltonian Simulations</title>
+        <published>2024-01-03T00:00:00+00:00</published>
+        <updated>2024-01-03T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Vivek Sabale
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://viveksabale1998.github.io/projects/quantum-battery/"/>
+        <id>https://viveksabale1998.github.io/projects/quantum-battery/</id>
+        
+        <content type="html" xml:base="https://viveksabale1998.github.io/projects/quantum-battery/">&lt;h1 id=&quot;quantum-battery-hamiltonian-simulations&quot;&gt;Quantum Battery Hamiltonian Simulations&lt;&#x2F;h1&gt;
+&lt;p&gt;Open-source numerical simulations of many-body quantum battery systems investigating charging dynamics, extractable work (ergotropy), and capacity speedup enabled by Dzyaloshinskii–Moriya interaction (DMI) and Heisenberg XXZ couplings.&lt;&#x2F;p&gt;
+&lt;div class=&quot;project-actions&quot; style=&quot;margin: 1.5rem 0; display: flex; gap: 12px; flex-wrap: wrap;&quot;&gt;
+  &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Suprabha-b&#x2F;QB-HS-DMI&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; class=&quot;c-button c-button--primary c-button--small&quot; style=&quot;text-decoration: none;&quot;&gt;
+    &lt;i class=&quot;ion ion-logo-github&quot; style=&quot;margin-right: 6px;&quot;&gt;&lt;&#x2F;i&gt; View Repository on GitHub
+  &lt;&#x2F;a&gt;
+&lt;&#x2F;div&gt;
+&lt;h2 id=&quot;pushpin-key-highlights&quot;&gt;📌 Key Highlights&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Spin Chain Networks&lt;&#x2F;strong&gt;: Simulates finite-size spin-1&#x2F;2 Heisenberg spin chains driven by external charging fields.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;DMI Effects&lt;&#x2F;strong&gt;: Demonstrates how asymmetric exchange interactions boost charging power and suppress energy backflow.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Ergotropy Analysis&lt;&#x2F;strong&gt;: Quantifies maximal work extraction using unitaries applied to the charged battery state.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Quantum States Data Set</title>
+        <published>2024-01-01T00:00:00+00:00</published>
+        <updated>2024-01-01T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Vivek Sabale
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://viveksabale1998.github.io/projects/quantum-states/"/>
+        <id>https://viveksabale1998.github.io/projects/quantum-states/</id>
+        
+        <content type="html" xml:base="https://viveksabale1998.github.io/projects/quantum-states/">&lt;h1 id=&quot;quantum-states-data-set&quot;&gt;Quantum States Data Set&lt;&#x2F;h1&gt;
+&lt;p&gt;This open dataset provides multi-qubit density matrices categorized by their separability and entanglement characteristics, specially formatted for benchmarking quantum machine learning models, state classifiers, and entanglement witnesses.&lt;&#x2F;p&gt;
+&lt;div class=&quot;project-actions&quot; style=&quot;margin: 1.5rem 0; display: flex; gap: 12px; flex-wrap: wrap;&quot;&gt;
+  &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;viveksabale1998&#x2F;Quantum-States-Data-Set&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; class=&quot;c-button c-button--primary c-button--small&quot; style=&quot;text-decoration: none;&quot;&gt;
+    &lt;i class=&quot;ion ion-logo-github&quot; style=&quot;margin-right: 6px;&quot;&gt;&lt;&#x2F;i&gt; View Repository on GitHub
+  &lt;&#x2F;a&gt;
+&lt;&#x2F;div&gt;
+&lt;h2 id=&quot;bar-chart-dataset-contents&quot;&gt;📊 Dataset Contents&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Two-Qubit States&lt;&#x2F;strong&gt;: Werner states, Horodecki states, Bell diagonal states, and Maximally Entangled Mixed States (MEMS).&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Three-Qubit States&lt;&#x2F;strong&gt;: Genuine tripartite entangled states (GHZ, W), biseparable states, and fully separable states.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Parameters Provided&lt;&#x2F;strong&gt;: Density matrices ($\rho$), concurrence, negativity, purity, and entanglement spectrum eigenvalues.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</content>
+        
+    </entry>
+</feed>

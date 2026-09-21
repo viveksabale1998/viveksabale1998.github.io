@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>Home - QuTiP</title>
+    <subtitle>Academic website of Vivek Sabale — research in quantum information and open quantum systems.</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://viveksabale1998.github.io/tags/qutip/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://viveksabale1998.github.io/"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2024-01-03T00:00:00+00:00</updated>
+    <id>https://viveksabale1998.github.io/tags/qutip/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Quantum Battery Hamiltonian Simulations</title>
+        <published>2024-01-03T00:00:00+00:00</published>
+        <updated>2024-01-03T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Vivek Sabale
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://viveksabale1998.github.io/projects/quantum-battery/"/>
+        <id>https://viveksabale1998.github.io/projects/quantum-battery/</id>
+        
+        <content type="html" xml:base="https://viveksabale1998.github.io/projects/quantum-battery/">&lt;h1 id=&quot;quantum-battery-hamiltonian-simulations&quot;&gt;Quantum Battery Hamiltonian Simulations&lt;&#x2F;h1&gt;
+&lt;p&gt;Open-source numerical simulations of many-body quantum battery systems investigating charging dynamics, extractable work (ergotropy), and capacity speedup enabled by Dzyaloshinskii–Moriya interaction (DMI) and Heisenberg XXZ couplings.&lt;&#x2F;p&gt;
+&lt;div class=&quot;project-actions&quot; style=&quot;margin: 1.5rem 0; display: flex; gap: 12px; flex-wrap: wrap;&quot;&gt;
+  &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Suprabha-b&#x2F;QB-HS-DMI&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; class=&quot;c-button c-button--primary c-button--small&quot; style=&quot;text-decoration: none;&quot;&gt;
+    &lt;i class=&quot;ion ion-logo-github&quot; style=&quot;margin-right: 6px;&quot;&gt;&lt;&#x2F;i&gt; View Repository on GitHub
+  &lt;&#x2F;a&gt;
+&lt;&#x2F;div&gt;
+&lt;h2 id=&quot;pushpin-key-highlights&quot;&gt;📌 Key Highlights&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Spin Chain Networks&lt;&#x2F;strong&gt;: Simulates finite-size spin-1&#x2F;2 Heisenberg spin chains driven by external charging fields.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;DMI Effects&lt;&#x2F;strong&gt;: Demonstrates how asymmetric exchange interactions boost charging power and suppress energy backflow.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Ergotropy Analysis&lt;&#x2F;strong&gt;: Quantifies maximal work extraction using unitaries applied to the charged battery state.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</content>
+        
+    </entry>
+</feed>

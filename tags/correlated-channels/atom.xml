@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>Home - correlated-channels</title>
+    <subtitle>Academic website of Vivek Sabale — research in quantum information and open quantum systems.</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://viveksabale1998.github.io/tags/correlated-channels/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://viveksabale1998.github.io/"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2026-03-09T00:00:00+00:00</updated>
+    <id>https://viveksabale1998.github.io/tags/correlated-channels/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Understanding Correlated Quantum Channels: An Educational Primer</title>
+        <published>2026-03-09T00:00:00+00:00</published>
+        <updated>2026-03-09T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Vivek Sabale
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://viveksabale1998.github.io/posts/correlated-quantum-channels-primer/"/>
+        <id>https://viveksabale1998.github.io/posts/correlated-quantum-channels-primer/</id>
+        
+        <content type="html" xml:base="https://viveksabale1998.github.io/posts/correlated-quantum-channels-primer/">&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Who is this primer for?&lt;&#x2F;strong&gt;&lt;br &#x2F;&gt;
+Whether you are an undergraduate physics or CS student, a software developer exploring quantum computing, or a researcher from an adjacent field, this primer provides an accessible, step-by-step introduction to &lt;strong&gt;correlated quantum noise&lt;&#x2F;strong&gt; and why it matters for quantum hardware.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;introduction-the-independent-noise-assumption&quot;&gt;Introduction: The Independent Noise Assumption&lt;&#x2F;h2&gt;
+&lt;p&gt;In most introductory quantum computing courses and textbooks, noise is introduced using a convenient simplification: &lt;strong&gt;independent, memoryless errors&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Under this standard assumption, if two qubits travel through a communication channel or sit next to each other on a chip, each qubit interacts with its own separate, isolated thermal bath:&lt;&#x2F;p&gt;
+&lt;p&gt;$$\mathcal{E}_{\text{ind}}(\rho) = \left( \mathcal{E}_A \otimes \mathcal{E}_B \right)[\rho]$$&lt;&#x2F;p&gt;
+&lt;p&gt;Here:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;$\rho$ is the density matrix of the two-qubit quantum state.&lt;&#x2F;li&gt;
+&lt;li&gt;$\mathcal{E}_A$ and $\mathcal{E}_B$ are independent mathematical operations (quantum channels) acting on qubit $A$ and qubit $B$ respectively.&lt;&#x2F;li&gt;
+&lt;li&gt;The symbol $\otimes$ (tensor product) signifies that the two noise processes act independently without influencing one another.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;why-real-hardware-disobeys-this-assumption&quot;&gt;Why Real Hardware Disobeys This Assumption&lt;&#x2F;h3&gt;
+&lt;p&gt;In physical quantum computing hardware, qubits are never completely isolated:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Superconducting Processors&lt;&#x2F;strong&gt;: Qubits spaced micrometers apart on a silicon wafer experience mutual inductive coupling, substrate dielectric losses, and shared stray electromagnetic radiation.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Optical Fibers&lt;&#x2F;strong&gt;: Consecutive optical pulses (photons) traveling through long telecommunication cables pass through identical local temperature variations and fiber birefringence fluctuations.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Trapped-Ion Chains&lt;&#x2F;strong&gt;: Ions trapped in a common potential well share collective vibrational modes (phonons), causing laser phase fluctuations to affect all ions symmetrically.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;When environmental noise affects multiple qubits collectively or sequentially, we enter the realm of &lt;strong&gt;Correlated Quantum Channels&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;bulb-an-everyday-analogy&quot;&gt;💡 An Everyday Analogy&lt;&#x2F;h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Imagine two tightrope walkers crossing a windy canyon.&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Independent Noise ($\mu = 0$)&lt;&#x2F;strong&gt;: Each walker feels isolated, random air gusts that strike them at different moments. One might wobble left while the other wobbles right.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Correlated Noise ($\mu = 1$)&lt;&#x2F;strong&gt;: A massive crosswind sweeps across the entire canyon, blowing both walkers in the exact same direction at the exact same instant.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;If the two walkers are holding a rigid pole between them, the shared gust doesn&#x27;t twist them out of alignment—they move together! In quantum mechanics, this cooperative survival is the foundation of &lt;strong&gt;Decoherence-Free Subspaces&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;1-the-macchiavello-palma-model-of-correlated-noise&quot;&gt;1. The Macchiavello–Palma Model of Correlated Noise&lt;&#x2F;h2&gt;
+&lt;p&gt;How do theoretical physicists quantify the transition from independent noise to shared noise?&lt;&#x2F;p&gt;
+&lt;p&gt;A celebrated model formulated by &lt;strong&gt;Chiara Macchiavello and G. Massimo Palma&lt;&#x2F;strong&gt; introduces a real &lt;strong&gt;correlation parameter&lt;&#x2F;strong&gt; $\mu \in [0, 1]$ that interpolates smoothly between independent and collective operations:&lt;&#x2F;p&gt;
+&lt;p&gt;$$\mathcal{E}^{(2)}[\rho] = (1 - \mu) \sum_{i,j} \left(E_i \otimes E_j\right) \rho \left(E_i \otimes E_j\right)^\dagger + \mu \sum_k \left(E_k \otimes E_k\right) \rho \left(E_k \otimes E_k\right)^\dagger$$&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;breaking-down-the-math&quot;&gt;Breaking Down the Math:&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;${E_i}$ (Kraus Operators)&lt;&#x2F;strong&gt;: Mathematical operators describing the single-qubit noise process (such as bit-flips, phase-damping, or depolarizing noise) satisfying $\sum_i E_i^\dagger E_i = I$.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;$(1 - \mu)$ Term&lt;&#x2F;strong&gt;: With probability $(1 - \mu)$, independent noise operators $E_i \otimes E_j$ strike the qubits separately.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;$\mu$ Term&lt;&#x2F;strong&gt;: With probability $\mu$, identical noise operators $E_k \otimes E_k$ strike both qubits simultaneously.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;physical-interpretation-of-mu&quot;&gt;Physical Interpretation of $\mu$:&lt;&#x2F;h3&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th style=&quot;text-align: left&quot;&gt;Value of $\mu$&lt;&#x2F;th&gt;&lt;th style=&quot;text-align: left&quot;&gt;Channel Regime&lt;&#x2F;th&gt;&lt;th style=&quot;text-align: left&quot;&gt;Physical Meaning&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;$\mu = 0$&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Uncorrelated&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Completely independent noise. Standard quantum error correction theorems apply.&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;$0 &amp;lt; \mu &amp;lt; 1$&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Partially Correlated&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Realistic hardware setting where qubits experience both private and collective fluctuations.&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;$\mu = 1$&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Fully Correlated&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Identical collective noise across the register. Unlocks passive symmetry-protected subspaces.&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;2-two-types-of-memory-environmental-vs-channel-use&quot;&gt;2. Two Types of Memory: Environmental vs. Channel-Use&lt;&#x2F;h2&gt;
+&lt;p&gt;When researchers mention &quot;quantum memory,&quot; confusion often arises because the word is used in two different contexts:&lt;&#x2F;p&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th style=&quot;text-align: left&quot;&gt;Memory Type&lt;&#x2F;th&gt;&lt;th style=&quot;text-align: left&quot;&gt;Physical Origin&lt;&#x2F;th&gt;&lt;th style=&quot;text-align: left&quot;&gt;Key Characteristic&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Environmental Memory&lt;&#x2F;strong&gt; &lt;em&gt;(Non-Markovianity)&lt;&#x2F;em&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;The bath retains quantum information and feeds it back into the system over time.&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Information backflow&lt;&#x2F;strong&gt;, non-monotonic trace distance, CP-divisibility breakdown.&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Channel-Use Memory&lt;&#x2F;strong&gt; &lt;em&gt;(Correlated Noise)&lt;&#x2F;em&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Consecutive channel uses or adjacent spatial qubits experience correlated error events.&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Collective operations&lt;&#x2F;strong&gt; parameterized by the correlation parameter $\mu$.&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+&lt;p&gt;In real open quantum systems, both mechanisms can take place at the same time. In our research paper &lt;a href=&quot;https:&#x2F;&#x2F;onlinelibrary.wiley.com&#x2F;doi&#x2F;10.1002&#x2F;andp.202400151&quot;&gt;&lt;em&gt;Facets of Correlated Non-Markovian Channels&lt;&#x2F;em&gt;&lt;&#x2F;a&gt;, we showed that environmental non-Markovian memory and channel correlation $\mu$ can either amplify or counterbalance each other depending on the spectral properties of the bath.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;3-the-silver-lining-decoherence-free-subspaces-dfs&quot;&gt;3. The Silver Lining: Decoherence-Free Subspaces (DFS)&lt;&#x2F;h2&gt;
+&lt;p&gt;A common assumption among newcomers is that correlated noise must always be worse than independent noise. Remarkably, the opposite can be true!&lt;&#x2F;p&gt;
+&lt;p&gt;When environmental noise is collective ($\mu \to 1$), the noise couples symmetrically to both qubits. Consider a collective dephasing channel where the interaction Hamiltonian is:&lt;&#x2F;p&gt;
+&lt;p&gt;$$H_{\text{int}} = g \left( \sigma_z^{(1)} + \sigma_z^{(2)} \right) \otimes B_{\text{env}}$$&lt;&#x2F;p&gt;
+&lt;p&gt;Now examine the maximally entangled &lt;strong&gt;Bell singlet state&lt;&#x2F;strong&gt;:&lt;&#x2F;p&gt;
+&lt;p&gt;$$|\psi^-\rangle = \frac{|01\rangle - |10\rangle}{\sqrt{2}}$$&lt;&#x2F;p&gt;
+&lt;p&gt;Let us test how the collective phase-flip operator $(\sigma_z^{(1)} + \sigma_z^{(2)})$ acts on this singlet:&lt;&#x2F;p&gt;
+&lt;p&gt;$$\left(\sigma_z^{(1)} + \sigma_z^{(2)}\right) |01\rangle = (+1 - 1)|01\rangle = 0$$&lt;&#x2F;p&gt;
+&lt;p&gt;$$\left(\sigma_z^{(1)} + \sigma_z^{(2)}\right) |10\rangle = (-1 + 1)|10\rangle = 0$$&lt;&#x2F;p&gt;
+&lt;p&gt;Therefore:&lt;&#x2F;p&gt;
+&lt;p&gt;$$\left(\sigma_z^{(1)} + \sigma_z^{(2)}\right) |\psi^-\rangle = 0$$&lt;&#x2F;p&gt;
+&lt;p&gt;The Bell singlet has an eigenvalue of &lt;strong&gt;zero&lt;&#x2F;strong&gt; under the collective noise operator!&lt;&#x2F;p&gt;
+&lt;p&gt;This means that under purely collective dephasing, the singlet state does not change at all over time. It is &lt;strong&gt;completely immune to the environmental noise&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;This protected subspace of quantum states is called a &lt;strong&gt;Decoherence-Free Subspace (DFS)&lt;&#x2F;strong&gt;. By encoding quantum information into DFS states, one can shield qubits passively without needing complex active syndrome measurement circuits!&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;4-why-correlated-noise-matters-for-quantum-error-correction&quot;&gt;4. Why Correlated Noise Matters for Quantum Error Correction&lt;&#x2F;h2&gt;
+&lt;p&gt;While correlated noise makes DFS encodings possible, it poses challenges for standard &lt;strong&gt;Quantum Error Correcting (QEC)&lt;&#x2F;strong&gt; codes:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Independent Error Assumption&lt;&#x2F;strong&gt;: Classical and standard quantum codes (like Steane&#x27;s 7-qubit code or Surface codes) are optimized on the assumption that errors occur randomly and independently with a small error rate $p$.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Syndrome Confusion&lt;&#x2F;strong&gt;: If correlated noise causes two adjacent qubits to flip simultaneously ($X \otimes X$), a standard syndrome decoder might interpret this as a single-qubit error on a third qubit, applying an incorrect recovery operator and corrupting the logical information.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Modern Solutions&lt;&#x2F;strong&gt;: Today&#x27;s quantum computer engineers use correlated-syndrome matching algorithms, graph-based neural network decoders, and spatially aware compilation to detect and neutralize correlated hardware faults.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;summary-cheat-sheet&quot;&gt;Summary Cheat-Sheet&lt;&#x2F;h2&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th style=&quot;text-align: left&quot;&gt;Property&lt;&#x2F;th&gt;&lt;th style=&quot;text-align: left&quot;&gt;Independent Channel ($\mu = 0$)&lt;&#x2F;th&gt;&lt;th style=&quot;text-align: left&quot;&gt;Correlated Channel ($\mu &amp;gt; 0$)&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Kraus Map&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Tensor product $\mathcal{E}_1 \otimes \mathcal{E}_2$&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Convex mixture of product and collective Kraus operators&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Entanglement Dynamics&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Monotonic decay or sudden death&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Slower decay, freezing, or revival under collective modes&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Error Correction&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Standard stabilizer codes work optimally&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Requires correlated-syndrome decoders or DFS encodings&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Protection Strategy&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Active syndrome measurements&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Passive protection via Decoherence-Free Subspaces (DFS)&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;suggested-next-reads&quot;&gt;Suggested Next Reads&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Research Article&lt;&#x2F;strong&gt;: &lt;a href=&quot;https:&#x2F;&#x2F;onlinelibrary.wiley.com&#x2F;doi&#x2F;10.1002&#x2F;andp.202400151&quot;&gt;Facets of Correlated Non-Markovian Channels (Annalen der Physik, 2024)&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;PhD Thesis Journey&lt;&#x2F;strong&gt;: &lt;a href=&quot;&#x2F;posts&#x2F;thesis-workflow&quot;&gt;From Quantum Correlations to Their Microscopic Origin: A Journey Through Noise, Memory, and Open-System Dynamics&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Foundations Tutorial&lt;&#x2F;strong&gt;: &lt;a href=&quot;&#x2F;posts&#x2F;intro-to-quantum-information&quot;&gt;Foundations of Quantum Information: From Qubits to Density Matrices&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</content>
+        
+    </entry>
+</feed>
