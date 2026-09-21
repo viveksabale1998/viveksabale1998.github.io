@@ -7,16 +7,16 @@ aliases = ["cv"]
 ## Education
 
 **PhD Scholar (Quantum Information & Computation)**  
-*Indian Institute of Technology Jodhpur (2021 – Present)*  
+*Indian Institute of Technology Jodhpur (2021 – Present)* ([Website ↗](https://www.iitj.ac.in/))   
 - Research Area: Quantum Information, Open Quantum Systems, Non-Markovian Dynamics, and Quantum Machine Learning.  
 - Advisors: Prof. Atul Kumar ([Group Website ↗](https://atulk4.wixsite.com/atulk)) 
 
 **Master of Science in Chemistry**  
-*Indian Institute of Technology Madras (2019 – 2021)*  
+*Indian Institute of Technology Madras (2019 – 2021)* ([Website ↗](https://www.iitm.ac.in/)) 
 
 
 **Bachelor of Science in Chemistry**  
-*Fergusson College, Pune (2016 – 2019)*  
+*Fergusson College, Pune (2016 – 2019)*  ([Website ↗](https://fergusson.edu/))
 
 ---
 
