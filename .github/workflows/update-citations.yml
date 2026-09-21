@@ -22,6 +22,10 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Install Dependencies
+        run: |
+          pip install scholarly "bibtexparser<2"
+
       - name: Fetch Scholar Stats and Update Content
         run: |
           python scripts/update_citations.py

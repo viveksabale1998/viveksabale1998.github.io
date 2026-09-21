@@ -1,27 +1,17 @@
 #!/usr/bin/env python3
 """
-Automatically fetches citation statistics from Semantic Scholar API for Vivek Sabale
+Automatically fetches citation statistics from Google Scholar for Vivek Sabale
 and updates the pictorial stats section in content/publications.md.
 
-Uses the free Semantic Scholar API (no auth required, no bot-detection issues
-in CI environments) instead of scraping Google Scholar directly.
+Uses the `scholarly` library which handles Google Scholar's anti-bot measures.
 """
 
-import json
 import os
 import re
 import sys
-import time
-import urllib.error
-import urllib.request
-from collections import defaultdict
 
-# Semantic Scholar author ID for Vivek Balasaheb Sabale
-SEMANTIC_SCHOLAR_AUTHOR_ID = "2223756880"
-SEMANTIC_SCHOLAR_BASE = "https://api.semanticscholar.org/graph/v1"
-
-# Google Scholar profile (for the badge link on the page — not scraped)
-SCHOLAR_PROFILE_URL = "https://scholar.google.com/citations?user=LdMLDdwAAAAJ&hl=en"
+SCHOLAR_USER_ID = "LdMLDdwAAAAJ"
+SCHOLAR_PROFILE_URL = f"https://scholar.google.com/citations?user={SCHOLAR_USER_ID}&hl=en"
 
 PUBLICATIONS_FILE = os.path.join(
     os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
@@ -29,114 +19,58 @@ PUBLICATIONS_FILE = os.path.join(
     "publications.md",
 )
 
-_HEADERS = {"User-Agent": "viveksabale-site-bot/1.0 (contact: sabale.1@iitj.ac.in)"}
-
-
-def _fetch_json(url: str, retries: int = 4) -> dict | None:
-    """Fetch JSON from URL with retry logic and 429-aware backoff."""
-    for attempt in range(1, retries + 1):
-        try:
-            req = urllib.request.Request(url, headers=_HEADERS)
-            resp = urllib.request.urlopen(req, timeout=15)
-            return json.loads(resp.read().decode("utf-8"))
-        except urllib.error.HTTPError as e:
-            if e.code == 429:
-                # Rate limited — wait longer before retrying
-                wait = 10 * attempt
-                print(f"  Rate limited (429) on attempt {attempt}/{retries}. Waiting {wait}s...")
-                time.sleep(wait)
-            else:
-                print(f"  Attempt {attempt}/{retries} failed for {url}: {e}")
-                if attempt < retries:
-                    time.sleep(2 ** attempt)
-        except Exception as e:
-            print(f"  Attempt {attempt}/{retries} failed for {url}: {e}")
-            if attempt < retries:
-                time.sleep(2 ** attempt)
-    return None
-
 
 def fetch_scholar_stats() -> dict | None:
     """
-    Fetches citation metrics from the Semantic Scholar API.
+    Fetches citation metrics from Google Scholar via the `scholarly` library.
 
     Returns a dict with keys:
       - citations (int): total citation count
       - h_index (int): h-index
-      - i10_index (int): number of papers with >= 10 citations
+      - i10_index (int): i10-index
       - yearly (list[tuple[str, int]]): sorted list of (year_str, count) pairs
     """
-    print("📡 Fetching author stats from Semantic Scholar API...")
-
-    # 1. Get top-level author metrics
-    author_url = (
-        f"{SEMANTIC_SCHOLAR_BASE}/author/{SEMANTIC_SCHOLAR_AUTHOR_ID}"
-        "?fields=citationCount,hIndex,paperCount"
-    )
-    author_data = _fetch_json(author_url)
-    if not author_data:
-        print("⚠️  Warning: Could not fetch author data from Semantic Scholar.")
+    try:
+        from scholarly import scholarly
+    except ImportError:
+        print("❌ Error: `scholarly` is not installed. Run: pip install scholarly 'bibtexparser<2'")
         return None
 
-    citations = author_data.get("citationCount", 0)
-    h_index = author_data.get("hIndex", 0)
-
-    # 2. Get per-paper citation counts to compute i10-index
-    papers_url = (
-        f"{SEMANTIC_SCHOLAR_BASE}/author/{SEMANTIC_SCHOLAR_AUTHOR_ID}"
-        "/papers?fields=paperId,title,citationCount&limit=100"
-    )
-    papers_data = _fetch_json(papers_url)
-    if not papers_data:
-        print("⚠️  Warning: Could not fetch papers list from Semantic Scholar.")
+    print(f"📡 Fetching Google Scholar profile for user ID: {SCHOLAR_USER_ID} ...")
+    try:
+        author = scholarly.search_author_id(SCHOLAR_USER_ID)
+        scholarly.fill(author, sections=["basics", "indices", "counts"])
+    except Exception as e:
+        print(f"⚠️  Warning: Could not fetch Google Scholar data ({e}). Skipping update.")
         return None
 
-    papers = papers_data.get("data", [])
-    i10_index = sum(1 for p in papers if p.get("citationCount", 0) >= 10)
+    citations  = author.get("citedby",  0)
+    h_index    = author.get("hindex",   0)
+    i10_index  = author.get("i10index", 0)
+    cites_per_year: dict[int, int] = author.get("cites_per_year", {})
 
-    # 3. Build per-year citation histogram from citing papers
-    print(f"  Found {len(papers)} papers — building yearly citation histogram...")
-    yearly: dict[int, int] = defaultdict(int)
-    for paper in papers:
-        pid = paper.get("paperId")
-        if not pid:
-            continue
-        cit_url = (
-            f"{SEMANTIC_SCHOLAR_BASE}/paper/{pid}"
-            "/citations?fields=year&limit=500"
-        )
-        cit_data = _fetch_json(cit_url)
-        if not cit_data:
-            continue
-        for entry in cit_data.get("data", []):
-            yr = entry.get("citingPaper", {}).get("year")
-            if yr and isinstance(yr, int):
-                yearly[yr] += 1
-        # Be polite to the API — 2s between paper requests to avoid 429s
-        time.sleep(2)
-
-    yearly_sorted = sorted(yearly.items())  # [(year_int, count), ...]
-    yearly_list = [(str(yr), cnt) for yr, cnt in yearly_sorted]
+    # Sort by year and convert to (str, int) pairs for the histogram
+    yearly = [(str(yr), cnt) for yr, cnt in sorted(cites_per_year.items())]
 
     print(
         f"📊 Stats: {citations} citations | h-index {h_index} | i10-index {i10_index}"
     )
-    if yearly_list:
-        print(f"   Yearly: {yearly_list}")
+    if yearly:
+        print(f"   Yearly: {yearly}")
 
     return {
         "citations": citations,
-        "h_index": h_index,
+        "h_index":   h_index,
         "i10_index": i10_index,
-        "yearly": yearly_list,
+        "yearly":    yearly,
     }
 
 
 def generate_html_block(stats: dict) -> str:
     citations = stats["citations"]
-    h_index = stats["h_index"]
+    h_index   = stats["h_index"]
     i10_index = stats["i10_index"]
-    yearly = stats["yearly"]
+    yearly    = stats["yearly"]
 
     max_count = max((c for _, c in yearly), default=1)
 
@@ -218,10 +152,10 @@ def generate_html_block(stats: dict) -> str:
 
 
 def main() -> int:
-    print("🔍 Fetching latest citation metrics from Semantic Scholar...")
+    print("🔍 Fetching latest Google Scholar citation metrics...")
     stats = fetch_scholar_stats()
     if not stats:
-        print("Done (no changes made — could not retrieve stats).")
+        print("Done (no changes made).")
         return 0
 
     if not os.path.exists(PUBLICATIONS_FILE):
@@ -246,7 +180,7 @@ def main() -> int:
     with open(PUBLICATIONS_FILE, "w", encoding="utf-8") as f:
         f.write(new_content)
 
-    print("✅ Successfully updated content/publications.md with latest metrics.")
+    print("✅ Successfully updated content/publications.md with latest Google Scholar metrics.")
     return 0
 
 
