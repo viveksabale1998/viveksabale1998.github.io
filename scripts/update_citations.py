@@ -66,16 +66,21 @@ def fetch_scholar_stats() -> dict | None:
     }
 
 
+HISTOGRAM_YEARS = 3  # number of most-recent years to display in the chart
+
+
 def generate_html_block(stats: dict) -> str:
     citations = stats["citations"]
     h_index   = stats["h_index"]
     i10_index = stats["i10_index"]
     yearly    = stats["yearly"]
 
-    max_count = max((c for _, c in yearly), default=1)
+    # Show only the most recent N years in the histogram
+    hist_years = yearly[-HISTOGRAM_YEARS:]
+    max_count = max((c for _, c in hist_years), default=1)
 
     bars_html = []
-    for year, count in yearly:
+    for year, count in hist_years:
         pct = max(int(round((count / max_count) * 100)), 12) if max_count > 0 else 12
         bars_html.append(
             f'<div class="hist-col">'
@@ -93,6 +98,7 @@ def generate_html_block(stats: dict) -> str:
     # from treating raw HTML as indented code blocks.
     return f"""<!-- CITATION_METRICS_START -->
 <div class="metrics-overview">
+<div class="metrics-scroll-wrap">
 <div class="metrics-grid">
 <div class="metric-card">
 <div class="metric-icon-wrap citation-theme"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/></svg></div>
@@ -107,9 +113,10 @@ def generate_html_block(stats: dict) -> str:
 <div class="metric-body"><div class="metric-num">{i10_index}</div><div class="metric-title">i10-index</div><div class="metric-sub">{i10_index} papers with &ge; 10 citations</div></div>
 </div>
 </div>
+</div>
 <div class="chart-box">
 <div class="chart-header">
-<div class="chart-title"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -3px; margin-right: 6px;"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Citations Growth</div>
+<div class="chart-title"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -3px; margin-right: 6px;"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Citations Growth <span class="chart-subtitle">(last {HISTOGRAM_YEARS} years)</span></div>
 <a href="{SCHOLAR_PROFILE_URL}" target="_blank" rel="noopener noreferrer" class="scholar-badge"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: -2px; margin-right: 4px;"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4 3.18v6.82h3v-4.5h10v4.5h3V12.7l4-3.2L12 0z"/></svg>Google Scholar Profile ↗</a>
 </div>
 <div class="histogram">
@@ -119,8 +126,13 @@ def generate_html_block(stats: dict) -> str:
 </div>
 <style>
 .metrics-overview {{ margin: 1.5rem 0 2.5rem 0; display: flex; flex-direction: column; gap: 1.25rem; }}
-.metrics-grid {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }}
-.metric-card {{ background: #ffffff; border: 1px solid #e1e8f0; border-radius: 12px; padding: 1.25rem; display: flex; align-items: center; gap: 1rem; box-shadow: 0 4px 12px rgba(0, 54, 135, 0.04); transition: transform 0.2s ease, box-shadow 0.2s ease; }}
+.metrics-scroll-wrap {{ position: relative; }}
+.metrics-scroll-wrap::after {{ content: ''; position: absolute; top: 0; right: 0; height: 100%; width: 48px; background: linear-gradient(to right, transparent, rgba(255,255,255,0.9)); pointer-events: none; border-radius: 0 12px 12px 0; }}
+.metrics-grid {{ display: flex; flex-direction: row; gap: 1rem; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; padding-bottom: 6px; scrollbar-width: thin; scrollbar-color: #cbd5e1 transparent; }}
+.metrics-grid::-webkit-scrollbar {{ height: 4px; }}
+.metrics-grid::-webkit-scrollbar-track {{ background: transparent; }}
+.metrics-grid::-webkit-scrollbar-thumb {{ background: #cbd5e1; border-radius: 4px; }}
+.metric-card {{ background: #ffffff; border: 1px solid #e1e8f0; border-radius: 12px; padding: 1.25rem; display: flex; align-items: center; gap: 1rem; box-shadow: 0 4px 12px rgba(0, 54, 135, 0.04); transition: transform 0.2s ease, box-shadow 0.2s ease; flex: 0 0 auto; min-width: 200px; scroll-snap-align: start; }}
 .metric-card:hover {{ transform: translateY(-2px); box-shadow: 0 6px 18px rgba(20, 149, 167, 0.12); }}
 .metric-icon-wrap {{ width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }}
 .citation-theme {{ background: rgba(20, 149, 167, 0.12); color: #1495a7; }}
@@ -132,6 +144,7 @@ def generate_html_block(stats: dict) -> str:
 .chart-box {{ background: #ffffff; border: 1px solid #e1e8f0; border-radius: 12px; padding: 1.25rem 1.5rem; box-shadow: 0 4px 12px rgba(0, 54, 135, 0.04); }}
 .chart-header {{ display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 0.5rem; }}
 .chart-title {{ font-size: 0.95rem; font-weight: 600; color: #110E38; }}
+.chart-subtitle {{ font-size: 0.8rem; font-weight: 400; color: #94a3b8; margin-left: 4px; }}
 .scholar-badge {{ display: inline-flex; align-items: center; font-size: 0.8rem; font-weight: 500; color: #003687; background: #f0f4fc; padding: 0.35rem 0.75rem; border-radius: 20px; text-decoration: none; transition: background 0.2s ease, color 0.2s ease; }}
 .scholar-badge:hover {{ background: #003687; color: #ffffff; }}
 .histogram {{ display: flex; align-items: flex-end; justify-content: space-around; height: 140px; padding-top: 15px; border-bottom: 1px solid #e2e8f0; }}
@@ -142,7 +155,7 @@ def generate_html_block(stats: dict) -> str:
 .hist-col:hover .hist-bar-fill {{ opacity: 0.85; }}
 .hist-label {{ font-size: 0.8rem; font-weight: 500; color: #64748b; margin-top: 8px; }}
 @media (max-width: 480px) {{
-.metric-card {{ padding: 1rem; }}
+.metric-card {{ padding: 1rem; min-width: 170px; }}
 .metric-num {{ font-size: 1.6rem; }}
 .hist-bar-track {{ width: 26px; }}
 .chart-box {{ padding: 1rem; }}
