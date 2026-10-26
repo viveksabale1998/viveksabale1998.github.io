@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>Home - quantum-energy</title>
+    <subtitle>Academic website of Vivek Sabale — research in quantum information and open quantum systems.</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://viveksabale1998.github.io/tags/quantum-energy/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://viveksabale1998.github.io/"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2026-03-07T00:00:00+00:00</updated>
+    <id>https://viveksabale1998.github.io/tags/quantum-energy/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Supercharging Quantum Energy Storage: Heisenberg Spin Networks and the Dzyaloshinskii–Moriya Interaction</title>
+        <published>2026-03-07T00:00:00+00:00</published>
+        <updated>2026-03-07T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Vivek Sabale
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://viveksabale1998.github.io/posts/quantum-batteries/"/>
+        <id>https://viveksabale1998.github.io/posts/quantum-batteries/</id>
+        
+        <content type="html" xml:base="https://viveksabale1998.github.io/posts/quantum-batteries/">&lt;p&gt;As quantum computing and quantum thermodynamics advance, researchers face a provocative question: &lt;em&gt;Can the non-classical properties of quantum mechanics—such as coherence, quantum correlations, and entanglement—be utilized to store and extract thermodynamic energy faster and more efficiently than classical devices?&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;This is the promise of &lt;strong&gt;Quantum Batteries (QBs)&lt;&#x2F;strong&gt;: nanoscale devices that store work in the quantum degrees of freedom of multi-body systems (such as spins, two-level atoms, or optical cavities).&lt;&#x2F;p&gt;
+&lt;p&gt;In our latest study published in the &lt;em&gt;New Journal of Physics&lt;&#x2F;em&gt; (IOP Publishing), we investigate how quantum spin networks can be engineered into highly efficient quantum batteries:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Heisenberg spin networks for realizing quantum battery with the aid of Dzyaloshinskii–Moriya interaction&lt;&#x2F;strong&gt;&lt;br &#x2F;&gt;
+&lt;em&gt;Suprabha Bhattacharya, Vivek Balasaheb Sabale, and Atul Kumar&lt;&#x2F;em&gt;&lt;br &#x2F;&gt;
+&lt;strong&gt;New Journal of Physics&lt;&#x2F;strong&gt; 28 (1), 014508 (2026)&lt;br &#x2F;&gt;
+🔗 &lt;a href=&quot;https:&#x2F;&#x2F;doi.org&#x2F;10.1088&#x2F;1367-2630&#x2F;adab0a&quot;&gt;Read on New Journal of Physics ↗&lt;&#x2F;a&gt; | &lt;a href=&quot;https:&#x2F;&#x2F;scholar.google.com&#x2F;citations?view_op=view_citation&amp;amp;hl=en&amp;amp;user=LdMLDdwAAAAJ&amp;amp;citation_for_view=LdMLDdwAAAAJ:_FxGoFyzp5QC&quot;&gt;Google Scholar ↗&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;Here is an overview of the fundamental physics, the crucial role of network geometry, and how the &lt;strong&gt;Dzyaloshinskii–Moriya Interaction (DMI)&lt;&#x2F;strong&gt; unlocks unprecedented charging performance.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;what-makes-a-battery-quantum&quot;&gt;What Makes a Battery &quot;Quantum&quot;?&lt;&#x2F;h2&gt;
+&lt;p&gt;In a conventional electrochemical battery, charging $N$ identical cells in parallel requires a time that scales independently of $N$, meaning total power scales linearly: $P \propto N$.&lt;&#x2F;p&gt;
+&lt;p&gt;In quantum batteries, entangling interactions during the charging process can trigger &lt;strong&gt;collective quantum speedups&lt;&#x2F;strong&gt;:&lt;&#x2F;p&gt;
+&lt;p&gt;$$P_{\text{max}} \propto N^{\alpha}, \quad \text{with } \alpha &amp;gt; 1$$&lt;&#x2F;p&gt;
+&lt;p&gt;This phenomenon—known as &lt;strong&gt;super-extensive charging&lt;&#x2F;strong&gt; or &lt;em&gt;quantum supercharging&lt;&#x2F;em&gt;—allows an entangled ensemble of quantum battery cells to charge significantly faster than if each cell were charged individually in isolation.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;stored-energy-vs-ergotropy-the-real-measure-of-work&quot;&gt;Stored Energy vs. Ergotropy: The Real Measure of Work&lt;&#x2F;h2&gt;
+&lt;p&gt;When evaluating a quantum battery, raw stored energy $E(t) = \text{Tr}[\rho(t) H_B]$ can be misleading. In quantum thermodynamics, not all stored energy is useful.&lt;&#x2F;p&gt;
+&lt;p&gt;The gold standard for work extraction is &lt;strong&gt;Ergotropy&lt;&#x2F;strong&gt; ($\mathcal{E}$): the maximum amount of work that can be extracted from a quantum state $\rho$ via cyclic unitary operations without changing its entropy:&lt;&#x2F;p&gt;
+&lt;p&gt;$$\mathcal{E}(\rho) = \text{Tr}[\rho H_B] - \min_{U \in \mathcal{U}} \text{Tr}\left[ U \rho U^\dagger H_B \right]$$&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;If a state has reached a &lt;strong&gt;passive state&lt;&#x2F;strong&gt; (where population is monotonically decreasing with energy eigenvalues), no work can be extracted unitarily, resulting in $\mathcal{E} = 0$ even if internal energy $E &amp;gt; 0$.&lt;&#x2F;li&gt;
+&lt;li&gt;A high-performance quantum battery must maximize the &lt;strong&gt;ergotropy ratio&lt;&#x2F;strong&gt; $\mathcal{E}&#x2F;E$, guaranteeing that stored energy translates into accessible, extractable work.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;designing-the-battery-heisenberg-spin-networks&quot;&gt;Designing the Battery: Heisenberg Spin Networks&lt;&#x2F;h2&gt;
+&lt;p&gt;In our paper, we model the quantum battery as a network of interacting spin-$1&#x2F;2$ particles described by the anisotropic &lt;strong&gt;Heisenberg $XXZ$ model&lt;&#x2F;strong&gt; subjected to transverse magnetic fields and charging Hamiltonians:&lt;&#x2F;p&gt;
+&lt;p&gt;$$H_{\text{XXZ}} = \sum_{\langle i, j \rangle} J \left( \sigma_i^x \sigma_j^x + \sigma_i^y \sigma_j^y + \Delta \sigma_i^z \sigma_j^z \right)$$&lt;&#x2F;p&gt;
+&lt;p&gt;where:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;$J$ is the exchange coupling strength between spins,&lt;&#x2F;li&gt;
+&lt;li&gt;$\Delta$ is the anisotropy parameter along the $z$-axis,&lt;&#x2F;li&gt;
+&lt;li&gt;$\sigma_i^{x,y,z}$ are the standard Pauli operators for the $i$-th spin cell.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;the-role-of-network-geometry&quot;&gt;The Role of Network Geometry&lt;&#x2F;h3&gt;
+&lt;p&gt;The physical topology of the spin network dictates how energy flows during charging. We systematically evaluated:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Open Spin Chains&lt;&#x2F;strong&gt;: Linear arrays with open boundary conditions.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Closed Rings&lt;&#x2F;strong&gt;: Periodic boundary conditions facilitating circular flow.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Supercube Configurations&lt;&#x2F;strong&gt;: Multi-dimensional hypercube topologies with dense interconnects.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;$c$-Regular Graphs &amp;amp; Platonic Geometries&lt;&#x2F;strong&gt;: Highly symmetric polyhedral arrangements ranging from 3 to 12 qubits, including &lt;strong&gt;tetrahedron&lt;&#x2F;strong&gt;, &lt;strong&gt;octahedron&lt;&#x2F;strong&gt;, and &lt;strong&gt;icosahedron&lt;&#x2F;strong&gt; geometries.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;the-breakthrough-dzyaloshinskii-moriya-interaction-dmi&quot;&gt;The Breakthrough: Dzyaloshinskii–Moriya Interaction (DMI)&lt;&#x2F;h2&gt;
+&lt;p&gt;Standard symmetric Heisenberg couplings can encounter bottlenecks: energy tends to get trapped in symmetric, decoherence-free sub-spaces or &quot;dark states&quot; that refuse to dump their energy into usable ergotropy.&lt;&#x2F;p&gt;
+&lt;p&gt;To solve this, we introduced the &lt;strong&gt;Dzyaloshinskii–Moriya Interaction (DMI)&lt;&#x2F;strong&gt;:&lt;&#x2F;p&gt;
+&lt;p&gt;$$H_{\text{DMI}} = \sum_{\langle i, j \rangle} \vec{D}_{ij} \cdot \left( \vec{\sigma}_i \times \vec{\sigma}_j \right)$$&lt;&#x2F;p&gt;
+&lt;p&gt;Arising physically from spin-orbit coupling in systems lacking spatial inversion symmetry, DMI introduces an &lt;strong&gt;antisymmetric, chiral exchange&lt;&#x2F;strong&gt; between neighboring spins.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;why-dmi-boosts-quantum-battery-performance&quot;&gt;Why DMI Boosts Quantum Battery Performance&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Chiral Energy Transport&lt;&#x2F;strong&gt;: The cross-product nature of DMI breaks spatial reflection symmetry, driving directed, non-reciprocal energy flow across the spin lattice and bypassing destructive interference traps.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Enhanced Ergotropy in Supercubes&lt;&#x2F;strong&gt;: In the anisotropic $XXZ$ regime, DMI substantially enhances ergotropy—most prominently in &lt;strong&gt;supercube geometries&lt;&#x2F;strong&gt;—enabling nearly complete extraction of the stored energy.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Faster Charging Cycles&lt;&#x2F;strong&gt;: By accelerating state transitions toward maximally non-passive configurations, DMI shortens charging times, yielding marked improvements in the peak charging power $P_{\text{max}}$.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Structural Resilience&lt;&#x2F;strong&gt;: When testing across $c$-regular graphs and Platonic geometries, DMI consistently stabilizes energy storage against local parameter fluctuations.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;experimental-outlook-bringing-quantum-batteries-to-the-lab&quot;&gt;Experimental Outlook: Bringing Quantum Batteries to the Lab&lt;&#x2F;h2&gt;
+&lt;p&gt;The theoretical models developed in our paper align with several cutting-edge experimental quantum architectures:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Solid-State Molecular Magnets&lt;&#x2F;strong&gt;: Single-molecule magnets and transition metal complexes naturally exhibit significant Dzyaloshinskii–Moriya coupling due to strong spin-orbit interactions.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Rydberg Atom Arrays&lt;&#x2F;strong&gt;: Optical tweezers allow arbitrary 2D and 3D positioning of neutral atoms (e.g., in tetrahedral or cubic geometries), enabling programmable Heisenberg and DMI-like Hamiltonians.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Superconducting Circuit Networks&lt;&#x2F;strong&gt;: Tunable inductive couplers between transmons allow direct synthesis of non-collinear exchange couplings.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;summary-next-horizons&quot;&gt;Summary &amp;amp; Next Horizons&lt;&#x2F;h2&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th style=&quot;text-align: left&quot;&gt;Architecture Feature&lt;&#x2F;th&gt;&lt;th style=&quot;text-align: left&quot;&gt;Without DMI&lt;&#x2F;th&gt;&lt;th style=&quot;text-align: left&quot;&gt;With DMI (Our Work)&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Symmetry Constraints&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Trapped in symmetric dark states&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Broken inversion symmetry drives directional energy&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Ergotropy Fraction ($\mathcal{E}&#x2F;E$)&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Moderate; significant locked passive energy&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Significantly elevated&lt;&#x2F;strong&gt;, especially in supercubes&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Optimal Geometry&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Sensitive to boundary reflection&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Supercube &amp;amp; regular graphs&lt;&#x2F;strong&gt; yield robust performance&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Charging Power ($P_{\text{max}}$)&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Constrained by isotropic dispersion&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Accelerated&lt;&#x2F;strong&gt; due to chiral interaction channels&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+&lt;p&gt;As quantum processors continue to evolve toward on-chip nanoscale energy management, understanding the interplay between exchange interactions, chiral symmetry breaking, and geometric connectivity will be central to building sustainable quantum technologies.&lt;&#x2F;p&gt;
+&lt;p&gt;For a deeper mathematical exploration of the eigenvalues, ergotropy derivations, and dynamical plots, read our full article in &lt;a href=&quot;https:&#x2F;&#x2F;doi.org&#x2F;10.1088&#x2F;1367-2630&#x2F;adab0a&quot;&gt;New Journal of Physics&lt;&#x2F;a&gt; or visit my &lt;a href=&quot;https:&#x2F;&#x2F;scholar.google.com&#x2F;citations?user=LdMLDdwAAAAJ&amp;amp;hl=en&quot;&gt;Google Scholar profile&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+</feed>

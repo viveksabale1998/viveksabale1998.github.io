@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>Home - pra</title>
+    <subtitle>Academic website of Vivek Sabale — research in quantum information and open quantum systems.</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://viveksabale1998.github.io/tags/pra/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://viveksabale1998.github.io/"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2026-03-08T00:00:00+00:00</updated>
+    <id>https://viveksabale1998.github.io/tags/pra/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Exploring Non-Markovian Dynamics in Depolarizing Maps</title>
+        <published>2026-03-08T00:00:00+00:00</published>
+        <updated>2026-03-08T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Vivek Sabale
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://viveksabale1998.github.io/posts/exploring-non-markovian-depolarizing-channels/"/>
+        <id>https://viveksabale1998.github.io/posts/exploring-non-markovian-depolarizing-channels/</id>
+        
+        <content type="html" xml:base="https://viveksabale1998.github.io/posts/exploring-non-markovian-depolarizing-channels/">&lt;p&gt;In the study of open quantum systems, the &lt;strong&gt;depolarizing channel&lt;&#x2F;strong&gt; is widely regarded as the prototypical benchmark noise model. Because it degrades quantum information isotropically across all three spatial Pauli directions ($X$, $Y$, and $Z$), it represents the most egalitarian—and often the most destructive—form of environmental noise in quantum processors and communication links.&lt;&#x2F;p&gt;
+&lt;p&gt;Standard textbook treatments assume that noise is &lt;strong&gt;Markovian&lt;&#x2F;strong&gt; (memoryless): once quantum coherence leaks into the environment, it is lost forever. However, when quantum systems interact with structured reservoirs, high-density spin baths, or engineered photonic cavities, the bath retains memory of past interactions.&lt;&#x2F;p&gt;
+&lt;p&gt;In our paper published in &lt;em&gt;Physical Review A&lt;&#x2F;em&gt;, we conducted an in-depth investigation into the non-Markovian dynamics of depolarizing channels:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Exploring the non-Markovian dynamics in depolarizing maps&lt;&#x2F;strong&gt;&lt;br &#x2F;&gt;
+&lt;em&gt;A. Abu-Nada, S. Banerjee, and Vivek Balasaheb Sabale&lt;&#x2F;em&gt;&lt;br &#x2F;&gt;
+&lt;strong&gt;Physical Review A&lt;&#x2F;strong&gt; 110 (5), 052209 (2024)&lt;br &#x2F;&gt;
+🔗 &lt;a href=&quot;https:&#x2F;&#x2F;journals.aps.org&#x2F;pra&#x2F;abstract&#x2F;10.1103&#x2F;PhysRevA.110.052209&quot;&gt;Read on Physical Review A ↗&lt;&#x2F;a&gt; | &lt;a href=&quot;https:&#x2F;&#x2F;scholar.google.com&#x2F;citations?user=LdMLDdwAAAAJ&amp;amp;hl=en&quot;&gt;Google Scholar ↗&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;Here is a breakdown of the core physics, the mathematical criteria for non-Markovianity, and the operational advantages brought by information backflow.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;1-from-markovian-decay-to-non-markovian-memory&quot;&gt;1. From Markovian Decay to Non-Markovian Memory&lt;&#x2F;h2&gt;
+&lt;p&gt;An isotropic single-qubit depolarizing channel $\Phi_t$ transforms an arbitrary initial density matrix $\rho(0)$ into a mixture of the original state and the maximally mixed state $I&#x2F;2$:&lt;&#x2F;p&gt;
+&lt;p&gt;$$\Phi_t[\rho] = (1 - p(t)) \rho + p(t) \frac{I}{2}$$&lt;&#x2F;p&gt;
+&lt;p&gt;Geometrically, this corresponds to an isotropic contraction of the &lt;strong&gt;Bloch sphere&lt;&#x2F;strong&gt; toward its origin ($r \to 0$).&lt;&#x2F;p&gt;
+&lt;p&gt;Under the standard Lindblad master equation with constant decay rate $\gamma &amp;gt; 0$, the depolarization parameter grows monotonically:&lt;&#x2F;p&gt;
+&lt;p&gt;$$p(t) = \frac{3}{4} \left( 1 - e^{-\gamma t} \right)$$&lt;&#x2F;p&gt;
+&lt;p&gt;In this Markovian limit, the Bloch sphere shrinks continuously, monotonically erasing quantum information.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;the-time-local-master-equation&quot;&gt;The Time-Local Master Equation&lt;&#x2F;h3&gt;
+&lt;p&gt;In realistic structured environments, the dynamics are governed by a &lt;strong&gt;time-dependent generator&lt;&#x2F;strong&gt;:&lt;&#x2F;p&gt;
+&lt;p&gt;$$\frac{d\rho(t)}{dt} = \mathcal{L}&lt;em&gt;t[\rho(t)] = \sum&lt;&#x2F;em&gt;{k=1}^3 \gamma_k(t) \left( \sigma_k \rho(t) \sigma_k - \rho(t) \right)$$&lt;&#x2F;p&gt;
+&lt;p&gt;where $\gamma_k(t)$ are time-dependent canonical decay rates and $\sigma_k \in {\sigma_x, \sigma_y, \sigma_z}$.&lt;&#x2F;p&gt;
+&lt;p&gt;The crucial turning point occurs when the environment has memory:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;If all $\gamma_k(t) \ge 0$ for all $t$, the intermediate propagator $\Phi_{t_2, t_1} = \Phi_{t_2} \Phi_{t_1}^{-1}$ remains a completely positive (CP) map. This is known as &lt;strong&gt;CP-divisibility&lt;&#x2F;strong&gt;.&lt;&#x2F;li&gt;
+&lt;li&gt;When the decay rates turn &lt;strong&gt;temporarily negative&lt;&#x2F;strong&gt; ($\gamma_k(t) &amp;lt; 0$), CP-divisibility breaks down! Negative decay rates signify that the channel is temporarily acting in reverse, returning coherence to the system.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;2-witnessing-memory-via-information-backflow-blp-measure&quot;&gt;2. Witnessing Memory via Information Backflow (BLP Measure)&lt;&#x2F;h2&gt;
+&lt;p&gt;How do we rigorously quantify this memory effect?&lt;&#x2F;p&gt;
+&lt;p&gt;One of the most physically intuitive measures was introduced by Breuer, Laine, and Piilo (BLP). It relies on the &lt;strong&gt;trace distance&lt;&#x2F;strong&gt; $D(\rho_1, \rho_2)$ between two distinct quantum states:&lt;&#x2F;p&gt;
+&lt;p&gt;$$D(\rho_1(t), \rho_2(t)) = \frac{1}{2} \text{Tr}\left[ \sqrt{(\rho_1(t) - \rho_2(t))^\dagger (\rho_1(t) - \rho_2(t))} \right]$$&lt;&#x2F;p&gt;
+&lt;p&gt;Trace distance quantifies the maximal probability of distinguishing between state $\rho_1$ and state $\rho_2$ in a single measurement.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;the-contractivity-principle&quot;&gt;The Contractivity Principle&lt;&#x2F;h3&gt;
+&lt;p&gt;Under any CP-divisible (Markovian) channel, state distinguishability can never increase:&lt;&#x2F;p&gt;
+&lt;p&gt;$$\sigma(t, \rho_{1,2}) = \frac{d}{dt} D(\rho_1(t), \rho_2(t)) \le 0 \quad \forall t$$&lt;&#x2F;p&gt;
+&lt;p&gt;Whenever $\sigma(t) &amp;gt; 0$, information that previously leaked into environmental degrees of freedom is flowing back into the system:&lt;&#x2F;p&gt;
+&lt;p&gt;$$\mathcal{N}&lt;em&gt;{\text{BLP}} = \max&lt;&#x2F;em&gt;{\rho_{1,2}(0)} \int_{\sigma &amp;gt; 0} \sigma(t, \rho_{1,2}) , dt &amp;gt; 0$$&lt;&#x2F;p&gt;
+&lt;p&gt;In our paper, we derived analytical expressions for the trace distance under time-dependent depolarizing noise, identifying the precise temporal intervals where $\frac{d}{dt} D &amp;gt; 0$ produces distinct &lt;strong&gt;revival peaks&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;3-revivals-in-channel-capacity&quot;&gt;3. Revivals in Channel Capacity&lt;&#x2F;h2&gt;
+&lt;p&gt;Beyond theoretical state distinguishability, does non-Markovian memory provide tangible benefits for quantum communication?&lt;&#x2F;p&gt;
+&lt;p&gt;Yes! We examined how information backflow directly revives communication capacities:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Entanglement-Assisted Classical Capacity ($C_{\text{ea}}$)&lt;&#x2F;strong&gt;: Measures the rate at which classical bits can be transmitted across the quantum channel when sender and receiver share prior entanglement.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Quantum Capacity ($Q$)&lt;&#x2F;strong&gt;: Quantifies the rate of transmitting coherent quantum information.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;In the Markovian regime, both capacities decay monotonically to zero. Under non-Markovian depolarizing dynamics:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;As negative decay rates kick in, both capacities experience &lt;strong&gt;transient revivals&lt;&#x2F;strong&gt;, temporarily rebounding above zero even after having decayed significantly.&lt;&#x2F;li&gt;
+&lt;li&gt;This demonstrates that non-Markovian memory can be exploited to construct synchronized transmission protocols that pulse information during periods of maximal information return.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;summary-of-insights&quot;&gt;Summary of Insights&lt;&#x2F;h2&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th style=&quot;text-align: left&quot;&gt;Property&lt;&#x2F;th&gt;&lt;th style=&quot;text-align: left&quot;&gt;Markovian Depolarizing&lt;&#x2F;th&gt;&lt;th style=&quot;text-align: left&quot;&gt;Non-Markovian Depolarizing (Our Work)&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Decay Rates $\gamma(t)$&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Strictly positive constant ($\gamma &amp;gt; 0$)&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Oscillates with &lt;strong&gt;negative intervals&lt;&#x2F;strong&gt; ($\gamma(t) &amp;lt; 0$)&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;CP-Divisibility&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Always CP-divisible&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;CP-divisibility breakdown&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Trace Distance Rate $\sigma(t)$&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;$\sigma(t) \le 0$ (monotonic loss)&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;$\sigma(t) &amp;gt; 0$ (&lt;strong&gt;Information Backflow&lt;&#x2F;strong&gt;)&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Bloch Sphere Evolution&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Monotonically shrinks to $I&#x2F;2$&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Expands and contracts&lt;&#x2F;strong&gt; during revival windows&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Channel Capacity&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Permanently degrades&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Exhibits &lt;strong&gt;capacity revivals&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;read-the-full-article&quot;&gt;Read the Full Article&lt;&#x2F;h2&gt;
+&lt;p&gt;For full mathematical derivations, plots of the decay rates, and detailed proofs of CP-divisibility bounds, explore our published paper:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Physical Review A&lt;&#x2F;strong&gt;: &lt;a href=&quot;https:&#x2F;&#x2F;journals.aps.org&#x2F;pra&#x2F;abstract&#x2F;10.1103&#x2F;PhysRevA.110.052209&quot;&gt;Phys. Rev. A 110, 052209 (2024)&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Google Scholar&lt;&#x2F;strong&gt;: &lt;a href=&quot;https:&#x2F;&#x2F;scholar.google.com&#x2F;citations?user=LdMLDdwAAAAJ&amp;amp;hl=en&quot;&gt;Vivek Sabale&#x27;s Publications&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;Have questions or interested in collaborating? Check out the &lt;a href=&quot;&#x2F;collaboration&quot;&gt;Collaboration page&lt;&#x2F;a&gt; or &lt;a href=&quot;&#x2F;cv&quot;&gt;get in touch&lt;&#x2F;a&gt;.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</content>
+        
+    </entry>
+</feed>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>Home - quantum-computing</title>
+    <subtitle>Academic website of Vivek Sabale — research in quantum information and open quantum systems.</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://viveksabale1998.github.io/tags/quantum-computing/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://viveksabale1998.github.io/"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2026-03-09T00:00:00+00:00</updated>
+    <id>https://viveksabale1998.github.io/tags/quantum-computing/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Foundations of Quantum Information: From Qubits and Superposition to Density Matrices</title>
+        <published>2026-03-09T00:00:00+00:00</published>
+        <updated>2026-03-09T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Vivek Sabale
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://viveksabale1998.github.io/posts/intro-to-quantum-information/"/>
+        <id>https://viveksabale1998.github.io/posts/intro-to-quantum-information/</id>
+        
+        <content type="html" xml:base="https://viveksabale1998.github.io/posts/intro-to-quantum-information/">&lt;p&gt;Quantum information science combines quantum mechanics with computer science and information theory. While classical computation encodes information into binary bits ($0$ or $1$), quantum systems operate in complex Hilbert spaces, unlocking phenomena like superposition, entanglement, and interference.&lt;&#x2F;p&gt;
+&lt;p&gt;This article provides a pedagogical introduction to the core mathematical language of quantum information.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;1-what-is-a-qubit&quot;&gt;1. What is a Qubit?&lt;&#x2F;h2&gt;
+&lt;p&gt;A &lt;strong&gt;qubit&lt;&#x2F;strong&gt; (quantum bit) is the fundamental unit of quantum information. Unlike a classical bit, a qubit can exist in a linear combination—or &lt;strong&gt;superposition&lt;&#x2F;strong&gt;—of its computational basis states ${|0\rangle, |1\rangle}$:&lt;&#x2F;p&gt;
+&lt;p&gt;$$|\psi\rangle = \alpha |0\rangle + \beta |1\rangle$$&lt;&#x2F;p&gt;
+&lt;p&gt;where $\alpha, \beta \in \mathbb{C}$ are complex probability amplitudes satisfying the normalization constraint:&lt;&#x2F;p&gt;
+&lt;p&gt;$$|\alpha|^2 + |\beta|^2 = 1$$&lt;&#x2F;p&gt;
+&lt;p&gt;When a projective measurement is performed in the standard basis:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;The probability of obtaining outcome $0$ is $P(0) = |\alpha|^2$.&lt;&#x2F;li&gt;
+&lt;li&gt;The probability of obtaining outcome $1$ is $P(1) = |\beta|^2$.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;2-geometric-representation-the-bloch-sphere&quot;&gt;2. Geometric Representation: The Bloch Sphere&lt;&#x2F;h2&gt;
+&lt;p&gt;Because global phase is physically unobservable ($e^{i\gamma}|\psi\rangle \sim |\psi\rangle$), any pure single-qubit state can be uniquely parameterized by two real angles $\theta \in [0, \pi]$ and $\phi \in [0, 2\pi)$:&lt;&#x2F;p&gt;
+&lt;p&gt;$$|\psi\rangle = \cos\left(\frac{\theta}{2}\right) |0\rangle + e^{i\phi} \sin\left(\frac{\theta}{2}\right) |1\rangle$$&lt;&#x2F;p&gt;
+&lt;p&gt;This establishes a 1-to-1 mapping between pure single-qubit states and points on the surface of a unit sphere in $\mathbb{R}^3$, known as the &lt;strong&gt;Bloch Sphere&lt;&#x2F;strong&gt;:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;North Pole&lt;&#x2F;strong&gt; ($\theta = 0$): $|0\rangle$&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;South Pole&lt;&#x2F;strong&gt; ($\theta = \pi$): $|1\rangle$&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Equator&lt;&#x2F;strong&gt; ($\theta = \pi&#x2F;2$): Superpositions such as:
+$$|+\rangle = \frac{|0\rangle + |1\rangle}{\sqrt{2}}, \quad |-\rangle = \frac{|0\rangle - |1\rangle}{\sqrt{2}}, \quad |+i\rangle = \frac{|0\rangle + i|1\rangle}{\sqrt{2}}$$&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Any single-qubit unitary gate corresponds to a 3D rotation of the state vector on this sphere!&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;3-pure-states-vs-mixed-states&quot;&gt;3. Pure States vs. Mixed States&lt;&#x2F;h2&gt;
+&lt;p&gt;In idealized closed quantum systems, states are described by state vectors $|\psi\rangle$ (pure states). However, in the real world:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;Systems interact with noisy environments (decoherence).&lt;&#x2F;li&gt;
+&lt;li&gt;We may only possess statistical knowledge about which quantum state was prepared.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;Such states cannot be written as a single ket $|\psi\rangle$. Instead, they form a &lt;strong&gt;statistical ensemble&lt;&#x2F;strong&gt;:&lt;&#x2F;p&gt;
+&lt;p&gt;$${\left(p_i, |\psi_i\rangle\right)}, \quad \text{where } p_i \ge 0 \text{ and } \sum_i p_i = 1$$&lt;&#x2F;p&gt;
+&lt;p&gt;This leads directly to the &lt;strong&gt;Density Matrix Formalism&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;4-the-density-operator-formalism&quot;&gt;4. The Density Operator Formalism&lt;&#x2F;h2&gt;
+&lt;p&gt;The density operator $\rho$ representing a quantum ensemble is defined as:&lt;&#x2F;p&gt;
+&lt;p&gt;$$\rho = \sum_i p_i |\psi_i\rangle \langle \psi_i|$$&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;essential-properties-of-density-matrices&quot;&gt;Essential Properties of Density Matrices&lt;&#x2F;h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Hermiticity&lt;&#x2F;strong&gt;: $\rho^\dagger = \rho$ (observable probabilities are real).&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Unit Trace&lt;&#x2F;strong&gt;: $\text{Tr}(\rho) = 1$ (total probability equals 1).&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Positive Semi-definiteness&lt;&#x2F;strong&gt;: $\rho \ge 0$ (all eigenvalues $\lambda_i \ge 0$).&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;h3 id=&quot;purity-criterion&quot;&gt;Purity Criterion&lt;&#x2F;h3&gt;
+&lt;p&gt;To distinguish whether a quantum state $\rho$ is pure or mixed, we compute its &lt;strong&gt;purity&lt;&#x2F;strong&gt; $\gamma$:&lt;&#x2F;p&gt;
+&lt;p&gt;$$\gamma = \text{Tr}(\rho^2)$$&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Pure state&lt;&#x2F;strong&gt;: $\text{Tr}(\rho^2) = 1$ (the state lies on the &lt;strong&gt;surface&lt;&#x2F;strong&gt; of the Bloch sphere, radius $r = 1$).&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Mixed state&lt;&#x2F;strong&gt;: $\text{Tr}(\rho^2) &amp;lt; 1$ (the state lies in the &lt;strong&gt;interior&lt;&#x2F;strong&gt; of the Bloch sphere, radius $r &amp;lt; 1$).&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Maximally mixed state&lt;&#x2F;strong&gt;: $\rho = \frac{I}{2}$ with $\text{Tr}(\rho^2) = \frac{1}{2}$ (the exact &lt;strong&gt;center&lt;&#x2F;strong&gt; of the sphere, $r = 0$, representing complete ignorance).&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;5-connecting-to-open-quantum-systems-qml&quot;&gt;5. Connecting to Open Quantum Systems &amp;amp; QML&lt;&#x2F;h2&gt;
+&lt;p&gt;Understanding density matrices is the indispensable bridge to advanced topics in modern research:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Open Quantum Systems&lt;&#x2F;strong&gt;: Environmental interactions transform pure states into mixed states via dynamical maps $\rho(t) = \mathcal{E}_t[\rho(0)]$.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Quantum Machine Learning&lt;&#x2F;strong&gt;: Quantum classifiers and neural networks operate directly on density matrices to distinguish entangled from separable mixtures without requiring full quantum state tomography.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;summary-cheat-sheet&quot;&gt;Summary Cheat-Sheet&lt;&#x2F;h2&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th style=&quot;text-align: left&quot;&gt;Concept&lt;&#x2F;th&gt;&lt;th style=&quot;text-align: left&quot;&gt;Pure State&lt;&#x2F;th&gt;&lt;th style=&quot;text-align: left&quot;&gt;Mixed State&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Mathematical Object&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;State vector $&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;\psi\rangle$&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Bloch Sphere Location&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Surface ($r = 1$)&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Interior ($0 \le r &amp;lt; 1$)&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Purity $\text{Tr}(\rho^2)$&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Exactly $1$&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Less than $1$ (down to $1&#x2F;d$)&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Entropy $S(\rho)$&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;$0$ (zero classical uncertainty)&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;$&amp;gt; 0$ (statistical mixedness)&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+&lt;p&gt;For more hands-on practice, check out our &lt;a href=&quot;&#x2F;projects&#x2F;quantum-computing-lab&quot;&gt;Quantum Computing Lab Notebooks&lt;&#x2F;a&gt; or read our research posts on &lt;a href=&quot;&#x2F;posts&#x2F;exploring-non-markovian-depolarizing-channels&quot;&gt;Non-Markovian Dynamics&lt;&#x2F;a&gt; and &lt;a href=&quot;&#x2F;posts&#x2F;qml-quantum-state-classification&quot;&gt;Quantum Machine Learning&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+</feed>
